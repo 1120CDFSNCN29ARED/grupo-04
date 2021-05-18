@@ -1,75 +1,175 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <%- include('../partials/head')%>
-    <title>Crear producto</title>
-    <link rel="stylesheet" href="/css/productCreate.css">
+        <title>Crear producto</title>
+        <link rel="stylesheet" href="/css/productCreate.css">
 </head>
+
 <body>
     <header>
-        <%- include('../partials/header')%> 
+        <%- include('../partials/header')%>
     </header>
 
     <main>
         <h2 class="createTitle">Crear Producto</h2>
         <form class="createForm" action="/products/create" method="POST" enctype="multipart/form-data">
             <div class="productName">
-                <input type="text" name="productName" id="productName" placeholder="Nombre de Producto" value="<%= locals.oldData && oldData.productName ? oldData.productName : null  %>">
+                <label for="productName">Nombre de producto</label>
+                <input type="text" name="productName" id="productName"
+                    value="<%= locals.oldData && oldData.productName ? oldData.productName : null  %>">
                 <% if (locals.errors && errors.productName) { %>
-                 <p class="inputError"><%= errors.productName.msg%> </p>
-                <% } %>
+                    <p class="inputError">
+                        <%= errors.productName.msg%>
+                    </p>
+                    <% } %>
             </div>
             <div class="productTopEspecs">
-                <input type="text" name="productTopSpec1" id="productTopSpec1" placeholder="Principal característica" value="<%= locals.oldData && oldData.productTopSpec1 ? oldData.productTopSpec1 : null  %>">
-                <input type="text" name="productTopSpec2" id="productTopSpec2" placeholder="Principal característica" value="<%= locals.oldData && oldData.productTopSpec2 ? oldData.productTopSpec2 : null  %>">
-                <input type="text" name="productTopSpec3" id="productTopSpec3" placeholder="Principal característica" value="<%= locals.oldData && oldData.productTopSpec3 ? oldData.productTopSpec3 : null  %>">
-                <input type="text" name="productTopSpec4" id="productTopSpec4" placeholder="Principal característica" value="<%= locals.oldData && oldData.productTopSpec4 ? oldData.productTopSpec4 : null  %>">
+                <label for="productTopSpec1">Principales características</label>
+                <input type="text" name="productTopSpec1" id="productTopSpec1"
+                    value="<%= locals.oldData && oldData.productTopSpec1 ? oldData.productTopSpec1 : null  %>">
+                <input type="text" name="productTopSpec2" id="productTopSpec2"
+                    value="<%= locals.oldData && oldData.productTopSpec2 ? oldData.productTopSpec2 : null  %>">
+                <input type="text" name="productTopSpec3" id="productTopSpec3"
+                    value="<%= locals.oldData && oldData.productTopSpec3 ? oldData.productTopSpec3 : null  %>">
+                <input type="text" name="productTopSpec4" id="productTopSpec4"
+                    value="<%= locals.oldData && oldData.productTopSpec4 ? oldData.productTopSpec4 : null  %>">
+            </div>
+            <div class="productName">
+                <label for="productCode">Código de producto</label>
+                <input type="text" name="productCode" id="productCode"
+                    value="<%= locals.oldData && oldData.productCode ? oldData.productCode : null  %>">
+                <% if (locals.errors && errors.productCode) { %>
+                    <p class="inputError">
+                        <%= errors.productCode.msg%>
+                    </p>
+                    <% } %>
             </div>
             <div class="productName">
                 <% if (locals.errors && errors.productTopSpec1) { %>
-                    <p class="inputError"><%= errors.productTopSpec1.msg %> </p>
-                   <% } %>
+                    <p class="inputError">
+                        <%= errors.productTopSpec1.msg %>
+                    </p>
+                    <% } %>
             </div>
             <div class="productDescription">
-                <textarea class="productDescription" name="productDescription" id="productDescription" cols="60" rows="4" placeholder="Descripcion ampliada del producto"><%= locals.oldData && oldData.productDescription ? oldData.productDescription : ''  %></textarea>
-                <!-- <input type="text" name="productDescription" id="productDescription"  placeholder="Descripción ampliada"> -->
+                <label for="productDescription">Descripción del producto</label>
+                <textarea class="productDescription" name="productDescription" id="productDescription" cols="60"
+                    rows="4"><%= locals.oldData && oldData.productDescription ? oldData.productDescription : ''  %></textarea>
                 <% if (locals.errors && errors.productDescription) { %>
-                    <p class="inputError"><%= errors.productDescription.msg %> </p>
-                   <% } %>
-                </div>
+                    <p class="inputError">
+                        <%= errors.productDescription.msg %>
+                    </p>
+                    <% } %>
+            </div>
             <div class="productImg">
-                <span>Imágenes<input type="file" name="productImg" id="productImg" multiple ></span>
+                <span>Imágenes<input type="file" name="productImg" id="productImg" multiple></span>
                 <% if (locals.errors && errors.productImg) { %>
-                    <p class="inputError"><%= errors.productImg.msg %> </p>
-                   <% } %>
+                    <p class="inputError">
+                        <%= errors.productImg.msg %>
+                    </p>
+                    <% } %>
             </div>
             <div class="productCategory">
-                <select name="productCategory" id="productCategory"  class="categorySelect">
+                <label for="productCategory">Categoría</label>
+                <select name="productCategory" id="productCategory" class="categorySelect">
                     <option value="" disabled selected hidden>Categoria</option>
-                    <option value="cpu" <%= locals.oldData && (oldData.productCategory === "cpu") ? "selected" : ''  %>>Procesadores</option>
-                    <option value="motherboards" <%= locals.oldData && (oldData.productCategory === "motherboards") ? "selected" : ''  %>>Motherboards</option>
-                    <option value="memories" <%= locals.oldData && (oldData.productCategory === "memories") ? "selected" : ''  %>>Memorias</option>
-                    <option value="storage" <%= locals.oldData && (oldData.productCategory === "storage") ? "selected" : ''  %>>Almacenamiento</option>
+                    <% for( let i=0; i < categories.length; i++ ) { %>
+                        <option value="<%= categories[i].id %>" <%=locals.oldData &&
+                            (oldData.productCategory==categories[i].id) ? "selected" : '' %>
+                            ><%= categories[i].nombre %>
+                        </option>
+                        <% } %>
                 </select>
                 <% if (locals.errors && errors.productCategory) { %>
-                    <p class="inputError"><%= errors.productCategory.msg %> </p>
-                   <% } %>
+                    <p class="inputError">
+                        <%= errors.productCategory.msg%>
+                    </p>
+                    <% } %>
+            </div>
+            <div class="productCategory">
+                <label for="uniMedida">Unidad de medida</label>
+                <select name="uniMedida" id="uniMedida" class="categorySelect">
+                    <option value="" disabled selected hidden>Unidad de medida</option>
+                    <% for( let i=0; i < uni_medida.length; i++ ) { %>
+                        <option value="<%= uni_medida[i].id %>" <%=locals.oldData &&
+                            (oldData.uniMedida==uni_medida[i].id) ? "selected" : '' %>
+                            ><%= uni_medida[i].nombre %>
+                        </option>
+                        <% } %>
+                </select>
+                <% if (locals.errors && errors.uniMedida) { %>
+                    <p class="inputError">
+                        <%= errors.uniMedida.msg %>
+                    </p>
+                    <% } %>
+            </div>
+            <div class="productCategory">
+                <label for="marca">Marca</label>
+                <select name="marca" id="marca" class="categorySelect">
+                    <option value="" disabled selected hidden>Marca</option>
+                    <% for( let i=0; i < marcas.length; i++ ) { %>
+                        <option value="<%= marcas[i].id %>" <%=locals.oldData && (oldData.marca==marcas[i].id)
+                            ? "selected" : '' %>
+                            ><%= marcas[i].nombre %>
+                        </option>
+                        <% } %>
+                </select>
+                <% if (locals.errors && errors.marca) { %>
+                    <p class="inputError">
+                        <%= errors.marca.msg %>
+                    </p>
+                    <% } %>
             </div>
             <div class="productPrice">
-                <input type="number" name="productPrice" id="productPrice" placeholder="Precio" value="<%= locals.oldData && oldData.productPrice ? oldData.productPrice : ''  %>">
+                <label for="productPrice">Precio</label>
+                <input type="number" name="productPrice" id="productPrice"
+                    value="<%= locals.oldData && oldData.productPrice ? oldData.productPrice : ''  %>">
                 <% if (locals.errors && errors.productPrice) { %>
-                    <p class="inputError"><%= errors.productPrice.msg %> </p>
-                   <% } %>
+                    <p class="inputError">
+                        <%= errors.productPrice.msg %>
+                    </p>
+                    <% } %>
+            </div>
+            <div class="productCategory">
+                <label for="iva">IVA</label>
+                <select name="iva" id="iva" class="categorySelect">
+                    <option value="" disabled selected hidden>IVA</option>
+                    <% for( let i=0; i < iva.length; i++ ) { %>
+                        <option value="<%= iva[i].id %>" <%=locals.oldData && (oldData.iva==iva[i].id) ? "selected" : ''
+                            %>
+                            ><%= iva[i].nombre+' '+ iva[i].valor+' %' %>
+                        </option>
+                        <% } %>
+                </select>
+                <% if (locals.errors && errors.iva) { %>
+                    <p class="inputError">
+                        <%= errors.iva.msg %>
+                    </p>
+                    <% } %>
+            </div>
+            <div class="productPrice">
+                <label for="cantidadInicial">Cantidad inicial</label>
+                <input type="number" name="cantidadInicial" id="cantidadInicial"
+                    value="<%= locals.oldData && oldData.cantidadInicial ? oldData.cantidadInicial : ''  %>">
+                <% if (locals.errors && errors.cantidadInicial) { %>
+                    <p class="inputError">
+                        <%= errors.cantidadInicial.msg %>
+                    </p>
+                    <% } %>
             </div>
             <div class="productPrice">
                 <label for="highlighted" class="highlighted">Producto destacado</label>
-                <input type="checkbox" name="highlighted" id="highlighted"  class="highlighted" value="true" <%= locals.oldData && (oldData.highlighted == true) ? "checked" : ''  %>>
+                <input type="checkbox" name="highlighted" id="highlighted" class="highlighted" value="true"
+                    <%=locals.oldData && (oldData.highlighted==true) ? "checked" : '' %>>
             </div>
-            <button type="submit" class="productSubmit" >Crear</button>
+            <button type="submit" class="productSubmit">Crear</button>
         </form>
     </main>
 
     <%- include('../partials/footer')%>
 
 </body>
+
 </html>

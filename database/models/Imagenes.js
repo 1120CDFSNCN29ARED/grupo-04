@@ -1,8 +1,8 @@
 module.exports = function (sequelize, dataTypes) {
-	const Caracteristicas = sequelize.define(
-		'Caracteristicas',
+	const Imagenes = sequelize.define(
+		'Imagenes',
 		{
-			caracteristica: {
+			imagen: {
 				type: dataTypes.STRING,
 				allowNull: false,
 			},
@@ -11,13 +11,13 @@ module.exports = function (sequelize, dataTypes) {
 				allowNull: false,
 			},
 		},
-		{ tableName: 'caracteristicas' }
+		{ tableName: 'imagenes' }
 	);
-	Caracteristicas.associate = function (models) {
-		Caracteristicas.belongsTo(models.Producto, {
+	Imagenes.associate = function (models) {
+		Imagenes.belongsTo(models.Producto, {
 			as: 'producto',
 			foreignKey: 'producto_id',
 		});
 	};
-	return Caracteristicas;
+	return Imagenes;
 };

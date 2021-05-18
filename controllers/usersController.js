@@ -4,6 +4,7 @@ const User = require('../services/Users');
 const Domicilio = require('../services/Domicilio');
 const bcrypt = require('bcryptjs');
 const db = require('../database/models');
+const e = require('express');
 
 controller = {
 	login: (req, res) => {

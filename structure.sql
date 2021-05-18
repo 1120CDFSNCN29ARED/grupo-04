@@ -29,7 +29,7 @@ CONSTRAINT pk_paises PRIMARY KEY(id)
 CREATE TABLE provincias(
 id              int auto_increment not null,
 pais_id     int not null,
-nombre          varchar(20) not null,
+nombre          varchar(50) not null,
 CONSTRAINT pk_provincias PRIMARY KEY(id),
 CONSTRAINT fk_pais FOREIGN KEY(pais_id) REFERENCES paises(id)
 )ENGINE=InnoDB;
@@ -38,15 +38,15 @@ CREATE TABLE users(
 id       int(10) auto_increment not null,
 name   varchar(50) not null,
 last_name    varchar(50) not null,
-documento   int(11) not null,
-tipo_documento_id  int(11) not null,
+documento   int(11),
+tipo_documento_id  int(11),
 email    varchar(50) not null,
 pass    varchar(255) not null,
-condicion_fiscal_id int(11) not null,
-razon_social varchar(50) not null,
+condicion_fiscal_id int(11),
+razon_social varchar(50),
 telefono int(11),
 ofertas int(11),
-tipo_persona_id int(11) not null,
+tipo_persona_id int(11),
 mail_confirmado int(11),
 image varchar(255),
 admin boolean,
@@ -132,6 +132,16 @@ CONSTRAINT pk_caracteristicas PRIMARY KEY(id),
 CONSTRAINT fk_producto FOREIGN KEY(producto_id) REFERENCES productos(id)
 )ENGINE=InnoDB;
 
+CREATE TABLE imagenes(
+id       int(10) auto_increment not null,
+imagen   varchar(255) not null,
+producto_id	int(11) not null,
+createdAt date,
+updatedAt date,
+CONSTRAINT pk_imagenes PRIMARY KEY(id),
+CONSTRAINT fk_producto FOREIGN KEY(producto_id) REFERENCES productos(id)
+)ENGINE=InnoDB;
+
 CREATE TABLE sockets(
 id       int(10) auto_increment not null,
 nombre   varchar(50) not null,
@@ -209,6 +219,7 @@ CONSTRAINT fk_carritos FOREIGN KEY(carrito_id) REFERENCES carritos(id)
 # );
 
 
+
 #CONDICIONES FISCALES
 INSERT INTO condiciones_fiscales VALUES(NULL, 'Consumidor Final');
 INSERT INTO condiciones_fiscales VALUES(NULL, 'Responsable Inscripto');
@@ -219,6 +230,7 @@ INSERT INTO condiciones_fiscales VALUES(NULL, 'Monotributista');
 INSERT INTO paises VALUES(NULL, 'Argentina');
 INSERT INTO paises VALUES(NULL, 'Brasil');
 INSERT INTO paises VALUES(NULL, 'Uruguay');
+
 
 #PROVINCIAS
 INSERT INTO provincias VALUES(NULL, 1, 'Buenos Aires');
@@ -236,14 +248,43 @@ INSERT INTO tipos_documento VALUES(NULL, 'LE');
 INSERT INTO tipos_personas VALUES(NULL, 'HUMANA');
 INSERT INTO tipos_personas VALUES(NULL, 'JURIDICA');
 
-#PRODUCTOS
-#INSERT INTO productos VALUES(NULL, 'CPU', curdate(), CURDATE());
+INSERT INTO ivas
+VALUES (null, 'normal', 21);
+INSERT INTO ivas
+VALUES (null,'reducido', 10.5);
+INSERT INTO ivas
+VALUES (null,'nulo', 0);
 
-#PEDIDOS
-#INSERT INTO pedidos VALUES(NULL, 4, 1, CURDATE(),CURDATE());
+INSERT INTO marcas
+VALUES (null,'Asus'),
+       (null,'MSI'),
+       (null,'Asrock'),
+       (null,'Kingston'),
+       (null,'Intel'),
+       (null,'AMD');
 
-#CARRITOS
-#INSERT INTO carritos VALUES(NULL, 1, 1, CURDATE(),CURDATE());
+INSERT INTO sockets
+VALUES (null,'1151'),
+       (null,'AM4'),
+       (null,'LGA1200');
 
-#COMPRAS
-#INSERT INTO compras VALUES(NULL, 10, 1, CURDATE(),CURDATE(),CURDATE());
+INSERT INTO tipo_memorias
+VALUES (null,'DDR4'),
+       (null,'GDDR5'),
+       (null,'GDDR6');
+
+INSERT INTO tipo_productos
+VALUES (null,'CPU'),
+       (null,'MEMORIA'),
+       (null,'MOTHERBOARD'),
+       (null,'ALMACENAMIENTO'),
+       (null,'GABINETE'),
+       (null,'MONITOR'),
+       (null,'PLACA DE VIDEO');
+
+INSERT INTO uni_medidas
+VALUES (null,'unidad'),
+       (null,'metros');
+
+INSERT INTO users
+VALUES (null,'Martin', 'Golszmidt', 30025707, 1, 'martingol@gmail.com', '$2a$10$5bwZ/rFNMGF1/.aG08FSwO0jIhPSbVV1S/BJ1pdf1gs6/CynEV9La',1,null,1157602955,1,1,null,null,true,1,curdate(),curdate());
