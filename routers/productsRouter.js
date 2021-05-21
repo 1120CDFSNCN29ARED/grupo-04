@@ -15,47 +15,47 @@ router.put('/cart/:id', productsController.cartAdd);
 router.delete('cart/:id', productsController.cartDelete);
 router.get(
 	'/create',
-	//accessControls.notLogged,
-	//accessControls.admin,
+	accessControls.notLogged,
+	accessControls.admin,
 	productsController.createView
 );
 router.post(
 	'/create',
-	//accessControls.notLogged,
-	//accessControls.admin,
+	accessControls.notLogged,
+	accessControls.admin,
 	upload.product.array('productImg'),
 	productValidationMiddleware.create,
 	productsController.create
 );
 router.get(
 	'/listado',
-	//accessControls.notLogged,
-	//accessControls.admin,
+	accessControls.notLogged,
+	accessControls.admin,
 	productsController.list
 );
 router.get(
 	'/edit/:id',
-	//accessControls.notLogged,
-	//accessControls.admin,
+	accessControls.notLogged,
+	accessControls.admin,
 	productsController.editView
 );
 router.put(
 	'/edit/:id',
-	//accessControls.notLogged,
-	//accessControls.admin,
+	accessControls.notLogged,
+	accessControls.admin,
 	upload.product.array('productImg'),
 	productsController.edit
 );
 router.put(
 	'/edit/price/:id',
-	//accessControls.notLogged,
-	//accessControls.admin,
+	accessControls.notLogged,
+	accessControls.admin,
 	productsController.editPrice
 );
 router.put(
 	'/edit/highlighted/:id',
-	//accessControls.notLogged,
-	//accessControls.admin,
+	accessControls.notLogged,
+	accessControls.admin,
 	productsController.editHighlighted
 );
 router.delete(

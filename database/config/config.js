@@ -3,6 +3,7 @@ module.exports = {
 		username: 'root',
 		password: 'NewPassword',
 		database: 'pc_components',
+		loggin: false,
 		host: '127.0.0.1',
 		dialect: 'mysql',
 	},

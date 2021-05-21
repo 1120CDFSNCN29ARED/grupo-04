@@ -1,52 +1,74 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <%- include('../partials/head')%>
-        <link rel="stylesheet" href="/css/productsList.css">
-    </head>
-    <body>
-        <header>
-            <%- include('../partials/header')%> 
-        </header>
 
-        <main>
-            <div class="titleBar">
-                <p class="titleBarImage">Imagen</p>
-                <p class="titleBarName">Nombre</p>
-                <p class="titleBarDescription">Descripción</p>
-                <p class="titleBarHighlighted">Destacado</p>
-                <p class="titleBarPrice">Precio</p>
-                <p class="titleBarActions">Acciones</p>
+<head>
+    <%- include('../partials/head')%>
+        <link rel="stylesheet" href="/css/productsList.css">
+</head>
+
+<body>
+    <header>
+        <%- include('../partials/header')%>
+    </header>
+
+    <main>
+        <div class="titleBar">
+            <p class="titleBarImage">Imagen</p>
+            <p class="titleBarName">Nombre</p>
+            <p class="titleBarDescription">Marca</p>
+            <p class="titleBarHighlighted">Destacado</p>
+            <p class="titleBarPrice">Precio</p>
+            <p class="titleBarActions">Acciones</p>
+        </div>
+        <% for( let i=0; i < productsL.length; i++ ) {%>
+            <div>
+                <article>
+                    <% if (productsL[i].imagenes.length> 0) { %>
+                        <a href="/products/detail/<%= productsL[i].id %> "><img
+                                src="/img/products/<%= productsL[i].imagenes[0].imagen %> " alt="imagen 0"></a>
+                        <% } else {%>
+                            <a href="/products/detail/<%= productsL[i].id %> "><img src="/img/products/default.jpg"
+                                    alt="imagen default"></a>
+                            <% }%>
+                                <p class="nombre">
+                                    <%= productsL[i].nombre %>
+                                </p>
+                                <p>
+                                    <%= productsL[i].marca.nombre %>
+                                </p>
+                                <form class="highlightedForm"
+                                    action="/products/edit/highlighted/<%=productsL[i].id%>?_method=put" method="post">
+                                    <input type="checkbox" name="highlighted" id="highlighted"
+                                        value="<%= productsL[i].descuento_oferta ? true : false %>"
+                                        <%=productsL[i].descuento_oferta ? 'checked' : "" %> >
+                                    <button type="submit" class="highlightedButton">
+                                        <%= productsL[i].descuento_oferta ? "quitar" : "destacar" %>
+                                    </button>
+                                </form>
+                                <div class="price">
+                                    <p>
+                                        <%= (Number(productsL[i].precio)).toLocaleString('es-AR',
+                                            {minimumFractionDigits: 2, maximumFractionDigits: 2, style: 'currency' ,
+                                            currency: 'ARS' }) %> %>
+                                    </p>
+                                    <form action="/products/edit/price/<%=productsL[i].id%>?_method=put" method="post">
+                                        <label for="price">Nuevo precio:</label>
+                                        <input type="number" name="price" id="price" value="<%= productsL[i].precio %>">
+                                        <button type="submit" class="priceButton">cambiar</button>
+                                    </form>
+                                </div>
+                                <a class="editButton" href="<%= `/products/edit/${productsL[i].id}` %> ">Editar</a>
+                                <form action="/products/delete/<%=productsL[i].id%>?_method=delete" method="post">
+                                    <button class="deleteSubmitButton" type="submit">Eliminar</button>
+                                </form>
+                </article>
             </div>
-            <% for( let i = 0; i < products.length; i++ ) {%>
-                <div>
-                    <article>
-                        <a href="/products/detail/<%= products[i].id %> "><img src="/img/products/<%= products[i].img[0] %> " alt="imagen 0"></a>
-                        <p><%= products[i].name %> </p>
-                        <p><%= products[i].specs[0] %> </p>
-                        <form class="highlightedForm" action="/products/edit/highlighted/<%=products[i].id%>?_method=put" method="post">    
-                            <input type="checkbox" name="highlighted" id="highlighted" value="<%= products[i].highlighted ? true : false %>" <%= products[i].highlighted ? 'checked' : "" %> >
-                            <button type="submit" class="highlightedButton"><%= products[i].highlighted ? "quitar" : "destacar"%> </button>
-                        </form>    
-                        <div class="price">
-                            <p><%= (Number(products[i].price)).toLocaleString('es-AR', {minimumFractionDigits: 2, maximumFractionDigits: 2, style: 'currency', currency: 'ARS'}) %> %> </p>
-                            <form action="/products/edit/price/<%=products[i].id%>?_method=put" method="post">
-                                <label for="price">Nuevo precio:</label>
-                                <input type="number" name="price" id="price" value="<%= products[i].price %>">
-                                <button type="submit" class="priceButton">cambiar</button>
-                            </form>
-                        </div>
-                        <a class="editButton" href="<%= `/products/edit/${products[i].id}` %> ">Editar</a>
-                        <form action="/products/delete/<%=products[i].id%>?_method=delete" method="post">
-                            <button class="deleteSubmitButton" type="submit">Eliminar</button>
-                        </form>
-                    </article>
-                </div>
             <% } %>
 
 
-        </main>
+    </main>
 
-            <%- include('../partials/footer')%>
-    </body>
+    <%- include('../partials/footer')%>
+</body>
+
 </html>

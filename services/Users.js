@@ -41,6 +41,7 @@ const User = {
 	},
 	findByEmail: async function (mail) {
 		let userFound = await db.User.findOne({
+			logging: false,
 			where: { email: mail },
 			include: [
 				{

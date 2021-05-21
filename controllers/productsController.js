@@ -6,12 +6,9 @@ const sequelize = db.sequelize;
 const Producto = require('../services/Products');
 const Product = require('../services/Products');
 
-const dataJSON = path.join(__dirname, '../data/products.json');
-
 controller = {
-	products: (req, res) => {
-		let productsJSON = fs.readFileSync(dataJSON, { encoding: 'utf-8' });
-		let products = JSON.parse(productsJSON);
+	products: async (req, res) => {
+		const products = await Producto.allProducts();
 		res.render('./products/products', { products });
 	},
 	detail: async (req, res) => {
@@ -128,18 +125,9 @@ controller = {
 		});
 	},
 	list: async (req, res) => {
-		let products = await Product.allProducts({
-			include: [
-				{ association: 'caracteristicas' },
-				{ association: 'especificaciones' },
-				{ association: 'imagenes' },
-				{ association: 'iva' },
-				{ association: 'marca' },
-				{ association: 'tipo_producto' },
-				{ association: 'uni_medida' },
-			],
-		});
-		res.render('./products/productsList', { products });
+		let productsL = await Producto.list(req.query.page, req.query.sort);
+		//console.log(products);
+		res.render('./products/productsList', { productsL });
 	},
 	editPrice: (req, res) => {
 		let products = JSON.parse(fs.readFileSync(dataJSON, 'utf-8'));
@@ -163,38 +151,65 @@ controller = {
 		fs.writeFileSync(dataJSON, JSON.stringify(products, null, 4));
 		return res.redirect('/products/listado');
 	},
-	editView: (req, res) => {
-		let productsJSON = fs.readFileSync(dataJSON, { encoding: 'utf-8' });
-		let products = JSON.parse(productsJSON);
-		let product = products.find((prod) => prod.id == req.params.id);
-		res.render('./products/productEdit', { product });
+	editView: async (req, res) => {
+		let categories = await Producto.datosCreate('Tipo_producto');
+		let iva = await Producto.datosCreate('Iva');
+		let marcas = await Producto.datosCreate('Marca');
+		let uni_medida = await Producto.datosCreate('Uni_medida');
+		let product = await Producto.oneProduct(req.params.id);
+		res.render('./products/productEdit', {
+			product,
+			categories,
+			iva,
+			marcas,
+			uni_medida,
+		});
 	},
-	edit: (req, res) => {
+	edit: async (req, res) => {
+		let categories = await Producto.datosCreate('Tipo_producto');
+		let iva = await Producto.datosCreate('Iva');
+		let marcas = await Producto.datosCreate('Marca');
+		let uni_medida = await Producto.datosCreate('Uni_medida');
 		let validationErrors = validationResult(req);
-		let products = JSON.parse(fs.readFileSync(dataJSON, 'utf-8'));
-		let product = products.find((product) => product.id == req.params.id);
 		if (validationErrors.isEmpty()) {
-			products.forEach((productEach) => {
-				if (productEach.id == product.id) {
-					productEach.name = req.body.productName;
-					productEach.specs[0] = req.body.productTopSpec1;
-					productEach.specs[1] = req.body.productTopSpec2;
-					productEach.specs[2] = req.body.productTopSpec3;
-					productEach.specs[3] = req.body.productTopSpec4;
-					productEach.description = req.body.productDescription;
-					productEach.category = req.body.productCategory;
-					productEach.price = req.body.productPrice;
-					productEach.highlighted = req.body.highlighted
-						? true
-						: false;
-				}
+			let imagenes = [];
+			req.files.forEach((element) => {
+				imagenes.push({ imagen: element.filename });
 			});
-			fs.writeFileSync(dataJSON, JSON.stringify(products, null, 4));
-			return res.redirect(`/products/detail/${product.id}`);
+			let spec = [];
+			if (req.body.productTopSpec1)
+				spec.push({ caracteristica: req.body.productTopSpec1 });
+			if (req.body.productTopSpec2)
+				spec.push({ caracteristica: req.body.productTopSpec2 });
+			if (req.body.productTopSpec3)
+				spec.push({ caracteristica: req.body.productTopSpec3 });
+			if (req.body.productTopSpec4)
+				spec.push({ caracteristica: req.body.productTopSpec4 });
+			let producto = {
+				id: req.params.id,
+				nombre: req.body.productName,
+				tipo_producto_id: req.body.productCategory,
+				marca_id: req.body.marca,
+				descripcion: req.body.productDescription,
+				descuento_oferta: req.body.highlighted ? true : false,
+				codigo: req.body.productCode,
+				precio: req.body.productPrice,
+				uni_medida_id: req.body.uniMedida,
+				iva_id: req.body.iva,
+				cantidad_real: req.body.cantidadInicial,
+			};
+			//console.log(req.params.id);
+			await Producto.update(producto, imagenes, spec);
+			return res.redirect(`/products/detail/${producto.id}`);
 		}
+
 		return res.render('./products/productEdit', {
 			errors: validationErrors.mapped(),
 			product,
+			categories,
+			iva,
+			marcas,
+			uni_medida,
 		});
 	},
 	delete: (req, res) => {

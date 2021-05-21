@@ -1,147 +1,149 @@
-.titleBar{
-    display: flex;
-    padding: 5px;
-    margin: 5px;
-    justify-content: space-evenly;
-    align-items: left;
-    text-align: left;
-    border: 1px solid black;
+.titleBar {
+	display: flex;
+	padding: 5px;
+	margin: 5px;
+	justify-content: space-evenly;
+	align-items: left;
+	text-align: left;
+	border: 1px solid black;
 }
 .titleBarImage {
-    width: 10%;
+	width: 10%;
 }
-.titleBarName, 
+.titleBarName,
 .titleBarDescription,
 .titleBarPrice {
-    width: 20%;
-    text-align: center;
+	width: 20%;
+	text-align: center;
 }
 
 .titleBarAction {
-    width: 30%;
+	width: 30%;
 }
 
 .titleBarHighlighted {
-    width: 10%;
+	width: 10%;
 }
 
-article{
-    display: flex;
-    padding: 2px;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%;
-    margin: 5px;
-    border: 1px solid #000;
-    border-radius: 2px;
+article {
+	display: flex;
+	padding: 2px;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 100%;
+	margin: 5px;
+	border: 1px solid #000;
+	border-radius: 2px;
 }
 article img {
-    width: 100%;
-    max-height: 80px;
-    max-width: 80px;
+	width: 100%;
+	max-height: 80px;
+	max-width: 80px;
 }
-article p{
-    border: 1px solid #000;
-    border-radius: 5px;
-    width: 20%;
-    text-align: center;
-    padding: 10px;
+article p {
+	border: 1px solid #000;
+	border-radius: 5px;
+	width: 20%;
+	text-align: center;
+	padding: 10px;
 }
-article .editButton{
-    color:var(--azul);
-    text-decoration: none;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: var(--celeste);
-    transition: all 450ms;
+.nombre {
+	overflow: hidden;
+}
+article .editButton {
+	color: var(--azul);
+	text-decoration: none;
+	padding: 10px;
+	border-radius: 5px;
+	background-color: var(--celeste);
+	transition: all 450ms;
 }
 article .editButton:hover {
-    background-color: var(--azul);
-    color: var(--celeste);
+	background-color: var(--azul);
+	color: var(--celeste);
 }
-.deleteSubmitButton{
-    background-color: var(--celeste);
-    color: var(--azul);
-    border-radius: 5px;
-    border: 0px none;
-    padding: 10px;
-    font-family: 'Electrolize', sans-serif;
-    font-size: 1rem;
-    transition: all 450ms
+.deleteSubmitButton {
+	background-color: var(--celeste);
+	color: var(--azul);
+	border-radius: 5px;
+	border: 0px none;
+	padding: 10px;
+	font-family: 'Electrolize', sans-serif;
+	font-size: 1rem;
+	transition: all 450ms;
 }
 .deleteSubmitButton:hover {
-    background-color: #b81111;
-    color: var(--celeste);
-    cursor: pointer;
+	background-color: #b81111;
+	color: var(--celeste);
+	cursor: pointer;
 }
-.price form{
-    display: none;
+.price form {
+	display: none;
 }
-article .price p{
-    border:none;
-    border-radius: 5px;
-    width: 20%;
-    text-align: center;
-    padding: 10px;
+article .price p {
+	border: none;
+	border-radius: 5px;
+	width: 20%;
+	text-align: center;
+	padding: 10px;
 }
 article .price:hover p {
-    display: none;
+	display: none;
 }
-article .price form input{
-    text-align: center;
-    padding: 2px;
+article .price form input {
+	text-align: center;
+	padding: 2px;
 }
-article .price form label{
-    text-align: center;
-    font-size: 0.8rem;
+article .price form label {
+	text-align: center;
+	font-size: 0.8rem;
 }
-article .price:hover form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+article .price:hover form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
-.priceButton{
-    background-color: var(--celeste);
-    color: var(--azul);
-    border-radius: 2px;
-    border: 0px none;
-    padding: 1px;
-    font-family: 'Electrolize', sans-serif;
-    font-size: 0.6rem;
-    width: 70%;
-    transition: all 450ms
+.priceButton {
+	background-color: var(--celeste);
+	color: var(--azul);
+	border-radius: 2px;
+	border: 0px none;
+	padding: 1px;
+	font-family: 'Electrolize', sans-serif;
+	font-size: 0.6rem;
+	width: 70%;
+	transition: all 450ms;
 }
 .priceButton:hover {
-    background-color:var(--azul);
-    color: var(--celeste);
-    cursor: pointer;
+	background-color: var(--azul);
+	color: var(--celeste);
+	cursor: pointer;
 }
 .highlightedForm .highlightedButton {
-    display: none;
+	display: none;
 }
 .highlightedForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: all 450ms;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	transition: all 450ms;
 }
 .highlightedForm:hover .highlightedButton {
-    display: initial;
+	display: initial;
 }
-.highlightedButton{
-    background-color: var(--celeste);
-    color: var(--azul);
-    border-radius: 2px;
-    border: 0px none;
-    padding: 0,8px;
-    font-family: 'Electrolize', sans-serif;
-    font-size: 0.7rem;
-    margin: 2px;
-    transition: all 450ms
-    
+.highlightedButton {
+	background-color: var(--celeste);
+	color: var(--azul);
+	border-radius: 2px;
+	border: 0px none;
+	padding: 0, 8px;
+	font-family: 'Electrolize', sans-serif;
+	font-size: 0.7rem;
+	margin: 2px;
+	transition: all 450ms;
 }
 .highlightedButton:hover {
-    background-color:var(--azul);
-    color: var(--celeste);
-    cursor: pointer;
+	background-color: var(--azul);
+	color: var(--celeste);
+	cursor: pointer;
 }

@@ -21,7 +21,7 @@ app.use(
 	})
 );
 app.use(cookieParser());
-//app.use(isLogged);
+app.use(isLogged);
 
 app.use(express.static(path.resolve(__dirname, './public')));
 app.listen(4000, () => console.log('Servidor levantado en el puerto 4000'));
