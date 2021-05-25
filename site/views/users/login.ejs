@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head')%>
+        <link rel="stylesheet" href="/css/styles-form.css">
+</head>
+
+<body>
+
+    <%- include('../partials/header')%>
+
+        <main>
+            <form class="register" action="/users/login/valid" method="POST">
+                <h2 class="titulo">Login</h2>
+                <div class="icon-login">
+                    <img src="/img/user.png" alt="">
+                </div>
+                <section class="ventana-error">
+                    <% if (validator==1) { %>
+                        <%= message %>
+                            <% } %>
+                </section>
+                <div class="email">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" name="email" placeholder="Email" required class="campo">
+                </div>
+                <div class="password">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="password" placeholder="Contraseña" required class="campo">
+                </div>
+                <div class="recuerda">
+                    <input type="checkbox" name="recuerda" id="recuerda" value="true" class="check">
+                    <label for="recuerda"> Recuerdame</label>
+                </div>
+                <div class="botones">
+                    <button type="submit" class="submit">Confirmar</button>
+                </div>
+            </form>
+        </main>
+        <article class="icon llamar">
+            <i class="fas fa-phone-alt"></i>
+        </article>
+        <%- include('../partials/footer')%>
+
+</body>
+
+</html>

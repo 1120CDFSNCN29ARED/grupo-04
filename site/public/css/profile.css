@@ -1,0 +1,65 @@
+.text {
+  font-family: sans-serif;
+  margin: 0.3em 0;
+  text-align: left;
+  width: 100%;
+}
+.text-datos {
+  font-weight: 200;
+  font-size: 0.85rem;
+}
+.titulo {
+  margin: 1rem 1.5rem;
+  text-align: center;
+}
+.profile-photo-cont {
+  margin: 1em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#text-foto-perfil {
+  text-align: center;
+  font-weight: 300;
+  font-size: 0.85rem;
+  margin-bottom: 1em;
+}
+.icon-login {
+  width: 40%;
+}
+.botones {
+  margin: 3em auto;
+}
+.botones a {
+  text-decoration: none;
+  background-color: cadetblue;
+  border-radius: 4px;
+  padding: 1em 2em;
+  font-weight: bold;
+}
+.container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  border-radius: 4px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
+  margin: 1em auto 0;
+}
+@media (min-width: 1100px) {
+  main {
+    display: flex;
+  }
+  .products-display {
+    display: flex;
+    flex-direction: column;
+    margin: 0.8rem 0 0 0;
+  }
+  .product-preview {
+    width: 80%;
+  }
+  .register {
+    width: 90%;
+  }
+}

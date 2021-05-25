@@ -1,0 +1,82 @@
+.register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+}
+.titulo {
+  margin: 20px 0;
+}
+.ventana-error {
+  background-color: rgba(255, 0, 0, 0.5);
+  color: white;
+  font-size: 0.9rem;
+}
+.mensaje-error {
+  color: rgb(255, 0, 0);
+  font-size: 0.7rem;
+}
+.nombre,
+.telefono,
+.email,
+.password,
+.confirm-pass {
+  width: 70%;
+  position: relative;
+}
+.campo {
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+  padding-left: 50px;
+  border-radius: 4px;
+  border: solid 1px black;
+}
+.register i {
+  font-size: 20px;
+  color: rgb(99, 99, 99);
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+.register i.combo {
+  top: 48px;
+}
+.recuerda {
+  width: 70%;
+}
+.check {
+  width: auto;
+  padding: 0;
+}
+.products-display,
+.build,
+.banner {
+  display: none;
+}
+.submit {
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin: 15px 0;
+  border: solid 1px black;
+}
+.icon-login {
+  width: 15%;
+}
+.icon-login img {
+  width: 100%;
+}
+.subir-foto {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+.edit-dom {
+  margin-top: 0;
+}
+@media (min-width: 768px) {
+  .register {
+    width: 60%;
+    margin: auto;
+  }
+}

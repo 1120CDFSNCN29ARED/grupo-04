@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head')%>
+        <link rel="stylesheet" href="/css/styles-form.css">
+</head>
+
+<body>
+    <%- include('../partials/header')%>
+        <main>
+            <form class="register" action="/users/edit/<%= user.id%>?_method=PUT" method="POST"
+                enctype="multipart/form-data">
+                <h2 class="titulo">Edita tu perfil <%= user.name%>!</h2>
+                <section class="ventana-error">
+                    <% if (validator==1) { %>
+                        <%= message %>
+                            <% } %>
+                </section>
+                <div class="nombre">
+                    <i class="fas fa-user-circle"></i>
+                    <input id= "nombre" type="text" name="nombre" placeholder="Nombre" class="campo"
+                        value="<%= locals.old_data ? old_data.nombre : user.name %>">
+                    <% if (locals.errors && errors.nombre) { %>
+                        <div class="mensaje-error">
+                            <%= errors.nombre.msg %>
+                        </div>
+                        <% } %>
+                </div>
+                <div class="nombre">
+                    <i class="fas fa-user-circle"></i>
+                    <input type="text" id="apellido"  name="apellido" placeholder="Apellido" class="campo"
+                        value="<%= locals.old_data ? old_data.apellido : user.last_name %>">
+                    <% if (locals.errors && errors.apellido) { %>
+                        <div class="mensaje-error">
+                            <%= errors.apellido.msg %>
+                        </div>
+                        <% } %>
+                </div>
+                <div class="subir-foto telefono">
+                    <select name="medio_pago" id="medio_pago" class="campo">
+                        <option hidden value="No tienes medio de pago">Gestiona tus medios de pago</option>
+                        <% let options = ["VISA", "AMEX", "EFECTIVO"] %>
+                        <% for (option of options) { %>
+                            <option value="<%=option%>"
+                                <%= user.medio_pago && (user.medio_pago == option) ? 'selected' : null%>
+                                >
+                                <%=option%>
+                            </option>
+                         <% } %>       
+                        
+                        <option value="No tienes medio de pago">Eliminar medios de pago</option>
+                    </select>
+                    <i class="far fa-credit-card"></i>
+                </div>
+                <div class="telefono">
+                    <i class="fas fa-phone-alt"></i>
+                    <input type="number" name="telefono" placeholder="Telefono" class="campo"
+                        value="<%= user.telefono%>">
+                    <% if (locals.errors && errors.telefono) { %>
+                        <div class="mensaje-error">
+                            <%= errors.telefono.msg %>
+                        </div>
+                        <% } %>
+                </div>
+                <div class="password">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" name="password" placeholder="Contraseña" class="campo">
+                    <% if (locals.errors && errors.password) { %>
+                        <div class="mensaje-error">
+                            <%= errors.password.msg %>
+                        </div>
+                        <% } %>
+                </div>
+                <div class="confirm-pass">
+                    <i class="fas fa-user-lock"></i>
+                    <input type="password" name="confirmPass" placeholder="Confirmar Contraseña" class="campo">
+                </div>
+                <div class="subir-foto telefono">
+                    <label for="image">Sube una foto de perfil</label>
+
+                    <input type="file" name="image" id="image" class="campo">
+                    <i class="fas fa-camera combo"></i>
+                    <% if (locals.errors && errors.image) { %>
+                        <div class="mensaje-error">
+                            <%= errors.image.msg %>
+                        </div>
+                        <% } %>
+                </div>
+                <div class="recuerda">
+                    <input type="checkbox" name="recuerda" id="recuerda" value="true" class="check">
+                    <label for="recuerda"> Recuerdame</label>
+                </div>
+                <div class="botones">
+                    <button type="submit" class="submit">Confirmar</button>
+                </div>
+            </form>
+        </main>
+
+        <article class="icon llamar">
+            <i class="fas fa-phone-alt"></i>
+        </article>
+
+        <%- include('../partials/footer')%>
+
+</body>
+
+</html>

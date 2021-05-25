@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include('../partials/head')%>
+    <link rel="stylesheet" href="/css/styles-form.css">
+    <link rel="stylesheet" href="/css/productCart.css">
+</head>
+<body>
+
+    <%- include('../partials/header')%>
+
+    <main>
+        <section>
+            <h2>Carrito de Compras: </h2>
+            <div class="cart">
+                <div class="product-list">
+                    <% if (cart ) { %>
+                        <%  for( let i = 0; i < cart.length; i++ ) { %>
+                            <article class="product">
+                                <img src="/img/products/<%=cart[i].image%>" alt="imagen producto" class="product-image">
+                                <h3 class="product-name"><%=cart[i].name%></h3>
+                                <h3 class="product-cost"><%=(Number(cart[i].price * cart[i].amount)).toLocaleString('es-AR', {minimumFractionDigits: 2, maximumFractionDigits: 2, style: 'currency', currency: 'ARS'})%></h3>
+                                <p class="product-descript"><%=cart[i].description%></p>
+                                <select class="product-quantity" name="product-quantity" id="product-quantity">
+                                    <% for( let j = 1; j < 50; j++ ) { %>
+                                        <option value="<%= j %>" class="product-quantity-value" <%= cart[i].amount == j ? 'selected' : "" %> ><%= j %></option>
+                                    <% } %>
+                                </select>
+                                <div class="product-additional">
+                                    <input type="checkbox" name="aditional" id="aditional">
+                                    <label for="aditional">Adicional 1</label>
+                                </div>
+                                <button type="submit" class="product-del">Eliminar</button>
+                            </article>
+                            <% } %>
+                        <%  } else { %>
+                        <div class="emptyCart">
+                            <p>TU CARRITO ESTA VACIO</p>
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+                <% if (account) {%> 
+                <div class="product-price">
+                    <h3 class="product-price-cost"><%=(Number(account.total())).toLocaleString('es-AR', {minimumFractionDigits: 2, maximumFractionDigits: 2, style: 'currency', currency: 'ARS'})%></h3>
+                    <div class="product-detail-cost">
+                        <h4 class="product-subTotal">subtotal</h4>
+                        <h4 class="product-tax">impuestos</h4>
+                        <h4 class="product-shipping">Envio</h4>
+                    </div>
+                    <div class="product-cost-total">
+                        <h4 class="product-discount">Descuentos</h4>
+                        <h4 class="product-total"><%=(Number(account.total())).toLocaleString('es-AR', {minimumFractionDigits: 2, maximumFractionDigits: 2, style: 'currency', currency: 'ARS'})%></h4>
+                    </div>
+                    <button type="submit" class="product-buy">Comprar</button>
+                </div>
+                <% } %> 
+            </div>
+        </section>
+    </main>
+    
+    <%- include('../partials/footer')%>
+    
+</body>
+</html>

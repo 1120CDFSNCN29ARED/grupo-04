@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('../partials/head'), {title: product.nombre}%>
+        <link rel="stylesheet" href="/css/productEdit.css">
+</head>
+
+<body>
+    <header>
+        <%- include('../partials/header')%>
+    </header>
+
+    <main>
+        <h2 class="editTitle">
+            <%=`Edit ${product.nombre}`%>
+        </h2>
+        <form class="editForm" action="/products/edit/<%=product.id%>?_method=PUT" method="POST"
+            enctype="multipart/form-data">
+            <div class="productName">
+                <label for="productName">Nombre del producto</label>
+                <input type="text" name="productName" id="productName" placeholder="Nombre de Producto"
+                    value="<%=product.nombre%>">
+                <% if (locals.errors && errors.productName) { %>
+                    <p class="inputError">
+                        <%= errors.productName.msg %>
+                    </p>
+                    <% } %>
+            </div>
+            <div class="productName">
+                <label for="productCode">Código de producto</label>
+                <input type="text" name="productCode" id="productCode" value="<%= product.codigo%>">
+                <% if (locals.errors && errors.productCode) { %>
+                    <p class="inputError">
+                        <%= errors.productCode.msg%>
+                    </p>
+                    <% } %>
+            </div>
+            <div class="productTopSpecs">
+                <label for=""> Principales especificaciones</label>
+                <% if (locals.errors && errors.productTopSpec1) { %>
+                    <p class="inputError">
+                        <%= errors.productTopSpec1.msg %>
+                    </p>
+                    <% } %>
+                        <% for( let i=0; i < product.caracteristicas.length; i++ ) { %>
+                            <input type="text" name="<%= `productTopSpec${i + 1}` %>" id="productTopSpec1"
+                                placeholder="Principal característica"
+                                value="<%=product.caracteristicas[i].caracteristica%>">
+                            <% } %>
+            </div>
+            <div class="productDescription">
+                <label for="">Descripción ampliada</label>
+                <textarea name="productDescription" id="productDescription" cols="30"
+                    rows="10"><%=product.descripcion%></textarea>
+                <% if (locals.errors && errors.productDescription) { %>
+                    <p class="inputError">
+                        <%= errors.productDescription.msg %>
+                    </p>
+                    <% } %>
+            </div>
+            <div class="productImages">
+                <% for( let i=0; i < product.imagenes.length; i++ ) { image=product.imagenes[i].imagen %>
+                    <div class="div-img">
+                        <img class="img" src="<%=`/img/products/${image}`%>" alt="imagen <%=image%>">
+                        <p class="delete">Eliminar</p>
+                    </div>
+                    <% } %>
+            </div>
+            <div class="productImg">
+                <span>Imágenes<input type="file" name="productImg" id="productImg" multiple></span>
+            </div>
+            <div class="productCategory">
+                <label for="productCategory">Categoría</label>
+                <select name="productCategory" id="productCategory" class="categorySelect">
+                    <option value="" disabled selected hidden>Categoria</option>
+                    <% for( let i=0; i < categories.length; i++ ) { %>
+                        <option value="<%= categories[i].id %>" <%=(product.tipo_producto_id==categories[i].id)
+                            ? "selected" : '' %>
+                            ><%= categories[i].nombre %>
+                        </option>
+                        <% } %>
+                </select>
+                <% if (locals.errors && errors.productCategory) { %>
+                    <p class="inputError">
+                        <%= errors.productCategory.msg%>
+                    </p>
+                    <% } %>
+            </div>
+            <div class="productCategory">
+                <label for="uniMedida">Unidad de medida</label>
+                <select name="uniMedida" id="uniMedida" class="categorySelect">
+                    <option value="" disabled selected hidden>Unidad de medida</option>
+                    <% for( let i=0; i < uni_medida.length; i++ ) { %>
+                        <option value="<%= uni_medida[i].id %>" <%=(product.uni_medida_id==uni_medida[i].id)
+                            ? "selected" : '' %>
+                            ><%= uni_medida[i].nombre %>
+                        </option>
+                        <% } %>
+                </select>
+                <% if (locals.errors && errors.uniMedida) { %>
+                    <p class="inputError">
+                        <%= errors.uniMedida.msg %>
+                    </p>
+                    <% } %>
+            </div>
+            <div class="productCategory">
+                <label for="marca">Marca</label>
+                <select name="marca" id="marca" class="categorySelect">
+                    <option value="" disabled selected hidden>Marca</option>
+                    <% for( let i=0; i < marcas.length; i++ ) { %>
+                        <option value="<%= marcas[i].id %>" <%=(marcas[i].id==product.marca_id) ? "selected" : '' %>
+                            ><%= marcas[i].nombre %>
+                        </option>
+                        <% } %>
+                </select>
+                <% if (locals.errors && errors.marca) { %>
+                    <p class="inputError">
+                        <%= errors.marca.msg %>
+                    </p>
+                    <% } %>
+            </div>
+            <div class="productPrice">
+                <label for="productPrice">Precio</label>
+                <input type="number" name="productPrice" id="productPrice" value="<%= product.precio%>">
+                <% if (locals.errors && errors.productPrice) { %>
+                    <p class="inputError">
+                        <%= errors.productPrice.msg %>
+                    </p>
+                    <% } %>
+            </div>
+            <div class="productCategory">
+                <label for="iva">IVA</label>
+                <select name="iva" id="iva" class="categorySelect">
+                    <option value="" disabled selected hidden>IVA</option>
+                    <% for( let i=0; i < iva.length; i++ ) { %>
+                        <option value="<%= iva[i].id %>" <%=(product.iva_id==iva[i].id) ? "selected" : '' %>
+                            ><%= iva[i].nombre+' '+ iva[i].valor+' %' %>
+                        </option>
+                        <% } %>
+                </select>
+                <% if (locals.errors && errors.iva) { %>
+                    <p class="inputError">
+                        <%= errors.iva.msg %>
+                    </p>
+                    <% } %>
+            </div>
+            <div class="productPrice">
+                <label for="cantidadInicial">Cantidad</label>
+                <input type="number" name="cantidadInicial" id="cantidadInicial" value="<%=product.cantidad_real%>">
+                <% if (locals.errors && errors.cantidadInicial) { %>
+                    <p class="inputError">
+                        <%= errors.cantidadInicial.msg %>
+                    </p>
+                    <% } %>
+            </div>
+            <div class="productPrice">
+                <label for="highlighted" class="highlighted">Producto destacado</label>
+                <input type="checkbox" name="highlighted" id="highlighted" class="highlighted" value="true"
+                    <%=(product.descuento_oferta==true) ? "checked" : '' %>>
+            </div>
+            <button type="submit" class="productSubmit">Editar</button>
+        </form>
+    </main>
+
+    <%- include('../partials/footer')%>
+
+</body>
+
+</html>

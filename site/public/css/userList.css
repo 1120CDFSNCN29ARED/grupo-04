@@ -1,0 +1,36 @@
+.margin-top {
+  margin-top: 15px;
+}
+
+.user-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px;
+  border-bottom: solid 1px red;
+}
+.eliminar {
+  background-color: red;
+  margin: 5px;
+}
+.eliminar a,
+.ver a {
+  color: white;
+  font-size: 0.9rem;
+}
+.ver {
+  background-color: green;
+  margin: 5px;
+}
+.user-list-text {
+  font-size: 0.8rem;
+  font-family: sans-serif;
+  margin: 5px 0;
+}
+
+@media (min-width: 1200px) {
+  .user-list {
+    flex-direction: row;
+  }
+}

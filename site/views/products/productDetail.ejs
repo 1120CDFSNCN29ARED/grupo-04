@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include('../partials/head'), {title: product.name}%>
+        <link rel="stylesheet" href="/css/styles-form.css">
+        <link rel="stylesheet" href="/css/productDetail.css">
+</head>
+
+<body>
+
+    <%- include('../partials/header')%>
+
+        <main>
+            <section>
+                <div class="top-bar-print-share">
+                    <a href="#" class="top-bar-link"><i class="fas fa-print top-bar-link"></i> Imprimir</a>
+                    <a href="#" class="top-bar-link"><i class="fas fa-share-alt top-bar-link"></i> Compartir</a>
+                    <a href="#" class="top-bar-icon"><i class="fas fa-print top-bar-icon"></i></a>
+                    <a href="#" class="top-bar-icon"><i class="fas fa-share-alt top-bar-icon"></i></a>
+                </div>
+
+                <article class="product">
+                    <div class="product-tree-rank">
+                        <p class="product-tree">
+                            <a href="#" class="product-tree-branch">
+                                <%= product.tipo_producto.nombre.toUpperCase() %>
+                            </a>
+                        </p>
+                        <div class="product-rank">
+                            <i class="fa fa-star checked star1"></i>
+                            <i class="fa fa-star checked star2"></i>
+                            <i class="fa fa-star checked star3"></i>
+                            <i class="fa fa-star star4"></i>
+                            <i class="fa fa-star star5"></i>
+                        </div>
+                    </div>
+                    <h3 class="product-name">
+                        <%= product.nombre.toUpperCase() %>
+                    </h3>
+
+                    <div class="product-images">
+                        <div class="product-images-reel">
+                            <% for( let i=0; i < product.imagenes.length; i++ ) { %>
+                                <img src="/img/products/<%= product.imagenes[i].imagen %> " alt="imagen producto"
+                                    class="product-images-reel-small">
+                                <% } %>
+                        </div>
+                        <div class="product-image">
+                            <img src="/img/products/<%= product.imagenes[0].imagen %> " alt="product-images-selected"
+                                class="product-images-selected">
+                        </div>
+                        <div class="product-specs-list-container">
+                            <ul class="product-specs-list">
+                                <% for( let i=0; i < product.caracteristicas.length; i++ ) { %>
+                                    <li>
+                                        <%= product.caracteristicas[i].caracteristica %>
+                                    </li>
+                                    <% } %>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="product-cost-quantity-buy">
+                        <h4 class="product-cost">
+                            <%= product.precio ? (Number(product.precio + ((product.precio *
+                                product.iva.valor)/100))).toLocaleString('es-AR', {minimumFractionDigits: 2,
+                                maximumFractionDigits: 2, style: 'currency' , currency: 'ARS' }) : "CONSULTAR" %>
+                        </h4>
+                        <form action="/products/cart/<%=product.id%>?_method=put" method="post">
+                            <button type="submit" class="product-buy" <%=!product.precio ? 'disabled' : "" %>
+                                >COMPRAR</button>
+                            <select class="product-quantity" name="productAmount" id="productAmount">
+                                <% for( let i=1; i < 100; i++ ) { %>
+                                    <option value="<%= i %> " class="product-quantity-value">
+                                        <%= i %>
+                                    </option>
+                                    <% } %>
+                            </select>
+                        </form>
+                    </div>
+
+                    <% if (locals.userLogged && locals.userLogged.admin) { %>
+                        <div class="editProduct">
+                            <a href="<%= `/products/edit/${product.id}` %> ">EDITAR</a>
+                            <form action="/products/delete/<%=product.id%>?_method=delete" method="post">
+                                <button class="deleteSubmitButton" type="submit">ELIMINAR</button>
+                            </form>
+                        </div>
+                        <% } %>
+
+                            <div class="product-descript-specsfull">
+                                <h4 class="product-descript-h">Descripción</h4>
+                                <p class="product-descript-p">
+                                    <%= product.descripcion %>
+                                </p>
+                            </div>
+                </article>
+
+                <!-- <div class="product-similary">
+                <%// for( let i = 0; i < 3; i++ ) { %>
+                    <article class="product-similary-product">
+                        <a href="/products/detail/<%=// similary[i].id %> "><img class="product-similary-image" src="/img/products/<%= //similary[i].img[0] %> " alt="producto similar 1"></a>
+                        <h5 class="product-similary-name"><%= //similary[i].name %> </h5>
+                        <h5 class="product-similary-cost">$ <%= //similary[i].price %> </h5>
+                    </article>
+                    <% //} %>
+            </div> -->
+            </section>
+        </main>
+
+        <%- include('../partials/footer')%>
+</body>
+
+</html>

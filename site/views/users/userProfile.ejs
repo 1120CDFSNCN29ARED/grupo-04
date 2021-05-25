@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head')%>
+    <link rel="stylesheet" href="/css/styles-form.css">
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+    <%- include('../partials/header')%>
+    <main>
+        <section class="container">
+        <div class="register">
+            <h2 class="titulo">Perfil de <%= user.name%>!</h2>
+            <div class="profile-photo-cont">
+                <div class="icon-login">
+                    <img src="/img/users/<%= user.image%>" alt="">
+                </div>
+                <p id="text-foto-perfil">
+                    Foto de perfil
+                </p>
+            </div>
+            <p class="text">
+               <strong> Nombre: </strong><span class="text-datos"><%= user.name%></span>
+            </p>
+            <p class="text">
+                <strong> Email: </strong><span class="text-datos"><%= user.email%></span>
+            </p>
+            <p class="text">
+                <strong> Telefono: </strong><span class="text-datos"><%= user.telefono%></span>
+            </p>
+            <p class="text">
+                <strong> Domicilio: </strong>
+                <% if (user.domicilio) { %>
+                    <span class="text-datos">
+                        <%= user.domicilio %>
+                    </span>
+                    <% } else {%>
+                
+                        <span class="text-datos"> No tienes domicilio cargado </span>
+                
+                        <% } %>
+            </p>
+            <p class="text">
+                <strong> Metodos de pago: </strong>
+                <% if (user.medio_pago) { %>
+                <span class="text-datos"><%= user.medio_pago %></span>
+                <% } else {%>
+
+                   <span class="text-datos"> No tienes medio de pago </span>
+
+                <% } %>
+            </p>
+            <div class="botones">
+                <a href="/users/delete/<%=user.id%>">ELIMINAR</a>
+            </div>
+        </div>
+        </section>
+    <section class="products-display">
+        <h3 class="titulo"><%= user.name%>, tenemos estas ofertas para vos!</h3>
+        <article class="product-preview">
+            <div class="product-pic">
+                <img src="/img/PC.webp" alt="">
+            </div>
+            <div class="product-description">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+            <div class="info-btn">
+                <a href="/product">+INFO</a>
+            </div>
+        </article>
+        <article class="product-preview">
+            <div class="product-pic">
+                <img src="/img/pc2.webp" alt="">
+            </div>
+            <div class="product-description">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+            <div class="info-btn">
+                <a href="/product">+INFO</a>
+            </div>
+        </article>
+    </section>
+    </main>
+<article class="icon llamar">
+    <i class="fas fa-phone-alt"></i>
+</article>
+    <%- include('../partials/footer')%>
+    
+</body>
+</html>

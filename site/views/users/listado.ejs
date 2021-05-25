@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head')%>
+    <link rel="stylesheet" href="/css/styles-form.css">
+    <link rel="stylesheet" href="/css/userList.css">
+</head>
+<body>
+
+    <%- include('../partials/header')%>
+
+    <main>
+
+    <% for (let i=0; i < users.length; i++) { %>
+
+     <div class="margin-top">
+        <section class="user-list">
+            <div class="icon-login">
+                <img src="/img/users/<%=users[i].image%>" alt="">
+            </div>
+            <div>
+               <p class="user-list-text">Nombre: <strong> <%=users[i].name%> </strong></p>
+            </div>
+            <div>
+               <p class="user-list-text">Email: <strong><%=users[i].email%></strong></p> 
+            </div>
+                <div class="info-btn ver">
+                    <a href="/users/admin/userProfile/<%=users[i].id%>">VER</a>
+                </div>
+                <div class="info-btn eliminar">
+                    <a href="/users/delete/<%=users[i].id%>">ELIMINAR</a>
+                </div>
+        </section>
+     </div>
+     <% } %>
+    </main>
+    <article class="icon llamar">
+        <i class="fas fa-phone-alt"></i>
+    </article>
+    <%- include('../partials/footer')%>
+    
+</body>
+</html>
