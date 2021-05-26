@@ -58,16 +58,24 @@
                                     </form>
                                 </div>
                                 <a class="editButton" href="<%= `/products/edit/${productsL[i].id}` %> ">Editar</a>
-                                <form action="/products/delete/<%=productsL[i].id%>?_method=delete" method="post">
+                                <form id="deleteProduct" class="deleteProduct"
+                                    action="/products/delete/<%=productsL[i].id%>?_method=delete" method="post">
                                     <button class="deleteSubmitButton" type="submit">Eliminar</button>
                                 </form>
                 </article>
             </div>
             <% } %>
 
-
+                <script>let deleteSubmit = document.querySelectorAll(".deleteProduct");
+                    deleteSubmit.forEach(delSub => delSub.addEventListener("submit", function (evt) {
+                        evt.preventDefault()
+                        let sureDelete = confirm("Seguro desea eliminar el producto ??")
+                        if (sureDelete) {
+                            delSub.submit()
+                        }
+                    }))
+                </script>
     </main>
-
     <%- include('../partials/footer')%>
 </body>
 
