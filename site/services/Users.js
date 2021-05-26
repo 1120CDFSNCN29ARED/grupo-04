@@ -78,14 +78,12 @@ const User = {
     );
     return userUpdated;
   },
-  delete: function (userId) {
-    db.User.destroy({
+  delete: async function (userId) {
+    await db.Domicilio.destroy({
+      where: { user_id: userId },
+    });
+    await db.User.destroy({
       where: { id: userId },
-      include: [
-        {
-          association: "domicilio",
-        },
-      ],
     });
   },
 };
