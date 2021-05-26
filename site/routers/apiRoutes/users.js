@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const apiUser = require("../../controllers/apiControllers/apiUser");
+const apiUsers = require("../../controllers/apiControllers/apiUser");
 
-router.get("/", apiUser.find);
+router.get("/users", apiUsers.findAll);
+router.get("/users/:id", apiUsers.findOne);
+router.get("/users/img/:imagen", apiUsers.image);
 
 module.exports = router;
