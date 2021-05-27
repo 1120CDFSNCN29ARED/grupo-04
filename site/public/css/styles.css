@@ -115,6 +115,7 @@ main {
 }
 .product-pic img {
   max-height: 100%;
+  max-width: 100%;
 }
 .product-description,
 .build-desc {
@@ -128,6 +129,7 @@ main {
 }
 .product-description p {
   text-align: center;
+  height: 55px;
 }
 .info-btn {
   display: flex;
@@ -277,6 +279,7 @@ footer {
     border: none;
     background-color: whitesmoke;
     outline: none;
+    padding-right: 40px;
   }
   .icon:hover,
   .icon:focus {
@@ -302,7 +305,7 @@ footer {
     color: var(--celeste);
     margin: auto 0;
     padding-top: 0.6rem;
-    background-color: whitesmoke;
+    background-color: transparent;
   }
   .barra-nav {
     display: block;
