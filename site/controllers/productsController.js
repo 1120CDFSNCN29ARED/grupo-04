@@ -4,7 +4,6 @@ const { validationResult } = require("express-validator");
 const db = require("../database/models");
 const sequelize = db.sequelize;
 const Producto = require("../services/Products");
-const Product = require("../services/Products");
 
 controller = {
   products: async (req, res) => {
@@ -127,7 +126,7 @@ controller = {
   },
   list: async (req, res) => {
     let productsL = await Producto.list(req.query.page, req.query.sort);
-    //console.log(products);
+    // productsL.forEach((elem) => console.log(elem.id));
     res.render("./products/productsList", { productsL });
   },
   editPrice: (req, res) => {
@@ -141,15 +140,18 @@ controller = {
     fs.writeFileSync(dataJSON, JSON.stringify(products, null, 4));
     return res.redirect("/products/listado");
   },
-  editHighlighted: (req, res) => {
-    let products = JSON.parse(fs.readFileSync(dataJSON, "utf-8"));
-    let product = products.find((product) => product.id == req.params.id);
-    products.forEach((productEach) => {
-      if (productEach.id == product.id) {
-        productEach.highlighted = req.body.highlighted ? true : false;
-      }
-    });
-    fs.writeFileSync(dataJSON, JSON.stringify(products, null, 4));
+  editHighlighted: async (req, res) => {
+    if (req.body.highlighted) {
+      await db.Producto.update(
+        { descuento_oferta: 1 },
+        { where: { id: req.params.id } }
+      );
+    } else {
+      await db.Producto.update(
+        { descuento_oferta: 0 },
+        { where: { id: req.params.id } }
+      );
+    }
     return res.redirect("/products/listado");
   },
   editView: async (req, res) => {

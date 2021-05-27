@@ -38,12 +38,12 @@
                                 </p>
                                 <form class="highlightedForm"
                                     action="/products/edit/highlighted/<%=productsL[i].id%>?_method=put" method="post">
-                                    <input type="checkbox" name="highlighted" id="highlighted"
-                                        value="<%= productsL[i].descuento_oferta ? true : false %>"
+                                    <input type="checkbox" name="highlighted" class="highlighted"
+                                        value="true"
                                         <%=productsL[i].descuento_oferta ? 'checked' : "" %> >
-                                    <button type="submit" class="highlightedButton">
+                                    <!-- <button type="submit" class="highlightedButton">
                                         <%= productsL[i].descuento_oferta ? "quitar" : "destacar" %>
-                                    </button>
+                                    </button> -->
                                 </form>
                                 <div class="price">
                                     <p>

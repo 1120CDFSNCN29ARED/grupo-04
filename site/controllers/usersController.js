@@ -115,7 +115,7 @@ controller = {
   },
   editProfileView: (req, res) => {
     let validator = 0;
-    console.log(`usuario en sesion: ${req.session.userLogged.id}`);
+    //console.log(`usuario en sesion: ${req.session.userLogged.id}`);
     const user = req.session.userLogged;
     res.render("./users/editProfile", { user, validator });
   },

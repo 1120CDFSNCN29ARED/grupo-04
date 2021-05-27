@@ -63,6 +63,7 @@ const Product = {
     let products = await db.Producto.findAll({
       //offset: page * 10,
       //order: [[`${sort}`, 'DESC']],
+      logging: false,
       include: [
         { association: "imagenes" },
         { association: "marca" },

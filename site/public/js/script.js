@@ -7,15 +7,17 @@ window.addEventListener("load", async function () {
   let cp = document.getElementById("cp");
   let localidad = document.getElementById("localidad");
   let error = document.querySelector(".ventana-error");
+  let highlighted = document.querySelectorAll(".highlighted");
+  let highlightedForm = document.querySelectorAll(".highlightedForm");
 
-  let deleteSubmit = document.querySelector(".deleteProduct");
-  deleteSubmit.addEventListener("submit", function (evt) {
-    evt.preventDefault();
-    let sureDelete = confirm("Seguro desea eliminar el producto ??");
-    if (sureDelete) {
-      deleteSubmit.submit();
-    }
-  });
+  // let deleteSubmit = document.querySelector(".deleteProduct");
+  // deleteSubmit.addEventListener("submit", function (evt) {
+  //   evt.preventDefault();
+  //   let sureDelete = confirm("Seguro desea eliminar el producto ??");
+  //   if (sureDelete) {
+  //     deleteSubmit.submit();
+  //   }
+  // });
   //   let deleteSubmitList = document.querySelectorAll(".deleteProductList");
   //   deleteSubmitList.forEach((delSub) =>
   //     delSub.addEventListener("submit", function (evt) {
@@ -26,8 +28,13 @@ window.addEventListener("load", async function () {
   //       }
   //     })
   //   );
-
-  //console.log(calle);
+  if (highlighted) {
+    for (let i = 0; i < highlighted.length; i++) {
+      highlighted[i].addEventListener("click", function () {
+        highlightedForm[i].submit();
+      });
+    }
+  }
   function minChar(field, num) {
     if (field.value.length > 0 && field.value.length < num) {
       field.style.color = "red";
@@ -69,10 +76,10 @@ window.addEventListener("load", async function () {
       minChar(localidad, 4);
     });
   }
-  const data = await fetch("http://localhost:4000/user");
+  const data = await fetch("http://localhost:4000/api/users");
   const users = await data.json();
-  if (email) {
-    email.addEventListener("input", () => {
+  if (emailField) {
+    emailField.addEventListener("input", () => {
       const found = users.find((user) => user.email == emailField.value);
       if (found) {
         emailField.style.color = "red";
