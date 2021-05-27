@@ -44,7 +44,7 @@ email    varchar(50) not null,
 pass    varchar(255) not null,
 condicion_fiscal_id int(11),
 razon_social varchar(50),
-telefono int(11),
+telefono int(12),
 ofertas int(11),
 tipo_persona_id int(11),
 mail_confirmado int(11),
@@ -53,6 +53,7 @@ admin boolean,
 medio_pago varchar(255),
 createdAt date,
 updatedAt date,
+deletedAt date,
 CONSTRAINT pk_users PRIMARY KEY(id),
 CONSTRAINT fk_tipo_documento FOREIGN KEY(tipo_documento_id) REFERENCES tipos_documento(id),
 CONSTRAINT fk_condicion_fiscal FOREIGN KEY(condicion_fiscal_id) REFERENCES condiciones_fiscales(id),
@@ -69,8 +70,11 @@ CREATE TABLE domicilios
     provincia_id     int(11)     not null,
     pais_id          int(11)     not null,
     envio        boolean,
+    createdAt   date,
+    updatedAt date,
+    deletedAt date,
 CONSTRAINT pk_domicilios PRIMARY KEY(id),
-CONSTRAINT fk_user FOREIGN KEY(user_id) REFERENCES users(id),
+CONSTRAINT fk_user FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
 CONSTRAINT fk_provincia FOREIGN KEY(provincia_id) REFERENCES provincias(id),
 CONSTRAINT fk_pais_id FOREIGN KEY(pais_id) REFERENCES paises(id)
 )ENGINE=InnoDB;
@@ -115,6 +119,7 @@ cantidad_real   int(10) not null,
 cantidad_en_pedido int(10),
 createdAt date,
 updatedAt date,
+deletedAt date,
 CONSTRAINT pk_productos PRIMARY KEY(id),
 CONSTRAINT fk_tipo_producto FOREIGN KEY(tipo_producto_id) REFERENCES tipo_productos(id),
 CONSTRAINT fk_marca FOREIGN KEY(marca_id) REFERENCES marcas(id),
@@ -128,8 +133,9 @@ caracteristica   varchar(50) not null,
 producto_id	int(11) not null,
 createdAt date,
 updatedAt date,
+deletedAt date,
 CONSTRAINT pk_caracteristicas PRIMARY KEY(id),
-CONSTRAINT fk_producto FOREIGN KEY(producto_id) REFERENCES productos(id)
+CONSTRAINT fk_producto FOREIGN KEY(producto_id) REFERENCES productos(id) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
 CREATE TABLE imagenes(
@@ -138,8 +144,9 @@ imagen   varchar(255) not null,
 producto_id	int(11) not null,
 createdAt date,
 updatedAt date,
+deletedAt date,
 CONSTRAINT pk_imagenes PRIMARY KEY(id),
-CONSTRAINT fk_producto FOREIGN KEY(producto_id) REFERENCES productos(id)
+CONSTRAINT fk_producto_img FOREIGN KEY(producto_id) REFERENCES productos(id) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
 CREATE TABLE sockets(
@@ -172,51 +179,40 @@ tamaño_fisico varchar(100),
 adicionales varchar(500),
 createdAt date,
 updatedAt date,
+deletedAt date,
 CONSTRAINT pk_caracteristicas PRIMARY KEY(id),
-CONSTRAINT fk_producto_id FOREIGN KEY(producto_id) REFERENCES productos(id),
+CONSTRAINT fk_producto_id FOREIGN KEY(producto_id) REFERENCES productos(id) ON DELETE CASCADE,
 CONSTRAINT fk_socket FOREIGN KEY(socket_id) REFERENCES sockets(id),
 CONSTRAINT fk_tipo_memoria FOREIGN KEY(tipo_memoria_id) REFERENCES tipo_memorias(id)
+)ENGINE=InnoDB;
+
+CREATE TABLE compras(
+id       int(10) auto_increment not null,
+user_id   int(11) not null,
+fecha date,
+createdAt date,
+updatedAt date,
+deletedAt date,
+CONSTRAINT pk_compras PRIMARY KEY(id),
+CONSTRAINT fk_user_compras FOREIGN KEY(user_id) REFERENCES users(id)
 )ENGINE=InnoDB;
 
 CREATE TABLE pedidos(
 id       int(10) auto_increment not null,
 cantidad   int(11) not null,
 producto_id	int(11) not null,
+user_id	int(11) not null,
+compra_id	int(11),
+precio_compra	int(11) not null,
 createdAt date,
 updatedAt date,
+deletedAt date,
 CONSTRAINT pk_pedidos PRIMARY KEY(id),
-CONSTRAINT fk_productos FOREIGN KEY(producto_id) REFERENCES productos(id)
+CONSTRAINT fk_pedido_productos FOREIGN KEY(producto_id) REFERENCES productos(id) ON DELETE CASCADE,
+CONSTRAINT fk_compras FOREIGN KEY(compra_id) REFERENCES compras(id) ON DELETE CASCADE,
+CONSTRAINT fk_pedido_user FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
-CREATE TABLE carritos(
-id       int(10) auto_increment not null,
-status   int(11) not null,
-pedido_id	int(11) not null,
-createdAt date,
-updatedAt date,
-CONSTRAINT pk_carrito PRIMARY KEY(id),
-CONSTRAINT fk_pedidos FOREIGN KEY(pedido_id) REFERENCES pedidos(id)
-)ENGINE=InnoDB;
-
-CREATE TABLE compras(
-id       int(10) auto_increment not null,
-precio_historico   int(11) not null,
-carrito_id	int(11) not null,
-fecha date,
-createdAt date,
-updatedAt date,
-CONSTRAINT pk_compras PRIMARY KEY(id),
-CONSTRAINT fk_carritos FOREIGN KEY(carrito_id) REFERENCES carritos(id)
-)ENGINE=InnoDB;
-
-#RELLENAR LA BASE DE DATOS CON INFORMACIÓN - INSERTS#
-
-#USERS
-# INSERT INTO users VALUES(NULL, 'Rodrigo', 'Marsan', 25838149, 1,
-# 'rodrigo@roma-it.com.ar','123456', 3,'MARSAN',4444444,1,1,'viamonte','1414','olivos',
-# 1,1,null,null,null,null,null,1,1,
-# CURDATE(),CURDATE()
-# );
 
 
 
@@ -286,5 +282,3 @@ INSERT INTO uni_medidas
 VALUES (null,'unidad'),
        (null,'metros');
 
-INSERT INTO users
-VALUES (null,'Martin', 'Golszmidt', 30025707, 1, 'martingol@gmail.com', '$2a$10$5bwZ/rFNMGF1/.aG08FSwO0jIhPSbVV1S/BJ1pdf1gs6/CynEV9La',1,null,1157602955,1,1,null,null,true,1,curdate(),curdate());

@@ -1,50 +1,57 @@
 module.exports = (sequelize, dataTypes) => {
-    const Producto = sequelize.define("Producto", {
-        nombre: {
-            type: dataTypes.STRING,
-            allowNull: false,
+    const Producto = sequelize.define(
+        "Producto",
+        {
+            nombre: {
+                type: dataTypes.STRING,
+                allowNull: false,
+            },
+            tipo_producto_id: {
+                type: dataTypes.INTEGER(10).UNSIGNED,
+                allowNull: false,
+            },
+            marca_id: {
+                type: dataTypes.INTEGER(10).UNSIGNED,
+                allowNull: false,
+            },
+            descripcion: {
+                type: dataTypes.STRING(500),
+                allowNull: false,
+            },
+            descuento_oferta: {
+                type: dataTypes.INTEGER(10).UNSIGNED,
+                allowNull: true,
+            },
+            codigo: {
+                type: dataTypes.STRING(50),
+                allowNull: false,
+            },
+            precio: {
+                type: dataTypes.DECIMAL(7, 2),
+                allowNull: false,
+            },
+            uni_medida_id: {
+                type: dataTypes.INTEGER(10).UNSIGNED,
+                allowNull: false,
+            },
+            iva_id: {
+                type: dataTypes.INTEGER(10).UNSIGNED,
+                allowNull: false,
+            },
+            cantidad_real: {
+                type: dataTypes.INTEGER(10).UNSIGNED,
+                allowNull: true,
+            },
+            cantidad_en_pedido: {
+                type: dataTypes.INTEGER(10).UNSIGNED,
+                allownul: true,
+            },
         },
-        tipo_producto_id: {
-            type: dataTypes.INTEGER(10).UNSIGNED,
-            allowNull: false,
-        },
-        marca_id: {
-            type: dataTypes.INTEGER(10).UNSIGNED,
-            allowNull: false,
-        },
-        descripcion: {
-            type: dataTypes.STRING(500),
-            allowNull: false,
-        },
-        descuento_oferta: {
-            type: dataTypes.INTEGER(10).UNSIGNED,
-            allowNull: true,
-        },
-        codigo: {
-            type: dataTypes.STRING(50),
-            allowNull: false,
-        },
-        precio: {
-            type: dataTypes.DECIMAL(7, 2),
-            allowNull: false,
-        },
-        uni_medida_id: {
-            type: dataTypes.INTEGER(10).UNSIGNED,
-            allowNull: false,
-        },
-        iva_id: {
-            type: dataTypes.INTEGER(10).UNSIGNED,
-            allowNull: false,
-        },
-        cantidad_real: {
-            type: dataTypes.INTEGER(10).UNSIGNED,
-            allowNull: true,
-        },
-        cantidad_en_pedido: {
-            type: dataTypes.INTEGER(10).UNSIGNED,
-            allownul: true,
-        },
-    });
+        {
+            timestamps: true,
+            paranoid: true,
+        }
+    );
     Producto.associate = function (models) {
         Producto.belongsTo(models.Iva, {
             as: "iva",

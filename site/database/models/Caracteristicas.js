@@ -11,7 +11,11 @@ module.exports = function (sequelize, dataTypes) {
                 allowNull: false,
             },
         },
-        { tableName: "caracteristicas" }
+        {
+            tableName: "caracteristicas",
+            timestamps: true,
+            paranoid: true,
+        }
     );
     Caracteristicas.associate = function (models) {
         Caracteristicas.belongsTo(models.Producto, {

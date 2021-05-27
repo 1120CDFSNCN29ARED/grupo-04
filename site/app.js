@@ -15,11 +15,11 @@ require("dotenv").config();
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 app.use(
-  session({
-    secret: "Nuestro secreto",
-    resave: false,
-    saveUninitialized: true,
-  })
+    session({
+        secret: "Nuestro secreto",
+        resave: false,
+        saveUninitialized: true,
+    })
 );
 app.use(cookieParser());
 app.use(isLogged);

@@ -11,7 +11,11 @@ module.exports = function (sequelize, dataTypes) {
                 allowNull: false,
             },
         },
-        { tableName: "imagenes" }
+        {
+            tableName: "imagenes",
+            timestamps: true,
+            paranoid: true,
+        }
     );
     Imagenes.associate = function (models) {
         Imagenes.belongsTo(models.Producto, {
