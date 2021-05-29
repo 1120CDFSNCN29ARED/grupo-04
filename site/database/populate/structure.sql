@@ -214,8 +214,6 @@ CONSTRAINT fk_pedido_user FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CA
 )ENGINE=InnoDB;
 
 
-
-
 #CONDICIONES FISCALES
 INSERT INTO condiciones_fiscales VALUES(NULL, 'Consumidor Final');
 INSERT INTO condiciones_fiscales VALUES(NULL, 'Responsable Inscripto');
@@ -233,7 +231,13 @@ INSERT INTO provincias VALUES(NULL, 1, 'Buenos Aires');
 INSERT INTO provincias VALUES(NULL, 1,'CABA');
 INSERT INTO provincias VALUES(NULL, 1,'Córdoba');
 INSERT INTO provincias VALUES(NULL, 1,'Santa Fe');
+INSERT INTO provincias VALUES(NULL, 1,'Mendoza');
 INSERT INTO provincias VALUES(NULL, 2,'San Pablo');
+INSERT INTO provincias VALUES(NULL, 2,'Rio de Janeiro');
+INSERT INTO provincias VALUES(NULL, 2,'Brasilia');
+INSERT INTO provincias VALUES(NULL, 3,'Montevideo');
+INSERT INTO provincias VALUES(NULL, 3,'Punta del Este');
+INSERT INTO provincias VALUES(NULL, 3,'Colonia');
 
 #TIPOS DOCUMENTO
 INSERT INTO tipos_documento VALUES(NULL, 'DNI');
