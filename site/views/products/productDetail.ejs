@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    <%- include('../partials/head'), {title: product.name}%>
+    <%- include('../partials/head')%>
         <link rel="stylesheet" href="/css/styles-form.css">
         <link rel="stylesheet" href="/css/productDetail.css">
 </head>
@@ -81,10 +81,10 @@
                         <form action="/products/cart/<%=product.id%>?_method=put" method="post">
                             <button type="submit" class="product-buy" <%=!product.precio ? 'disabled' : "" %>
                                 >COMPRAR</button>
-                            <select class="product-quantity" name="productAmount" id="productAmount">
-                                <% for( let i=1; i < 100; i++ ) { %>
-                                    <option value="<%= i %> " class="product-quantity-value">
-                                        <%= i %>
+                            <select class="product-quantity" name="cantidad" id="productAmount">
+                                <% for( let i=0; i < (product.cantidad_real - product.cantidad_en_pedido); i++ ) { %>
+                                    <option value="<%= i + 1 %> " class="product-quantity-value">
+                                        <%= i +1 %>
                                     </option>
                                     <% } %>
                             </select>
