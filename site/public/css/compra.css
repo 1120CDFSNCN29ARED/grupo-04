@@ -1,0 +1,7 @@
+.compra-datos {
+    display: flex;
+    justify-content: space-around;
+}
+.compra-datos img {
+    width: 20%;
+}

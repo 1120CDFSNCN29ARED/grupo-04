@@ -5,6 +5,7 @@
     <%- include('../partials/head')%>
         <link rel="stylesheet" href="/css/styles-form.css">
         <link rel="stylesheet" href="/css/productCart.css">
+        <link rel="stylesheet" href="/css/compra.css">
 </head>
 
 <body>
@@ -14,8 +15,27 @@
         <main>
             <section>
                 <h2>Nueva Compra: </h2>
-                <div class="cart">
-                    <div class="product-list">
+                <div class="compra-container">
+                    <h3>Nro de compra: <%= `${compra[0].compra.id}` + `${compra[0].user_id}` %>
+                    </h3>
+                    <% for( let i=0; i < compra.length; i++ ) { %>
+                        <div class="compra-datos">
+                            <img src="/img/products/<%= compra[i].producto.imagenes[0].imagen %> "
+                                alt="imagen de producto">
+                            <h3>
+                                <%= compra[i].producto.nombre%>
+                            </h3>
+                            <p>
+                                <%= compra[i].producto.descripcion%>
+                            </p>
+                            <p>
+                                <%= compra[i].cantidad %>
+                            </p><span>
+                                <%= compra[i].precio_compra %>
+                            </span>
+
+                            <% } %>
+
         </main>
 
         <%- include('../partials/footer')%>

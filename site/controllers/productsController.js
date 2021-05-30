@@ -70,7 +70,9 @@ controller = {
         return res.redirect("/products/cart");
     },
     cartBuy: async (req, res) => {
-        let compra = await Producto.cartBuy(req.session.userLogged.id);
+        let newCompra = await Producto.cartBuy(req.session.userLogged.id);
+        let compra = await Producto.purchaseId(newCompra.id);
+        console.log(compra);
         return res.render("./products/compra", { compra });
     },
     createView: async (req, res) => {

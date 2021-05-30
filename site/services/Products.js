@@ -5,6 +5,7 @@ const { Op, DATEONLY } = require("sequelize");
 const Product = {
     updateStock: async function (producto) {
         let cantidadPedidos = await db.Pedido.sum("cantidad", {
+            logging: false,
             where: {
                 [Op.and]: [{ producto_id: producto }, { compra_id: null }],
             },
@@ -13,11 +14,15 @@ const Product = {
             {
                 cantidad_en_pedido: cantidadPedidos,
             },
-            { where: { id: producto } }
+            {
+                where: { id: producto },
+                logging: false,
+            }
         );
     },
     allProducts: async function () {
         let all = await db.Producto.findAll({
+            logging: false,
             include: [{ association: "imagenes", attributes: ["imagen"] }],
         });
         return all;
@@ -65,6 +70,7 @@ const Product = {
     highlighted: async function () {
         let products = await db.Producto.findAll({
             where: { descuento_oferta: true },
+            logging: false,
             attributes: ["nombre", "id"],
             include: [{ association: "imagenes", attributes: ["imagen"] }],
         });
@@ -155,6 +161,7 @@ const Product = {
     cartView: async function (user) {
         //console.log(user);
         let pedidosActivos = await db.Pedido.findAll({
+            logging: false,
             where: {
                 [Op.and]: [{ user_id: user }, { compra_id: null }],
             },
@@ -194,8 +201,8 @@ const Product = {
             user_id: user,
             fecha: new Date(),
         });
-        let pedidos = await this.cartView(user);
-        pedidos.forEach(async (pedido) => {
+        let pedidosCompra = await this.cartView(user);
+        pedidosCompra.forEach(async (pedido) => {
             await db.Pedido.update(
                 {
                     compra_id: newCompra.id,
@@ -213,10 +220,14 @@ const Product = {
             );
             await this.updateStock(pedido.producto.id);
         });
+        //console.log(newCompra.id);
+        return newCompra;
+    },
+    purchaseId: async function (id) {
+        console.log(id);
         let detalleDeCompra = await db.Pedido.findAll({
-            where: {
-                compra_id: newCompra.id,
-            },
+            logging: false,
+            where: { compra_id: id },
             include: [
                 {
                     association: "producto",
@@ -225,17 +236,25 @@ const Product = {
                 { association: "compra" },
             ],
         });
+        console.log(detalleDeCompra);
         return detalleDeCompra;
     },
     viewCompras: async function (user) {
         let pedidosComprados = await db.Pedidos.findAll({
+            logging: false,
             where: {
                 [Op.and]: [
                     { user_id: user.id },
                     { [Op.ne]: { compra_id: null } },
                 ],
             },
-            include: [{ association: "producto" }, { association: "compra" }],
+            include: [
+                {
+                    association: "producto",
+                    include: [{ association: "imagenes" }],
+                },
+                { association: "compra" },
+            ],
         });
         return pedidosComprados;
     },
