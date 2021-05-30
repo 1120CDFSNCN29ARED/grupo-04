@@ -6,7 +6,7 @@ module.exports = function (sequelize, dataTypes) {
             cantidad: { type: dataTypes.INTEGER(11), allowNull: false },
             user_id: { type: dataTypes.INTEGER(11), allowNull: false },
             compra_id: { type: dataTypes.INTEGER(11), allowNull: true },
-            precio_compra: { type: dataTypes.INTEGER(11), allowNull: true },
+            precio_compra: { type: dataTypes.DOUBLE, allowNull: true },
         },
         {
             timestamps: true,

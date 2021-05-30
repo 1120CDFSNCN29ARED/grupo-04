@@ -22,25 +22,23 @@
                 <input type="text" name="productName" id="productName" placeholder="Nombre de Producto"
                     value="<%=product.nombre%>">
                 <% if (locals.errors && errors.productName) { %>
-                    <p class="inputError">
+                    <p class="inputError warning"">
                         <%= errors.productName.msg %>
                     </p>
                     <% } %>
             </div>
-            <div class="productName">
-                <label for="productCode">Código de producto</label>
-                <input type="text" name="productCode" id="productCode" value="<%= product.codigo%>">
-                <% if (locals.errors && errors.productCode) { %>
-                    <p class="inputError">
-                        <%= errors.productCode.msg%>
-                    </p>
-                    <% } %>
+            <div class=" productName">
+                        <label for="productCode">Código de producto</label>
+                        <input type="text" name="productCode" id="productCode" value="<%= product.codigo%>">
+                        <% if (locals.errors && errors.productCode) { %>
+                            <p class="inputError warning" <%=errors.productCode.msg%>
+                            </p>
+                            <% } %>
             </div>
             <div class="productTopSpecs">
                 <label for=""> Principales especificaciones</label>
                 <% if (locals.errors && errors.productTopSpec1) { %>
-                    <p class="inputError">
-                        <%= errors.productTopSpec1.msg %>
+                    <p class="inputError warning" <%=errors.productTopSpec1.msg %>
                     </p>
                     <% } %>
                         <% for( let i=0; i < product.caracteristicas.length; i++ ) { %>
@@ -54,8 +52,7 @@
                 <textarea name="productDescription" id="productDescription" cols="30"
                     rows="10"><%=product.descripcion%></textarea>
                 <% if (locals.errors && errors.productDescription) { %>
-                    <p class="inputError">
-                        <%= errors.productDescription.msg %>
+                    <p class="inputError warning" <%=errors.productDescription.msg %>
                     </p>
                     <% } %>
             </div>
@@ -82,8 +79,7 @@
                         <% } %>
                 </select>
                 <% if (locals.errors && errors.productCategory) { %>
-                    <p class="inputError">
-                        <%= errors.productCategory.msg%>
+                    <p class="inputError warning" <%=errors.productCategory.msg%>
                     </p>
                     <% } %>
             </div>
@@ -99,8 +95,7 @@
                         <% } %>
                 </select>
                 <% if (locals.errors && errors.uniMedida) { %>
-                    <p class="inputError">
-                        <%= errors.uniMedida.msg %>
+                    <p class="inputError warning" <%=errors.uniMedida.msg %>
                     </p>
                     <% } %>
             </div>
@@ -115,42 +110,40 @@
                         <% } %>
                 </select>
                 <% if (locals.errors && errors.marca) { %>
-                    <p class="inputError">
-                        <%= errors.marca.msg %>
+                    <p class="inputError warning" <%=errors.marca.msg %>
                     </p>
                     <% } %>
             </div>
             <div class="productPrice">
                 <label for="productPrice">Precio</label>
-                <input type="number" name="productPrice" id="productPrice" value="<%= product.precio%>">
+                <input type="number" min="0" max="1000000" step="any" name="productPrice" id="productPrice"
+                    value="<%= product.precio%>">
                 <% if (locals.errors && errors.productPrice) { %>
-                    <p class="inputError">
+                    <p class="inputError warning"">
                         <%= errors.productPrice.msg %>
                     </p>
                     <% } %>
             </div>
-            <div class="productCategory">
-                <label for="iva">IVA</label>
-                <select name="iva" id="iva" class="categorySelect">
-                    <option value="" disabled selected hidden>IVA</option>
-                    <% for( let i=0; i < iva.length; i++ ) { %>
-                        <option value="<%= iva[i].id %>" <%=(product.iva_id==iva[i].id) ? "selected" : '' %>
-                            ><%= iva[i].nombre+' '+ iva[i].valor+' %' %>
-                        </option>
-                        <% } %>
-                </select>
-                <% if (locals.errors && errors.iva) { %>
-                    <p class="inputError">
-                        <%= errors.iva.msg %>
-                    </p>
-                    <% } %>
+            <div class=" productCategory">
+                        <label for="iva">IVA</label>
+                        <select name="iva" id="iva" class="categorySelect">
+                            <option value="" disabled selected hidden>IVA</option>
+                            <% for( let i=0; i < iva.length; i++ ) { %>
+                                <option value="<%= iva[i].id %>" <%=(product.iva_id==iva[i].id) ? "selected" : '' %>
+                                    ><%= iva[i].nombre+' '+ iva[i].valor+' %' %>
+                                </option>
+                                <% } %>
+                        </select>
+                        <% if (locals.errors && errors.iva) { %>
+                            <p class="inputError warning" <%=errors.iva.msg %>
+                            </p>
+                            <% } %>
             </div>
             <div class="productPrice">
                 <label for="cantidadInicial">Cantidad</label>
                 <input type="number" name="cantidadInicial" id="cantidadInicial" value="<%=product.cantidad_real%>">
                 <% if (locals.errors && errors.cantidadInicial) { %>
-                    <p class="inputError">
-                        <%= errors.cantidadInicial.msg %>
+                    <p class="inputError warning" <%=errors.cantidadInicial.msg %>
                     </p>
                     <% } %>
             </div>

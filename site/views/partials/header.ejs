@@ -9,9 +9,9 @@
     <form action="/products/search" method="GET" class="buscar">
         <div class="barra-busqueda">
             <input type="search" name="busqueda" placeholder="Buscar productos" class="campo-busqueda">
-            
-                <i class="fas fa-search" id="lupa"></i>
-           
+
+            <i class="fas fa-search" id="lupa"></i>
+
         </div>
     </form>
 
@@ -32,21 +32,31 @@
                     </a>
                 </div>
                 <% } %>
-                    <div class="icon cart">
-                        <a href="/products/cart">
-                            <i class="fas fa-cart-plus"></i>
-                        </a>
-                    </div>
-                    <div class="icon lupa">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <div class="icon menu-btn">
-                        <i class="fas fa-bars"></i>
-                    </div>
+                    <% if (locals.isLogged) { %>
+                        <div class="icon cart">
+                            <a href="/products/cart">
+                                <i class="fas fa-cart-plus"></i>
+                            </a>
+                        </div>
+                        <% } else { %>
+                            <div class="icon cart">
+                                <a href="/products/cart">
+                                    <i class="fas fa-cart"></i>
+                                </a>
+                            </div>
+                            <% } %>
+                                <div class="icon lupa">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <div class="icon menu-btn">
+                                    <i class="fas fa-bars"></i>
+                                </div>
         </div>
         <div class="user-login">
             <p>
-                Hola <strong><%= locals.userLogged.name %></strong>!
+                Hola <strong>
+                    <%= locals.userLogged.name %>
+                </strong>!
             </p>
             <img src="/img/users/<%=locals.userLogged.image%>" alt="" class="avatar">
         </div>

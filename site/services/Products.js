@@ -35,6 +35,7 @@ const Product = {
                 ...producto,
                 caracteristicas: spec,
                 imagenes: imagenes,
+                cantidad_en_pedido: 0,
             },
             {
                 include: [
@@ -70,6 +71,13 @@ const Product = {
         const productsWithImage = products.filter(
             (product) => product.imagenes.length > 0
         );
+        // const productsWithStock = productsWithImage.filter(
+        //     (product) =>
+        //         Number(product.cantidad_real) -
+        //             Number(product.cantidad_en_pedido) >
+        //         0
+        // );
+
         return productsWithImage;
     },
     list: async function (page, sort = "id") {
@@ -104,6 +112,8 @@ const Product = {
         return products;
     },
     update: async function (producto, imagenes, spec) {
+        let precioForm = producto.precio ? producto.precio : 0;
+        producto.precio = precioForm;
         await db.Producto.update(
             {
                 ...producto,
@@ -111,13 +121,35 @@ const Product = {
             { where: { id: producto.id } }
         );
     },
-    addToCart: async function (producto, cantidad, user) {
+    addToCart: async function (producto, cantidadPedida, user) {
         let nuevoPedido = {
             producto_id: producto,
-            cantidad: cantidad,
+            cantidad: cantidadPedida,
             user_id: user,
         };
-        await db.Pedido.create(nuevoPedido);
+        let productoEnPedidoActivo = await db.Pedido.findOne({
+            where: {
+                [Op.and]: [
+                    { producto_id: producto },
+                    { user_id: user },
+                    { compra_id: null },
+                ],
+            },
+        });
+        //console.log(productoEnPedidoActivo.cantidad);
+        //console.log(cantidadPedida);
+        if (productoEnPedidoActivo) {
+            await db.Pedido.update(
+                {
+                    cantidad:
+                        Number(productoEnPedidoActivo.cantidad) +
+                        Number(cantidadPedida),
+                },
+                { where: { id: productoEnPedidoActivo.id } }
+            );
+        } else {
+            await db.Pedido.create(nuevoPedido);
+        }
         await this.updateStock(producto);
     },
     cartView: async function (user) {
@@ -143,7 +175,7 @@ const Product = {
     cartEdit: async function (pedido) {
         await db.Pedido.update(
             {
-                ...pedido,
+                cantidad: pedido.nuevaCantidad,
             },
             {
                 where: { id: pedido.id },
@@ -153,23 +185,47 @@ const Product = {
     },
     cartDelete: async function (pedido) {
         await db.Pedido.destroy({
-            where: { id: pedido },
+            where: { id: pedido.id },
         });
-        await this.updateStock(pedido.producto_id);
+        await this.updateStock(pedido.prod);
     },
-    cartBuy: async function (pedido) {
+    cartBuy: async function (user) {
         let newCompra = await db.Compra.create({
-            user_id: pedido.user_id,
+            user_id: user,
             fecha: new Date(),
         });
-        await db.Pedido.update(
-            {
+        let pedidos = await this.cartView(user);
+        pedidos.forEach(async (pedido) => {
+            await db.Pedido.update(
+                {
+                    compra_id: newCompra.id,
+                    precio_compra: pedido.producto.precio,
+                },
+                { where: { id: pedido.id } }
+            );
+            await db.Producto.update(
+                {
+                    cantidad_real:
+                        Number(pedido.producto.cantidad_real) -
+                        Number(pedido.cantidad),
+                },
+                { where: { id: pedido.producto.id } }
+            );
+            await this.updateStock(pedido.producto.id);
+        });
+        let detalleDeCompra = await db.Pedido.findAll({
+            where: {
                 compra_id: newCompra.id,
-                precio_compra: pedido.producto_id.precio,
             },
-            { where: { id: pedido.id } }
-        );
-        return newCompra;
+            include: [
+                {
+                    association: "producto",
+                    include: [{ association: "imagenes" }],
+                },
+                { association: "compra" },
+            ],
+        });
+        return detalleDeCompra;
     },
     viewCompras: async function (user) {
         let pedidosComprados = await db.Pedidos.findAll({

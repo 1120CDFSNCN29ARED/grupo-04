@@ -20,7 +20,7 @@
                 <input type="text" name="productName" id="productName"
                     value="<%= locals.oldData && oldData.productName ? oldData.productName : null  %>">
                 <% if (locals.errors && errors.productName) { %>
-                    <p class="inputError">
+                    <p class="inputError warning">
                         <%= errors.productName.msg%>
                     </p>
                     <% } %>
@@ -37,19 +37,19 @@
                     value="<%= locals.oldData && oldData.productTopSpec4 ? oldData.productTopSpec4 : null  %>">
             </div>
             <div class="productName">
-                <label for="productCode">Código de producto</label>
-                <input type="text" name="productCode" id="productCode"
-                    value="<%= locals.oldData && oldData.productCode ? oldData.productCode : null  %>">
-                <% if (locals.errors && errors.productCode) { %>
-                    <p class="inputError">
-                        <%= errors.productCode.msg%>
+                <% if (locals.errors && errors.productTopSpec1) { %>
+                    <p class="inputError warning">
+                        <%= errors.productTopSpec1.msg %>
                     </p>
                     <% } %>
             </div>
             <div class="productName">
-                <% if (locals.errors && errors.productTopSpec1) { %>
-                    <p class="inputError">
-                        <%= errors.productTopSpec1.msg %>
+                <label for="productCode">Código de producto</label>
+                <input type="text" name="productCode" id="productCode"
+                    value="<%= locals.oldData && oldData.productCode ? oldData.productCode : null  %>">
+                <% if (locals.errors && errors.productCode) { %>
+                    <p class="inputError warning">
+                        <%= errors.productCode.msg%>
                     </p>
                     <% } %>
             </div>
@@ -58,7 +58,7 @@
                 <textarea class="productDescription" name="productDescription" id="productDescription" cols="60"
                     rows="4"><%= locals.oldData && oldData.productDescription ? oldData.productDescription : ''  %></textarea>
                 <% if (locals.errors && errors.productDescription) { %>
-                    <p class="inputError">
+                    <p class="inputError warning">
                         <%= errors.productDescription.msg %>
                     </p>
                     <% } %>
@@ -66,7 +66,7 @@
             <div class="productImg">
                 <span>Imágenes<input type="file" name="productImg" id="productImg" multiple></span>
                 <% if (locals.errors && errors.productImg) { %>
-                    <p class="inputError">
+                    <p class="inputError warning">
                         <%= errors.productImg.msg %>
                     </p>
                     <% } %>
@@ -83,7 +83,7 @@
                         <% } %>
                 </select>
                 <% if (locals.errors && errors.productCategory) { %>
-                    <p class="inputError">
+                    <p class="inputError warning">
                         <%= errors.productCategory.msg%>
                     </p>
                     <% } %>
@@ -100,7 +100,7 @@
                         <% } %>
                 </select>
                 <% if (locals.errors && errors.uniMedida) { %>
-                    <p class="inputError">
+                    <p class="inputError warning">
                         <%= errors.uniMedida.msg %>
                     </p>
                     <% } %>
@@ -117,17 +117,17 @@
                         <% } %>
                 </select>
                 <% if (locals.errors && errors.marca) { %>
-                    <p class="inputError">
+                    <p class="inputError warning">
                         <%= errors.marca.msg %>
                     </p>
                     <% } %>
             </div>
             <div class="productPrice">
                 <label for="productPrice">Precio</label>
-                <input type="number" name="productPrice" id="productPrice"
+                <input type="number" min="0" max="1000000" step="any" name="productPrice" id="productPrice"
                     value="<%= locals.oldData && oldData.productPrice ? oldData.productPrice : ''  %>">
                 <% if (locals.errors && errors.productPrice) { %>
-                    <p class="inputError">
+                    <p class="inputError warning">
                         <%= errors.productPrice.msg %>
                     </p>
                     <% } %>
@@ -144,7 +144,7 @@
                         <% } %>
                 </select>
                 <% if (locals.errors && errors.iva) { %>
-                    <p class="inputError">
+                    <p class="inputError warning">
                         <%= errors.iva.msg %>
                     </p>
                     <% } %>
@@ -154,7 +154,7 @@
                 <input type="number" name="cantidadInicial" id="cantidadInicial"
                     value="<%= locals.oldData && oldData.cantidadInicial ? oldData.cantidadInicial : ''  %>">
                 <% if (locals.errors && errors.cantidadInicial) { %>
-                    <p class="inputError">
+                    <p class="inputError warning">
                         <%= errors.cantidadInicial.msg %>
                     </p>
                     <% } %>

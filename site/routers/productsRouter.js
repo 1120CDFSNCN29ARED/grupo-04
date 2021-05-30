@@ -10,9 +10,19 @@ const productsController = require("../controllers/productsController");
 
 router.get("/", productsController.products);
 router.get("/detail/:id", productsController.detail);
-router.get("/cart", productsController.cart);
-router.put("/cart/:id", productsController.addCart);
-router.delete("cart/:id", productsController.cartDelete);
+router.get("/cart", accessControls.notLogged, productsController.cart);
+router.put(
+    "/cart/edit/:id/:prod",
+    accessControls.notLogged,
+    productsController.editCart
+);
+router.delete(
+    "/cart/delete/:id/:prod",
+    accessControls.notLogged,
+    productsController.cartDelete
+);
+router.post("/cart/buy", accessControls.notLogged, productsController.cartBuy);
+router.put("/cart/:id", accessControls.notLogged, productsController.addCart);
 router.get(
     "/create",
     accessControls.notLogged,

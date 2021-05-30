@@ -10,20 +10,22 @@ const apiUserRouter = require("./routers/apiRoutes/users");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const isLogged = require("./middlewares/isLogged");
+const haveCart = require("./middlewares/haveCart");
 const cors = require("cors");
 require("dotenv").config();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 app.use(
-  session({
-    secret: "Nuestro secreto",
-    resave: false,
-    saveUninitialized: true,
-  })
+    session({
+        secret: "Nuestro secreto",
+        resave: false,
+        saveUninitialized: true,
+    })
 );
 app.use(cookieParser());
 app.use(isLogged);
+//app.use(haveCart);
 app.use(cors("*"));
 
 app.use(express.static(path.resolve(__dirname, "./public")));

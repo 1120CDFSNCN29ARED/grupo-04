@@ -79,15 +79,21 @@
                                 maximumFractionDigits: 2, style: 'currency' , currency: 'ARS' }) : "CONSULTAR" %>
                         </h4>
                         <form action="/products/cart/<%=product.id%>?_method=put" method="post">
-                            <button type="submit" class="product-buy" <%=!product.precio ? 'disabled' : "" %>
-                                >COMPRAR</button>
-                            <select class="product-quantity" name="cantidad" id="productAmount">
-                                <% for( let i=0; i < (product.cantidad_real - product.cantidad_en_pedido); i++ ) { %>
-                                    <option value="<%= i + 1 %> " class="product-quantity-value">
-                                        <%= i +1 %>
-                                    </option>
+                            <button type="submit" class="product-buy" <%=!product.precio ? "disabled" :
+                                ((product.cantidad_real - product.cantidad_en_pedido) < 1) ? "disabled" : ""
+                                %>>COMPRAR</button>
+                            <% if ((product.cantidad_real - product.cantidad_en_pedido) < 1) { %>
+                                <p class="warning"> Sin Stock</p>
+                                <% } else {%>
+                                    <select class="product-quantity" name="cantidad" id="productAmount">
+                                        <% for( let i=0; i < (product.cantidad_real - product.cantidad_en_pedido); i++ )
+                                            { %>
+                                            <option value="<%= i + 1 %> " class="product-quantity-value">
+                                                <%= i +1 %>
+                                            </option>
+                                            <% } %>
+                                    </select>
                                     <% } %>
-                            </select>
                         </form>
                     </div>
 
@@ -119,16 +125,13 @@
                     <% //} %>
             </div> -->
             </section>
-            <!-- <script>let deleteSubmit = document.querySelector(".deleteProduct");
-                deleteSubmit.addEventListener("submit", function (evt) {
+            <script>
+                let buyButton = document.querySelector('button[disabled]');
+                buyButton.addEventListener("submit", function (evt) {
                     evt.preventDefault()
-                    let sureDelete = confirm("Seguro desea eliminar el producto ??")
-                    if (sureDelete) {
-                        deleteSubmit.submit()
-                    }
                 })
 
-            </script> -->
+            </script>
         </main>
 
         <%- include('../partials/footer')%>

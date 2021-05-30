@@ -38,8 +38,7 @@
                                 </p>
                                 <form class="highlightedForm"
                                     action="/products/edit/highlighted/<%=productsL[i].id%>?_method=put" method="post">
-                                    <input type="checkbox" name="highlighted" class="highlighted"
-                                        value="true"
+                                    <input type="checkbox" name="highlighted" class="highlighted" value="true"
                                         <%=productsL[i].descuento_oferta ? 'checked' : "" %> >
                                     <!-- <button type="submit" class="highlightedButton">
                                         <%= productsL[i].descuento_oferta ? "quitar" : "destacar" %>
@@ -53,12 +52,13 @@
                                     </p>
                                     <form action="/products/edit/price/<%=productsL[i].id%>?_method=put" method="post">
                                         <label for="price">Nuevo precio:</label>
-                                        <input type="number" name="price" id="price" value="<%= productsL[i].precio %>">
+                                        <input type="number" min="0" max="1000000" step="any" name="price" id="price"
+                                            value="<%= productsL[i].precio %>">
                                         <button type="submit" class="priceButton">cambiar</button>
                                     </form>
                                 </div>
                                 <a class="editButton" href="<%= `/products/edit/${productsL[i].id}` %> ">Editar</a>
-                                <form  class="deleteProductList"
+                                <form class="deleteProductList"
                                     action="/products/delete/<%=productsL[i].id%>?_method=delete" method="post">
                                     <button class="deleteSubmitButton" type="submit">Eliminar</button>
                                 </form>

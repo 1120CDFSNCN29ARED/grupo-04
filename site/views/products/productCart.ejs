@@ -19,32 +19,42 @@
                         <% if (cart) { %>
                             <% for( let i=0; i < cart.length; i++ ) { %>
                                 <article class="product">
-                                    <img src="/img/products/<%=cart[i].producto_id.imagenes.imagen%>"
-                                        alt="imagen producto" class="product-image">
+                                    <a href="/products/detail/<%= cart[i].producto.id %> "><img
+                                            src="/img/products/<%=cart[i].producto.imagenes[0].imagen%>"
+                                            alt="imagen producto" class="product-image"></a>
                                     <h3 class="product-name">
-                                        <%=cart[i].producto_id.nombre%>
+                                        <%=cart[i].producto.nombre%>
                                     </h3>
                                     <h3 class="product-cost">
-                                        <%=(Number(cart[i].producto_id.precio *
-                                            cart[i].cantidad)).toLocaleString('es-AR', {minimumFractionDigits: 2,
-                                            maximumFractionDigits: 2, style: 'currency' , currency: 'ARS' })%>
+                                        <%=(Number(cart[i].producto.precio * cart[i].cantidad)).toLocaleString('es-AR',
+                                            {minimumFractionDigits: 2, maximumFractionDigits: 2, style: 'currency' ,
+                                            currency: 'ARS' })%>
                                     </h3>
                                     <p class="product-descript">
-                                        <%=cart[i].producto_id.descripcion%>
+
                                     </p>
-                                    <select class="product-quantity" name="product-quantity" id="product-quantity">
-                                        <% for( let j=0; j < (cart[i].producto_id.cantidad_real - cantidad_en_pedido +
-                                            cart[i].cantidad); j++ ) { %>
-                                            <option value="<%= j +1 %>" class="product-quantity-value"
-                                                <%=cart[i].cantidad==j + 1 ? 'selected' : "" %> ><%= j %>
-                                            </option>
-                                            <% } %>
-                                    </select>
-                                    <div class="product-additional">
-                                        <input type="checkbox" name="aditional" id="aditional">
-                                        <label for="aditional">Adicional 1</label>
-                                    </div>
-                                    <button type="submit" class="product-del">Eliminar</button>
+                                    <form
+                                        action="/products/cart/edit/<%=cart[i].id%>/<%=cart[i].producto_id%>?_method=put"
+                                        method="post">
+                                        <select class="product-quantity" name="productquantity" id="product-quantity">
+                                            <% for( let j=0; j < (cart[i].producto.cantidad_real -
+                                                cart[i].producto.cantidad_en_pedido + cart[i].cantidad); j++ ) { %>
+                                                <option value="<%= j +1 %>" class="product-quantity-value"
+                                                    <%=cart[i].cantidad==j + 1 ? 'selected' : "" %> ><%= j +1 %>
+                                                </option>
+                                                <% } %>
+                                        </select>
+                                        <div class="product-additional">
+                                            <input type="checkbox" name="aditional" id="aditional">
+                                            <label for="aditional">Adicional 1</label>
+                                        </div>
+                                        <button type="submit" class="product-edit">Editar</button>
+                                    </form>
+                                    <form
+                                        action="/products/cart/delete/<%=cart[i].id%>/<%=cart[i].producto_id%>?_method=delete"
+                                        method="post">
+                                        <button type="submit" class="product-del">Eliminar</button>
+                                    </form>
                                 </article>
                                 <% } %>
                                     <% } else { %>
@@ -61,8 +71,15 @@
                                 maximumFractionDigits: 2, style: 'currency' , currency: 'ARS' })%>
                         </h3>
                         <div class="product-detail-cost">
-                            <h4 class="product-subTotal">subtotal</h4>
-                            <h4 class="product-tax">impuestos</h4>
+                            <h4 class="product-subTotal">Subtotal
+                                <%=(Number(account.total() - account.impuestos())).toLocaleString('es-AR',
+                                    {minimumFractionDigits: 2, maximumFractionDigits: 2, style: 'currency' ,
+                                    currency: 'ARS' })%>
+                            </h4>
+                            <h4 class="product-tax">Impuestos <%=(Number(account.impuestos())).toLocaleString('es-AR',
+                                    {minimumFractionDigits: 2, maximumFractionDigits: 2, style: 'currency' ,
+                                    currency: 'ARS' })%>
+                            </h4>
                             <h4 class="product-shipping">Envio</h4>
                         </div>
                         <div class="product-cost-total">
@@ -72,7 +89,8 @@
                                     maximumFractionDigits: 2, style: 'currency' , currency: 'ARS' })%>
                             </h4>
                         </div>
-                        <button type="submit" class="product-buy">Comprar</button>
+                        <form action="/products/cart/buy" method="post"><button type="submit"
+                                class="product-buy">Comprar</button></form>
                     </div>
                     <% } %>
                         </div>
