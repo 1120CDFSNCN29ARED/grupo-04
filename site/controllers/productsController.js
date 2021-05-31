@@ -13,7 +13,6 @@ controller = {
     detail: async (req, res) => {
         let productSearch = await Producto.oneProduct(req.params.id);
         let product = productSearch.dataValues;
-        //console.log(product.tipo_producto.nombre);
         res.render("./products/productDetail", { product });
     },
     cart: async (req, res) => {
@@ -78,7 +77,9 @@ controller = {
         const purchases = await Producto.purchasesView(
             req.session.userLogged.id
         );
-        return res.render("./products/comprasView", { purchases });
+        return res.render("./products/comprasView", {
+            purchases,
+        });
     },
     createView: async (req, res) => {
         let categories = await Producto.datosCreate("Tipo_producto");
@@ -148,14 +149,7 @@ controller = {
         res.render("./products/productsList", { productsL });
     },
     editPrice: (req, res) => {
-        let products = JSON.parse(fs.readFileSync(dataJSON, "utf-8"));
-        let product = products.find((product) => product.id == req.params.id);
-        products.forEach((productEach) => {
-            if (productEach.id == product.id) {
-                productEach.price = req.body.price ? req.body.price : "";
-            }
-        });
-        fs.writeFileSync(dataJSON, JSON.stringify(products, null, 4));
+        Producto.editPrice(req.params.id, req.body.price);
         return res.redirect("/products/listado");
     },
     editHighlighted: async (req, res) => {

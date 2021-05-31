@@ -74,8 +74,7 @@
 
                     <div class="product-cost-quantity-buy">
                         <h4 class="product-cost">
-                            <%= product.precio ? (Number(product.precio + ((product.precio *
-                                product.iva.valor)/100))).toLocaleString('es-AR', {minimumFractionDigits: 2,
+                            <%= product.precio ? product.precio.toLocaleString('es-AR', {minimumFractionDigits: 2,
                                 maximumFractionDigits: 2, style: 'currency' , currency: 'ARS' }) : "CONSULTAR" %>
                         </h4>
                         <form action="/products/cart/<%=product.id%>?_method=put" method="post">

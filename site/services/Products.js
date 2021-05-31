@@ -122,6 +122,12 @@ const Product = {
             { where: { id: producto.id } }
         );
     },
+    editPrice: async function (producto, precio) {
+        await db.Producto.update(
+            { precio: precio },
+            { where: { id: producto } }
+        );
+    },
     addToCart: async function (producto, cantidadPedida, user) {
         let nuevoPedido = {
             producto_id: producto,

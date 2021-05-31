@@ -1,0 +1,43 @@
+.table {
+    border-collapse: collapse;
+    border: 0.5px solid black;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.7rem;
+}
+.headLista {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+.table-secondary {
+    background-color: #dbdbdb;
+    margin-bottom: 4px;
+}
+.table-light {
+    background-color: #f8f8f8;
+}
+.table img {
+    width: 25%;
+    text-align: center;
+}
+.buttons {
+    width: 15%;
+}
+.btn-primary {
+    padding: 3px;
+    border-radius: 3px;
+    margin: 2px;
+    background-color: var(--celeste);
+    color: var(--azul);
+    border: none;
+}
+.btn-danger {
+    padding: 3px;
+    border-radius: 3px;
+    border: none;
+    margin: 2px;
+    background-color: red;
+    color: var(--azul);
+}
