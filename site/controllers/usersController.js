@@ -1,10 +1,9 @@
-const path = require("path");
 const { validationResult } = require("express-validator");
 const User = require("../services/Users");
+const Producto = require("../services/Products");
 const Domicilio = require("../services/Domicilio");
 const bcrypt = require("bcryptjs");
 const db = require("../database/models");
-const e = require("express");
 
 controller = {
   login: (req, res) => {
@@ -100,14 +99,14 @@ controller = {
     }
   },
   userProfile: async (req, res) => {
-    //console.log(`usuario en sesion: ${req.session.userLogged.id}`);
     const user = req.session.userLogged;
+    const cart = await Producto.cartView(user.id);
     const domicilio = await db.Domicilio.findAll({
       include: [{ association: "paises" }, { association: "provincias" }],
       where: { user_id: user.id },
     });
-    //console.log(domicilio);
-    res.render("./users/profile", { user, domicilio });
+    console.log(cart);
+    res.render("./users/profile", { user, domicilio, cart });
   },
   adminUserProfile: async (req, res) => {
     const user = await User.findByID(req.params.id);

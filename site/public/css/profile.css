@@ -34,7 +34,7 @@
   text-decoration: none;
   background-color: cadetblue;
   border-radius: 4px;
-  padding: 0.8rem 1.5rem;
+  padding: 0.8rem 1.2rem;
   font-weight: bold;
   font-size: 0.8rem;
 }
@@ -58,9 +58,37 @@
     margin: 0.8rem 0 0 0;
   }
   .product-preview {
-    width: 80%;
+    width: 95%;
+    min-height: 800px;
   }
   .register {
     width: 90%;
+  }
+  .display-cart-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    padding: 5px 25px 5px 5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid black;
+  }
+  .display-cart-profile img {
+    width: 20%;
+  }
+  .cart-items {
+    display: flex;
+    align-items: center;
+  }
+  .btn-ir-carrito {
+    margin: 20px auto 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .plus {
+    width: 8rem;
+    height: 3rem;
   }
 }

@@ -5,6 +5,7 @@
     <%- include('../partials/head')%>
         <link rel="stylesheet" href="/css/styles-form.css">
         <link rel="stylesheet" href="/css/profile.css">
+        <!-- <link rel="stylesheet" href="/css/productCart.css"> -->
 </head>
 
 <body>
@@ -85,28 +86,39 @@
             </section>
             <section class="products-display">
                 <h3 class="titulo">
-                    <%= user.name%>, tenemos estas ofertas para vos!
+                    <%= user.name%>, este es tu carrito de compra
                 </h3>
-                <article class="product-preview">
-                    <div class="product-pic">
-                        <img src="/img/PC.webp" alt="">
-                    </div>
-                    <div class="product-description">
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    </div>
-                    <div class="info-btn">
-                        <a href="/product">+INFO</a>
-                    </div>
-                </article>
-                <article class="product-preview">
-                    <div class="product-pic">
-                        <img src="/img/pc2.webp" alt="">
-                    </div>
-                    <div class="product-description">
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    </div>
-                    <div class="info-btn">
-                        <a href="/product">+INFO</a>
+                <article class="product-preview user-cart">
+                    <div class="product-list">
+                        <% if (cart.length>0) { %>
+                            <% for( let i=0; i < cart.length; i++ ) { %>
+                                <article class="product display-cart-profile">
+                                    <div class="cart-items">
+                                        <img
+                                        src="/img/products/<%=cart[i].producto.imagenes[0].imagen%>" alt="imagen producto"
+                                        class="product-image">
+                        
+                                    <h3 class="center">
+                                        <%=cart[i].producto.nombre%>
+                                    </h3>
+                                    <h3 class="product-cost">
+                                        <%=(Number(cart[i].producto.precio * cart[i].cantidad)).toLocaleString('es-AR',
+                                            {minimumFractionDigits: 2, maximumFractionDigits: 2, style: 'currency' , currency: 'ARS' })%>
+                                    </h3>
+                                    </div>
+                                </article>
+                            <% } %>
+                            <div class="btn-ir-carrito">
+                            <div class="info-btn edit-dom plus">
+                                <a href="/products/cart">Ir al Carrito</a>
+                            </div>
+                            </div>
+                        <% } else { %>
+                            <div class="emptyCart">
+                                <p>TU CARRITO ESTA VACIO</p>
+                            </div>
+                        <% } %>
+                        
                     </div>
                 </article>
             </section>
