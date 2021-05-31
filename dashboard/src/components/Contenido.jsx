@@ -1,27 +1,26 @@
-import React from 'react'
-import logo from '../img/PCcomponents-logo.png'
 import '../userList.css'
-function Contenido() {
+import {Link} from 'react-router-dom'
+function Contenido(props) {
+    
     return (
-        <div class="margin-top">
-        <section class="user-list">
-            <div class="icon-login">
-                <img src={logo} alt=""/>
+    
+        <div className="margin-top">
+        <section className="user-list">
+            <div>
+               <p className="user-list-text"><strong>Nombre:</strong> {props.name}</p>
+            </div>
+                        <div>
+               <p className="user-list-text"><strong>Apellido:</strong> {props.last_name}</p>
             </div>
             <div>
-               <p class="user-list-text">Nombre: <strong> Prueba mas larga </strong></p>
+               <p className="user-list-text"><strong>Email:</strong>{props.email}</p> 
             </div>
-            <div>
-               <p class="user-list-text">Email: <strong>Prueba@gmail.com</strong></p> 
-            </div>
-                <div class="info-btn ver">
-                    <a href="/users/admin/userProfile/<%=users[i].id%>">VER</a>
-                </div>
-                <div class="info-btn eliminar">
-                    <a href="/users/delete/<%=users[i].id%>">ELIMINAR</a>
+                <div className="info-btn ver">
+                    <Link to={`/user/${props.id}`}>VER</Link>
                 </div>
         </section>
         </div>
+    
     )
 }
 

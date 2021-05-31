@@ -1,9 +1,11 @@
 import React from 'react'
-
-function Buttons({name}) {
+import {Link} from 'react-router-dom'
+function Buttons({name, path}) {
     return (
-        <div class="botones">
-           {name}
+        
+        <div className="botones">
+           <Link className='no-underline' to={path}>{name}</Link>
+           
         </div>
     )
 }

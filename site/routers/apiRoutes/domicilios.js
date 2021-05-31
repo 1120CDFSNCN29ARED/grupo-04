@@ -7,5 +7,6 @@ const router = express.Router();
 const domController = require("../../controllers/apiControllers/apiDomicilios");
 
 router.get("/:id", domController.findDomicilioUsuario);
+router.get("/provincias/:id", domController.provincias);
 
 module.exports = router;

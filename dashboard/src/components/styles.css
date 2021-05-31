@@ -9,11 +9,11 @@
   justify-content: space-between;
 }
 .sidebar {
-  width: 25%;
+  width: 24%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 1rem;
+  margin-right: 0.8rem;
 }
 .botones {
   margin: 0.2rem auto;
@@ -26,11 +26,14 @@
   color: var(--azul);
 }
 .content {
-  width: 95%;
+  width: 100%;
   display: flex;
   justify-content: space-evenly;
   margin: 7rem auto 1rem;
   padding: 10px;
+}
+.no-underline {
+  text-decoration: none;
 }
 .titulo {
   width: 75%;
@@ -83,7 +86,7 @@ main {
   font-family: "Electrolize", sans-serif;
 }
 .logo img {
-  width: 5rem;
+  width: 6rem;
 }
 .logo a {
   margin-left: 10px;
@@ -138,7 +141,7 @@ main {
 }
 .product-preview {
   width: 75%;
-  min-height: 300px;
+  min-height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -146,9 +149,13 @@ main {
   border-radius: 4px;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
 }
+.product-preview .small {
+  padding: 0.6rem;
+  margin: 0.5rem auto;
+}
 .product-pic {
   max-width: 100%;
-
+  width: 100%;
   margin: 10px 0;
   display: flex;
   justify-content: center;
@@ -274,6 +281,13 @@ footer {
   html {
     font-size: 20px;
   }
+  .product-preview .small {
+    width: 40%;
+  }
+  .product-pic {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
   main {
     padding-top: 6.5rem;
   }
@@ -364,5 +378,8 @@ footer {
 @media (min-width: 1200px) {
   html {
     font-size: 24px;
+  }
+  .product-preview .small {
+    width: 45%;
   }
 }

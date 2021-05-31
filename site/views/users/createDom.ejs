@@ -58,13 +58,15 @@
                 <div class="subir-foto telefono">
                     <select name="provincia" id="provincia" class="campo">
                         <option hidden value="">Provincia</option>
-                        <% for (provincia of provincias) { %>
+
+                        
+                        <!-- <% for (provincia of provincias) { %>
                             <option value="<%=provincia.dataValues.id%>" <%=(locals.old_data &&
                                 old_data.provincia==provincia.dataValues.id) ? 'selected' : null %>
                                 >
                                 <%=provincia.dataValues.nombre%>
                             </option>
-                            <% } %>
+                            <% } %> -->
                     </select>
                     <i class="fas fa-map-marked-alt"></i>
                     <% if (locals.errors && errors.provincia) { %>

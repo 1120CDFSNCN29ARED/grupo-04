@@ -19,13 +19,13 @@
                 </section>
                 <div class="nombre">
                     <i class="fas fa-user-circle"></i>
-                    <input type="text" name="nombre" placeholder="Nombre" class="campo"
-                        value="<%= locals.old_data ? old_data.name : '' %>">
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="campo"
+                        value="<%= locals.old_data ? old_data.nombre : '' %>">
                 </div>
                 <div class="nombre">
                     <i class="fas fa-user-circle"></i>
-                    <input type="text" name="apellido" placeholder="Apellido" class="campo"
-                        value="<%= locals.old_data ? old_data.last_name : '' %>">
+                    <input type="text" id="apellido" name="apellido" placeholder="Apellido" class="campo"
+                        value="<%= locals.old_data ? old_data.apellido : '' %>">
                 </div>
                 <div class="email">
                     <i class="fas fa-envelope"></i>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="telefono">
                     <i class="fas fa-phone-alt"></i>
-                    <input type="number" name="telefono" placeholder="Telefono" class="campo"
+                    <input type="number" id="telefono" name="telefono" placeholder="Telefono" class="campo"
                         value="<%= locals.old_data ? old_data.telefono : '' %>">
                     <% if (locals.errors && errors.telefono) { %>
                         <div class="mensaje-error">
@@ -49,7 +49,7 @@
                 </div>
                 <div class="password">
                     <i class="fas fa-lock"></i>
-                    <input type="password" name="password" placeholder="Contraseña" required class="campo">
+                    <input type="password" id="password" name="password" placeholder="Contraseña" required class="campo">
                     <% if (locals.errors && errors.password) { %>
                         <div class="mensaje-error">
                             <%= errors.password.msg %>
@@ -58,7 +58,7 @@
                 </div>
                 <div class="confirm-pass">
                     <i class="fas fa-user-lock"></i>
-                    <input type="password" name="confirmPass" placeholder="Confirmar Contraseña" required class="campo">
+                    <input type="password" id="confPass" name="confirmPass" placeholder="Confirmar Contraseña" required class="campo">
                 </div>
                 <div class="recuerda">
                     <input type="checkbox" name="recuerda" id="recuerda" value="true" class="check">

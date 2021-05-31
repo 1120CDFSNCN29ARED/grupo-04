@@ -8,6 +8,15 @@ controller = {
     });
     res.json(domicilio);
   },
+  provincias: async (req, res) => {
+    console.log("provincias");
+    const provincias = await db.Provincia.findAll({
+      attributes: ["id", "nombre"],
+      where: { pais_id: req.params.id },
+    });
+    console.log(provincias);
+    res.json(provincias);
+  },
 };
 
 module.exports = controller;

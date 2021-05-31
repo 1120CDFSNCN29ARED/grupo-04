@@ -6,18 +6,18 @@ import facebook from '../img/logo-facebook-f.png'
 function Footer() {
     return (
         <footer className=''>
-    <div class="top-footer">
-        <section class="icon contacto">
-            <i class="fas fa-envelope"></i>
+    <div className="top-footer">
+        <section className="icon contacto">
+            <i className="fas fa-envelope"></i>
             <p>Contacto</p>
         </section>
-        <section class="redes">
-            <img src={instagram} alt="logo instagram" class="logo-redes"/>
-            <img src={twitter} alt="logo twitter" class="logo-redes twitter"/>
-            <img src={facebook} alt="logo facebook" class="logo-redes"/>
+        <section className="redes">
+            <img src={instagram} alt="logo instagram" className="logo-redes"/>
+            <img src={twitter} alt="logo twitter" className="logo-redes twitter"/>
+            <img src={facebook} alt="logo facebook" className="logo-redes"/>
         </section>
     </div>
-    <section class="copyright">
+    <section className="copyright">
         <p>Copyright 2021. Derechos Reservados.</p>
     </section>
 </footer>

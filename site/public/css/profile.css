@@ -28,14 +28,15 @@
   width: 40%;
 }
 .botones {
-  margin: 3em auto;
+  margin: 1.5rem auto;
 }
 .botones a {
   text-decoration: none;
   background-color: cadetblue;
   border-radius: 4px;
-  padding: 1em 2em;
+  padding: 0.8rem 1.5rem;
   font-weight: bold;
+  font-size: 0.8rem;
 }
 .container {
   width: 50%;

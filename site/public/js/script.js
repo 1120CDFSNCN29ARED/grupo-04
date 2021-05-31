@@ -3,9 +3,13 @@ window.addEventListener("load", async function () {
   let emailField = document.getElementById("email");
   let apellido = document.getElementById("apellido");
   let pass = document.getElementById("password");
+  let confPass = this.document.getElementById("confPass");
   let calle = document.getElementById("calle");
+  let telefono = document.getElementById("telefono");
   let cp = document.getElementById("cp");
   let localidad = document.getElementById("localidad");
+  let pais = document.getElementById("pais");
+  let provincias = document.getElementById("provincia");
   let error = document.querySelector(".ventana-error");
   let highlighted = document.querySelectorAll(".highlighted");
   let highlightedForm = document.querySelectorAll(".highlightedForm");
@@ -47,11 +51,19 @@ window.addEventListener("load", async function () {
     }
   }
   if (nombre) {
+    console.log(nombre);
     nombre.addEventListener("input", () => {
       minChar(nombre, 3);
     });
   }
+  if (telefono) {
+    console.log(telefono);
+    telefono.addEventListener("input", () => {
+      minChar(telefono, 3);
+    });
+  }
   if (apellido) {
+    console.log(apellido);
     apellido.addEventListener("input", () => {
       minChar(apellido, 3);
     });
@@ -59,6 +71,21 @@ window.addEventListener("load", async function () {
   if (pass) {
     pass.addEventListener("input", () => {
       minChar(pass, 8);
+    });
+  }
+  if (confPass) {
+    confPass.addEventListener("input", () => {
+      minChar(confPass, 8);
+
+      if (confPass.value !== pass.value) {
+        confPass.style.color = "red";
+        confPass.style.backgroundColor = "orange";
+        error.innerHTML = `Las contraseñas no coinciden`;
+      } else {
+        error.innerHTML = "";
+        confPass.style.color = "black";
+        confPass.style.backgroundColor = "white";
+      }
     });
   }
   if (calle) {
@@ -76,12 +103,28 @@ window.addEventListener("load", async function () {
       minChar(localidad, 4);
     });
   }
-  const data = await fetch("http://localhost:4000/api/users");
-  const users = await data.json();
+  if (pais) {
+    pais.addEventListener("input", async () => {
+      provincias.innerHTML = "";
+      const res = await this.fetch(
+        `http://localhost:4000/domicilios/provincias/${pais.value}`
+      );
+      const provinciasList = await res.json();
+      console.log(provinciasList);
+      provinciasList.forEach((prov) => {
+        provincias.innerHTML += `<option value=${prov.id}>${prov.nombre}</option>`;
+      });
+    });
+  }
+  const res = await fetch("http://localhost:4000/api/users");
+  const data = await res.json();
+  const users = data.users;
+  console.log(users);
   if (emailField) {
-    emailField.addEventListener("input", () => {
+    emailField.addEventListener("input" || "change", () => {
       const found = users.find((user) => user.email == emailField.value);
       if (found) {
+        console.log(emailField);
         emailField.style.color = "red";
         emailField.style.backgroundColor = "orange";
         error.innerHTML = `El email ya existe`;
