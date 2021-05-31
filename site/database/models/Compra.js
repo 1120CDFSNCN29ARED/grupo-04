@@ -12,11 +12,11 @@ module.exports = function (sequelize, dataTypes) {
     );
     Compra.associate = function (models) {
         Compra.belongsTo(models.User, {
-            as: "usuario",
+            as: "user",
             foreignKey: "user_id",
         });
         Compra.hasMany(models.Pedido, {
-            as: "pedido",
+            as: "pedidos",
             foreignKey: "compra_id",
         });
     };

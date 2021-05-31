@@ -22,6 +22,11 @@ router.delete(
     productsController.cartDelete
 );
 router.post("/cart/buy", accessControls.notLogged, productsController.cartBuy);
+router.get(
+    "/cart/buy",
+    accessControls.notLogged,
+    productsController.purchasesView
+);
 router.put("/cart/:id", accessControls.notLogged, productsController.addCart);
 router.get(
     "/create",

@@ -1,18 +1,20 @@
 :root {
     --celeste: rgb(41, 190, 240);
     --azul: rgb(12, 62, 155);
-  }
+}
 
-main{margin-top: 10px;}
-.cart{
+main {
+    margin-top: 10px;
+}
+.cart {
     display: flex;
     padding: 5px;
     margin-top: 10px;
 }
-.product-list{
+.product-list {
     width: 80%;
 }
-.product{
+.product {
     display: flex;
     flex-wrap: wrap;
     border: 2px solid grey;
@@ -20,12 +22,12 @@ main{margin-top: 10px;}
     margin: 5px;
     align-items: center;
 }
-.product-image{
+.product-image {
     width: 10%;
     padding: 5px;
     margin-top: 5px;
 }
-.product-name{
+.product-name {
     padding: 10px;
     width: 60%;
     display: block;
@@ -35,23 +37,23 @@ main{margin-top: 10px;}
     width: 20%;
     display: block;
 }
-.product-descript{
+.product-descript {
     display: block;
     padding: 10px;
     width: 75%;
 }
 .product-quantity {
     display: block;
-    padding: 5px;
-    width: 25%;
+    padding: 2px;
+    width: 30%;
     max-width: 50px;
     max-height: 40px;
 }
-.product-additional{
+.product-additional {
     padding: 10px;
     width: 75%;
 }
-.product-del{
+.product-del {
     padding: 5px;
     background-color: rgb(223, 42, 42);
     border-radius: 5px;
@@ -59,7 +61,15 @@ main{margin-top: 10px;}
     border: none;
     color: white;
 }
-.product-price{
+.product-edit {
+    padding: 5px;
+    background-color: var(--celeste);
+    border-radius: 5px;
+    font-size: 0.7em;
+    border: none;
+    color: var(--azul);
+}
+.product-price {
     display: flex;
     flex-direction: column;
     width: 20%;
@@ -70,12 +80,12 @@ main{margin-top: 10px;}
     text-align: center;
     min-width: 95px;
 }
-.product-price-cost{
+.product-price-cost {
     display: block;
     border-bottom: 1px solid grey;
     padding: 7px 0;
 }
-.product-detail-cost{
+.product-detail-cost {
     border-bottom: 1px solid grey;
 }
 .product-subTotal,
@@ -84,16 +94,16 @@ main{margin-top: 10px;}
 .product-discount {
     padding: 4px 0;
 }
-.product-total{
+.product-total {
     padding: 8px;
 }
-.product-buy{
+.product-buy {
     padding: 5px;
     background-color: var(--celeste);
     border-radius: 10px;
     width: 90%;
     margin: 0 auto;
 }
-.emptyCart{
+.emptyCart {
     height: 400px;
 }
