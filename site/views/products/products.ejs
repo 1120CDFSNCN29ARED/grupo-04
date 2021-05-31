@@ -12,6 +12,8 @@
     </header>
 
     <main>
+        <% if (products.length > 0) {%>
+
         <section class="products-display">
             <% for (let i=0; i < products.length; i++) {%>
                 <article class="product-preview">
@@ -45,7 +47,10 @@
         <article class="icon llamar">
             <i class="fas fa-phone-alt"></i>
         </article>
-
+    <% } else { %>
+        
+        <p style="text-align: center; margin: 40px auto;"><b>NO SE ENCONTRARON PRODUCTOS</b></p>
+        <% } %>
     </main>
 
     <%- include('../partials/footer')%>
