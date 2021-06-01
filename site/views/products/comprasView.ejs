@@ -27,8 +27,7 @@
                         <% if (purchases[i].pedidos.length> 0) { %>
                             <% for( let j=0; j < purchases[i].pedidos.length; j++ ) { %>
                                 <div class="compra-datos">
-                                    <img src="/img/products/<%= purchases[i].pedidos[j].producto.imagenes[0].imagen %> "
-                                        alt="imagen de producto">
+                                    <img src="/img/products/<%= purchases[i].pedidos[j].producto.imagenes[0].imagen %> " alt="imagen de producto">
                                     <h3>
                                         <%= purchases[i].pedidos[j].producto.nombre%>
                                     </h3>

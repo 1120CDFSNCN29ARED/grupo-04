@@ -14,24 +14,28 @@ window.addEventListener("load", async function () {
   let highlighted = document.querySelectorAll(".highlighted");
   let highlightedForm = document.querySelectorAll(".highlightedForm");
 
-  // let deleteSubmit = document.querySelector(".deleteProduct");
-  // deleteSubmit.addEventListener("submit", function (evt) {
-  //   evt.preventDefault();
-  //   let sureDelete = confirm("Seguro desea eliminar el producto ??");
-  //   if (sureDelete) {
-  //     deleteSubmit.submit();
-  //   }
-  // });
-  //   let deleteSubmitList = document.querySelectorAll(".deleteProductList");
-  //   deleteSubmitList.forEach((delSub) =>
-  //     delSub.addEventListener("submit", function (evt) {
-  //       evt.preventDefault();
-  //       let sureDelete = confirm("Seguro desea eliminar el producto ??");
-  //       if (sureDelete) {
-  //         delSub.submit();
-  //       }
-  //     })
-  //   );
+  let deleteSubmit = document.querySelector(".deleteProduct");
+  if (deleteSubmit) {
+    deleteSubmit.addEventListener("submit", function (evt) {
+      evt.preventDefault();
+      let sureDelete = confirm("Seguro desea eliminar el producto ??");
+      if (sureDelete) {
+        deleteSubmit.submit();
+      }
+    });
+  }
+  let deleteSubmitList = document.querySelectorAll(".deleteProductList");
+  if (deleteSubmitList) {
+    deleteSubmitList.forEach((delSub) =>
+      delSub.addEventListener("submit", function (evt) {
+        evt.preventDefault();
+        let sureDelete = confirm("Seguro desea eliminar el producto ??");
+        if (sureDelete) {
+          delSub.submit();
+        }
+      })
+    );
+  }
   if (highlighted) {
     for (let i = 0; i < highlighted.length; i++) {
       highlighted[i].addEventListener("click", function () {
@@ -135,18 +139,4 @@ window.addEventListener("load", async function () {
       }
     });
   }
-  // let deleteSubmit = document.getElementsByClassName(".deleteProduct");
-  // //let mensajeOculto = document.querySelector("h1");
-  // console.log(deleteSubmit);
-  // deleteSubmit.addEventListener("submit", function (evt) {
-  //     evt.preventDefault();
-  //     console.log("FORMULARIO DEL ORTO");
-  // });
-  // let test = document.querySelectorAll(".nombre");
-
-  // test.map((elem) => {
-  //     elem.addEventListener("click", function () {
-  //         console.log("CLICK!!!!!!!!!!!");
-  //     });
-  // });
 });

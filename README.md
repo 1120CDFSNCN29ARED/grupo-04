@@ -12,7 +12,11 @@ INSTRUCCIONES PARA CORRER LA APP
 
     Luego, para lanzar la applicación, con la base de datos conectada, deberá correrse dentro de la carpeta "site" el comando: npm start.
 
-
 4- USAR EL DASHBOARD
 
     Finalmente, con el "site" corriendo y las base de datos conectada, para utilizar el Dashboard, dentro de la carpeta "dashboard" deberá correrse el comando: npm start.
+
+5- USUARIO ADMINISTRADOR
+
+email: admin@admin.com
+contraseña: 12345678
