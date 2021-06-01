@@ -101,8 +101,8 @@ controller = {
             totalCantidad.push(cantidad);
             totalPrecio.push(precio);
         }
-        console.log(totalCantidad);
-        console.log(totalPrecio);
+        //console.log(totalCantidad);
+        //console.log(totalPrecio);
 
         return res.render("./products/comprasView", {
             purchases,
@@ -241,7 +241,6 @@ controller = {
                 iva_id: req.body.iva,
                 cantidad_real: req.body.cantidadInicial,
             };
-            //console.log(req.params.id);
             await Producto.update(producto, imagenes, spec);
             return res.redirect(`/products/detail/${producto.id}`);
         }

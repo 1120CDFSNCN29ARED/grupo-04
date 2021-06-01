@@ -112,14 +112,16 @@ const Product = {
         });
         return products;
     },
-    update: async function (producto, imagenes, spec) {
+    update: async function (producto, imagenesNew, spec) {
         let precioForm = producto.precio ? producto.precio : 0;
         producto.precio = precioForm;
         await db.Producto.update(
             {
                 ...producto,
+                imagenes: imagenesNew,
             },
-            { where: { id: producto.id } }
+            { where: { id: producto.id } },
+            { include: [{ association: ["imagenes"] }] }
         );
     },
     editPrice: async function (producto, precio) {

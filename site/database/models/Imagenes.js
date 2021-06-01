@@ -5,7 +5,6 @@ module.exports = function (sequelize, dataTypes) {
             imagen: {
                 type: dataTypes.STRING,
                 allowNull: false,
-                defaultValue: "default.jpg",
             },
             producto_id: {
                 type: dataTypes.INTEGER(10).UNSIGNED,

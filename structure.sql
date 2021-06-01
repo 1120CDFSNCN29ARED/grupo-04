@@ -203,7 +203,7 @@ cantidad   int(11) not null,
 producto_id	int(11) not null,
 user_id	int(11) not null,
 compra_id	int(11),
-precio_compra	int(11),
+precio_compra	double,
 createdAt date,
 updatedAt date,
 deletedAt date,
@@ -286,7 +286,4 @@ INSERT INTO uni_medidas
 VALUES (null,'unidad'),
        (null,'metros');
 
-SOURCE populate_users.sql;
-SOURCE populate_domicilios.sql;
-SOURCE populate_productos.sql;
-SOURCE populate_imagenes.sql;
+SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
