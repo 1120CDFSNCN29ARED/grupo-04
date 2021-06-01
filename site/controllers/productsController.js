@@ -78,6 +78,32 @@ controller = {
         const purchases = await Producto.purchasesView(
             req.session.userLogged.id
         );
+        let totalCantidad = [];
+        let totalPrecio = [];
+
+        for (let i = 0; i < purchases.length; i++) {
+            let cantidad = [];
+            let precio = [];
+            if (purchases[i].pedidos.lenght > 0) {
+                for (let j = 0; j < purchases[i].pedidos.length; j++) {
+                    purchases[i].pedidos[j].forEach((prod) =>
+                        precio.push(precio + prod.precio_compra * prod.cantidad)
+                    );
+                    purchases[i].pedidos[j].forEach((prod) =>
+                        cantidad.push(cantidad + prod.cantidad)
+                    );
+                }
+            } else {
+                precio.push(purchases[i].pedidos.precio_compra);
+                cantidad.push(purchases[i].pedidos.cantidad);
+            }
+
+            totalCantidad.push(cantidad);
+            totalPrecio.push(precio);
+        }
+        console.log(totalCantidad);
+        console.log(totalPrecio);
+
         return res.render("./products/comprasView", {
             purchases,
         });
@@ -167,6 +193,7 @@ controller = {
         }
         return res.redirect("/products/listado");
     },
+
     editView: async (req, res) => {
         let categories = await Producto.datosCreate("Tipo_producto");
         let iva = await Producto.datosCreate("Iva");

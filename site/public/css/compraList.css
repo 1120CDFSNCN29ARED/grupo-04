@@ -1,9 +1,9 @@
 .table {
-    border-collapse: collapse;
     border: 0.5px solid black;
     padding: 10px;
     text-align: center;
     font-size: 0.7rem;
+    margin: 0 auto;
 }
 .headLista {
     display: flex;
@@ -18,13 +18,15 @@
 }
 .table-light {
     background-color: #f8f8f8;
+    border-bottom: 0.1px solid gray;
 }
 .table img {
-    width: 25%;
+    width: 60%;
     text-align: center;
 }
 .buttons {
     width: 15%;
+    background-color: #f8f8f8;
 }
 .btn-primary {
     padding: 3px;
@@ -35,10 +37,12 @@
     border: none;
 }
 .btn-danger {
-    padding: 3px;
     border-radius: 3px;
     border: none;
     margin: 2px;
     background-color: red;
     color: var(--azul);
+}
+td {
+    padding: 10px;
 }

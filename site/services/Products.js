@@ -251,7 +251,12 @@ const Product = {
                     include: [
                         {
                             association: "producto",
-                            include: [{ association: "imagenes" }],
+                            include: [
+                                { association: "imagenes" },
+                                {
+                                    association: "marca",
+                                },
+                            ],
                         },
                     ],
                 },

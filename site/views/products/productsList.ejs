@@ -12,26 +12,72 @@
     </header>
 
     <main>
-        <div class="titleBar">
-            <p class="titleBarImage">Imagen</p>
-            <p class="titleBarName">Nombre</p>
-            <p class="titleBarDescription">Marca</p>
-            <p class="titleBarHighlighted">Destacado</p>
-            <p class="titleBarPrice">Precio</p>
-            <p class="titleBarActions">Acciones</p>
-        </div>
-        <table>
-            <th>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+        <table class="table table-secondary">
+            <tr class="table-secondary">
+                <th>Id</th>
+                <th style="width: 15%;">Imagen</th>
+                <th>Nombre</th>
+                <th>Marca</th>
+                <th>Tipo</th>
+                <th>Cantidad en stock</th>
+                <th>Cantidad en pedidos</th>
+                <th>Destacado</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+            <% for( let i=0; i < productsL.length; i++ ) { %>
+                <tr class="table-light">
+                    <th>
+                        <%= productsL[i].id %>
+                    </th>
+                    <th style="width: 15%;">
+                        <% if (productsL[i].imagenes.length> 0) { %>
+                            <a href="/products/detail/<%= productsL[i].id %> "><img
+                                    src="/img/products/<%= productsL[i].imagenes[0].imagen %> " alt="imagen 0"></a>
+                            <% } else {%>
+                                <a href="/products/detail/<%= productsL[i].id %> "><img src="/img/products/default.jpg"
+                                        alt="imagen default"></a>
+                                <% }%>
+                    </th>
+                    <th>
+                        <%=productsL[i].nombre %>
+                    </th>
+                    <th>
+                        <%= productsL[i].marca.nombre %>
+                    </th>
+                    <th>
+                        <%= productsL[i].tipo_producto.nombre %>
+                    </th>
+                    <th>
+                        <%= productsL[i].cantidad_real %>
+                    </th>
+                    <th>
+                        <%= productsL[i].cantidad_en_pedido %>
+                    </th>
+                    <th>
+                        <form class="highlightedForm"
+                            action="/products/edit/highlighted/<%=productsL[i].id%>?_method=put" method="post">
+                            <input type="checkbox" name="highlighted" class="highlighted" value="true"
+                                <%=productsL[i].descuento_oferta ? 'checked' : "" %> >
+                        </form>
+                    </th>
+                    <th>
+                        <%= (Number(productsL[i].precio)).toLocaleString('es-AR', {minimumFractionDigits: 2,
+                            maximumFractionDigits: 2, style: 'currency' , currency: 'ARS' }) %> %>
+                            <form action="/products/edit/price/<%=productsL[i].id%>?_method=put" method="post">
+                                <input type="number" min="0" max="1000000" step="any" name="price" id="price"
+                                    value="<%= productsL[i].precio %>">
+                                <button type="submit" class="priceButton">cambiar</button>
+                            </form>
+                    </th>
+                    <th><a href="<%= `/products/edit/${productsL[i].id}` %> "><button
+                                class="btn btn-primary">Editar</button></a>
+                        <form action="/products/delete/<%=productsL[i].id%>?_method=delete" method="post">
+                            <button class="btn btn-danger" type="submit">Eliminar</button>
+                        </form>
+                    </th>
                 </tr>
-            </th>
-
+                <% } %>
         </table>
         <% for( let i=0; i < productsL.length; i++ ) {%>
             <div>

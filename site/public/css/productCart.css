@@ -45,9 +45,10 @@ main {
 .product-quantity {
     display: block;
     padding: 2px;
-    width: 30%;
+    width: 90%;
     max-width: 50px;
     max-height: 40px;
+    text-align: right;
 }
 .product-additional {
     padding: 10px;
@@ -75,7 +76,7 @@ main {
     width: 20%;
     margin: 5px 1px 70px 1px;
     border: 2px grey solid;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 5px 0;
     text-align: center;
     min-width: 95px;
@@ -106,4 +107,74 @@ main {
 }
 .emptyCart {
     height: 400px;
+}
+.content-cart {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+.table {
+    border-collapse: collapse;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.7rem;
+    width: 70%;
+    border: 1px grey solid;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+.product-price {
+    width: 70%;
+    margin-left: 10px;
+}
+.headLista {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.table-secondary {
+    background-color: #dbdbdb;
+    margin-bottom: 4px;
+}
+.table-light {
+    background-color: #f8f8f8;
+    border-bottom: 0.1px solid gray;
+}
+td.cartimg {
+    width: 20%;
+}
+.cartimg img {
+    width: 90%;
+    text-align: center;
+}
+.buttons {
+    width: 15%;
+    background-color: #f8f8f8;
+}
+.btn-primary {
+    padding: 3px;
+    border-radius: 3px;
+    margin: 5px;
+    background-color: var(--celeste);
+    color: var(--azul);
+    border: none;
+}
+.btn-danger {
+    padding: 3px;
+    border-radius: 3px;
+    border: none;
+    margin: 5px;
+    background-color: red;
+    color: var(--azul);
+}
+@media (min-width: 576px) {
+    .content-cart {
+        display: flex;
+        flex-direction: row;
+    }
+    .product-price {
+        width: 20%;
+    }
 }

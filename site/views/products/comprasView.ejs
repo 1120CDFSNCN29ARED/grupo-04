@@ -8,84 +8,112 @@
         <link rel="stylesheet" href="/css/compraList.css">
 </head>
 
+
 <body>
     <%- include('../partials/header')%>
 
         <main>
             <section>
-                <h2>Compras de <%= purchases[0].user.name %>
-                </h2>
-                <% for( let i=0; i < purchases.length; i++ ) { %>
-                    <div class="compra-container">
-                        <div class="headLista">
-                            <h4>Nro de compra: <%= purchases[i].id%>
-                            </h4>
-                            <h4>Fecha de compra: <%= purchases[i].fecha %>
-                            </h4>
-                        </div>
-                        <table class="table table-secondary">
-                            <tr>
-                                <th style="width: 15%;">Imagen</th>
-                                <th>Nombre</th>
-                                <th>Cantidad</th>
-                                <th>Precio</th>
-                                <th>Acciones</th>
-                            </tr>
-                            <% if (purchases[i].pedidos.length> 0) { %>
-                                <% for( let j=0; j < purchases[i].pedidos.length; j++ ) { let totalPedidos;
-                                    totalPedidos=totalPedidos +(purchases[i].pedidos[j].precio_compra *
-                                    purchases[i].pedidos[j].cantidad )%>
-                                    <tr class="table-light">
-                                        <td><img class="img-thumbnail"
-                                                src="/img/products/<%= purchases[i].pedidos[j].producto.imagenes[0].imagen %> "
-                                                alt="imagen de producto"></td>
-                                        <td>
-                                            <%= purchases[i].pedidos[j].producto.nombre%>
-                                        </td>
-                                        <td>
-                                            <%= purchases[i].pedidos[j].cantidad %>
-                                        </td>
-                                        <td>
-                                            <%= (purchases[i].pedidos[j].cantidad *
-                                                purchases[i].pedidos[j].precio_compra).toLocaleString('es-AR',
-                                                {minimumFractionDigits: 2, maximumFractionDigits: 2, style: 'currency' ,
-                                                currency: 'ARS' }) %>
-                                        </td>
-                                        <% if (j===0) { %>
-                                            <td class="buttons table-light"
-                                                rowspan="<%= purchases[i].pedidos.length %> "><button
-                                                    class="btn btn-primary">Ver Detalle</button><button
-                                                    class="btn btn-danger">Cancelar
-                                                    compra</button>
-                                            </td>
-                                            <% } %>
-                                                <% } %>
-                                    </tr>
-                                    <% } else { %>
+                <% if (purchases.length> 0) { %>
+                    <h2>Compras de <%= purchases[0].user.name %>
+                    </h2>
+                    <% for( let i=0; i < purchases.length; i++ ) { %>
+                        <div class="compra-container">
+                            <div class="headLista">
+                                <h4>Nro de compra: <%=`${purchases[0].user.id}`+`${purchases[i].id}`%>
+                                </h4>
+                                <h4>Fecha de compra: <%= purchases[i].fecha %>
+                                </h4>
+                            </div>
+                            <table class="table table-secondary">
+                                <tr>
+                                    <th style="width: 15%;">Imagen</th>
+                                    <th>Nombre</th>
+                                    <th>Marca</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio</th>
+                                    <th>Acciones</th>
+                                </tr>
+                                <% if (purchases[i].pedidos.length> 0) { %>
+                                    <% for( let j=0; j < purchases[i].pedidos.length; j++ ) { %>
                                         <tr class="table-light">
-                                            <td><img class="img-thumbnail"
-                                                    src="/img/products/<%= purchases[i].pedidos.producto.imagenes[0].imagen %> "
-                                                    alt="imagen de producto"></td>
-                                            <td>
-                                                <%= purchases[i].pedidos.producto.nombre%>
-                                            </td>
-                                            <td>
-                                                <%= purchases[i].pedidos.cantidad %>
-                                            </td>
-                                            <td>
-                                                <%= purchases[i].pedidos.precio_compra.toLocaleString('es-AR',
-                                                    {minimumFractionDigits: 2, maximumFractionDigits: 2,
-                                                    style: 'currency' , currency: 'ARS' }) %>
-                                            </td>
-                                            <td><button class="btn-primary">Ver Detalle</button><button
-                                                    class="btn-danger">Cancelar
-                                                    compra</button>
-                                            </td>
+                                            <% if (purchases[i].pedidos[j].producto.imagenes.length> 0) { %>
+                                                <td><img class="img-thumbnail"
+                                                        src="/img/products/<%= purchases[i].pedidos[j].producto.imagenes[0].imagen %> "
+                                                        alt="imagen de producto"></td>
+                                                <% } else {%>
+                                                    <td><img class="img-thumbnail" src="/img/products/default.jpg "
+                                                            alt="imagen de producto"></td>
+                                                    <% } %>
+                                                        <td>
+                                                            <%= purchases[i].pedidos[j].producto.nombre%>
+                                                        </td>
+                                                        <td>
+                                                            <%= purchases[i].pedidos[j].producto.marca.nombre%>
+                                                        </td>
+                                                        <td>
+                                                            <%= purchases[i].pedidos[j].cantidad %>
+                                                        </td>
+                                                        <td>
+                                                            <%= (purchases[i].pedidos[j].cantidad *
+                                                                purchases[i].pedidos[j].precio_compra).toLocaleString('es-AR',
+                                                                {minimumFractionDigits: 2, maximumFractionDigits: 2,
+                                                                style: 'currency' , currency: 'ARS' }) %>
+                                                        </td>
+                                                        <% if (j===0) { %>
+                                                            <td class="buttons table-light"
+                                                                rowspan="<%= purchases[i].pedidos.length %> "><a
+                                                                    href="/products/purchase/<%=purchases[i].id%>"><button
+                                                                        class="btn btn-primary">
+                                                                        Ver Detalle</button></a>
+                                                                <form
+                                                                    action="/products/purchase/<%=purchases[i].id%>?_method=delete"
+                                                                    method="POST"><button
+                                                                        class="btn btn-danger">Cancelar
+                                                                    </button></form>
+                                                            </td>
+                                                            <% } %>
+                                                                <% } %>
                                         </tr>
-                                        <% } %>
-                        </table>
-                        <% } %>
-
+                                        <% } else { %>
+                                            <tr class="table-light">
+                                                <td><img class="img-thumbnail"
+                                                        src="/img/products/<%= purchases[i].pedidos.producto.imagenes[0].imagen %> "
+                                                        alt="imagen de producto"></td>
+                                                <td>
+                                                    <%= purchases[i].pedidos.producto.nombre%>
+                                                </td>
+                                                <td class="marca">
+                                                    <%= purchases[i].pedidos[j].producto.marca.nombre%>
+                                                </td>
+                                                <td>
+                                                    <%= purchases[i].pedidos.cantidad %>
+                                                </td>
+                                                <td>
+                                                    <%= purchases[i].pedidos.precio_compra.toLocaleString('es-AR',
+                                                        {minimumFractionDigits: 2, maximumFractionDigits: 2,
+                                                        style: 'currency' , currency: 'ARS' }) %>
+                                                </td>
+                                                <td><a href="/products/purchase/<%=purchases[i].id%>"><button
+                                                            class="btn btn-primary">
+                                                            Ver Detalle</button></a>
+                                                    <form
+                                                        action="/products/purchase/<%=purchases[i].id%>?_method=delete"
+                                                        method="POST"><button class="btn btn-danger">Cancelar
+                                                        </button></form>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                                <tr>
+                                                    <th>TOTAL</th>
+                                                    <th></th>
+                                                    <th></th>
+                                                </tr>
+                            </table>
+                            <% } %>
+                                <% } else { %>
+                                    <h3>No tienes compras realizadas</h3>
+                                    <% } %>
             </section>
         </main>
 
