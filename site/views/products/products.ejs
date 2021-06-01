@@ -10,47 +10,47 @@
     <header>
         <%- include('../partials/header')%>
     </header>
-
     <main>
-        <% if (products.length > 0) {%>
+        <% if (products.length> 0) {%>
 
-        <section class="products-display">
-            <% for (let i=0; i < products.length; i++) {%>
-                <article class="product-preview">
-                    <div class="product-pic">
-                        <% if (products[i].imagenes.length> 0) { %>
-                            <a href="/products/detail/<%= products[i].id %> ">
-                                <img src="/img/products/<%= products[i].imagenes[0].imagen%> " alt="imagen de producto">
-                            </a>
-                            <% } else {%>
+            <section class="products-display">
+                <% for (let i=0; i < products.length; i++) {%>
+                    <article class="product-preview">
+                        <div class="product-pic">
+                            <% if (products[i].imagenes.length> 0) { %>
                                 <a href="/products/detail/<%= products[i].id %> ">
-                                    <img src="/img/products/default.jpg" alt="imagen de producto"></a>
-                                <% }%>
-                    </div>
-                    <div class="product-description">
-                        <p class="desc-height">
-                            <%= products[i].nombre%>
-                        </p>
-                        <p class="price">
-                            <%= products[i].precio ? (Number(products[i].precio)).toLocaleString('es-AR',
-                                {minimumFractionDigits: 2, maximumFractionDigits: 2, style: 'currency' , currency: 'ARS'
-                                }) : "CONSULTAR" %>
-                        </p>
-                    </div>
-                    <div class="info-btn">
-                        <a href="/products/detail/<%=products[i].id%> ">COMPRAR</a>
-                    </div>
-                </article>
-                <% } %>
-        </section>
+                                    <img src="/img/products/<%= products[i].imagenes[0].imagen%> "
+                                        alt="imagen de producto">
+                                </a>
+                                <% } else {%>
+                                    <a href="/products/detail/<%= products[i].id %> ">
+                                        <img src="/img/products/default.jpg" alt="imagen de producto"></a>
+                                    <% }%>
+                        </div>
+                        <div class="product-description">
+                            <p class="desc-height">
+                                <%= products[i].nombre%>
+                            </p>
+                            <p class="price">
+                                <%= products[i].precio ? (Number(products[i].precio)).toLocaleString('es-AR',
+                                    {minimumFractionDigits: 2, maximumFractionDigits: 2, style: 'currency' ,
+                                    currency: 'ARS' }) : "CONSULTAR" %>
+                            </p>
+                        </div>
+                        <div class="info-btn">
+                            <a href="/products/detail/<%=products[i].id%> ">COMPRAR</a>
+                        </div>
+                    </article>
+                    <% } %>
+            </section>
 
-        <article class="icon llamar">
-            <i class="fas fa-phone-alt"></i>
-        </article>
-    <% } else { %>
-        
-        <p style="text-align: center; margin: 40px auto;"><b>NO SE ENCONTRARON PRODUCTOS</b></p>
-        <% } %>
+            <article class="icon llamar">
+                <i class="fas fa-phone-alt"></i>
+            </article>
+            <% } else { %>
+
+                <p style="text-align: center; margin: 40px auto;"><b>NO SE ENCONTRARON PRODUCTOS</b></p>
+                <% } %>
     </main>
 
     <%- include('../partials/footer')%>

@@ -15,6 +15,7 @@ controller = {
         let product = productSearch.dataValues;
         res.render("./products/productDetail", { product });
     },
+
     cart: async (req, res) => {
         let cart = await Producto.cartView(req.session.userLogged.id);
         //console.log(cart);
