@@ -99,7 +99,7 @@
                     <% if (locals.userLogged && locals.userLogged.admin) { %>
                         <div class="editProduct">
                             <a href="<%= `/products/edit/${product.id}` %> ">EDITAR</a>
-                            <form class="deleteProduct" action="/products/delete/<%=product.id%>?_method=delete"
+                            <form class="deleteProduct" id="deleteProduct" action="/products/delete/<%=product.id%>?_method=delete"
                                 method="post">
                                 <button class="deleteSubmitButton" type="submit">ELIMINAR</button>
                             </form>
@@ -124,13 +124,13 @@
                     <% //} %>
             </div> -->
             </section>
-            <script>
-                let buyButton = document.querySelector('button[disabled]');
-                buyButton.addEventListener("submit", function (evt) {
-                    evt.preventDefault()
-                })
+            // <script>
+            //     let buyButton = document.querySelector('button[disabled]');
+            //     buyButton.addEventListener("submit", function (evt) {
+            //         evt.preventDefault()
+            //     })
 
-            </script>
+            // </script>
         </main>
 
         <%- include('../partials/footer')%>

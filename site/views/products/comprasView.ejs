@@ -108,6 +108,11 @@
                                                     <th>TOTAL</th>
                                                     <th></th>
                                                     <th></th>
+                                                    <th></th>
+                                                    <th> 
+                                                        <%= (purchases[i].total).toLocaleString('es-AR', {minimumFractionDigits: 2, maximumFractionDigits: 2, style: 'currency'
+                                                            , currency: 'ARS' }) %>
+                                                    </th>
                                                 </tr>
                             </table>
                             <% } %>

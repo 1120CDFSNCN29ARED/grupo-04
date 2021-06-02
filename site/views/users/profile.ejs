@@ -94,10 +94,15 @@
                             <% for( let i=0; i < cart.length; i++ ) { %>
                                 <article class="product display-cart-profile">
                                     <div class="cart-items">
-                                        <img
-                                        src="/img/products/<%=cart[i].producto.imagenes[0].imagen%>" alt="imagen producto"
-                                        class="product-image">
-                        
+                                        <% if (cart[i].producto.imagenes.length>0){ %>
+                                            <a href="/products/detail/<%= cart[i].producto.id %> "><img
+                                                    src="/img/products/<%=cart[i].producto.imagenes[0].imagen%>" alt="imagen producto"
+                                                    class="product-image"></a>
+                                            <% } else {%>
+                                                <a href="/products/detail/<%= cart[i].producto.id %> "><img src="/img/products/default.jpg"
+                                                        alt="imagen producto" class="product-image"></a>
+                                                <% } %>
+                                           
                                     <h3 class="center">
                                         <%=cart[i].producto.nombre%>
                                     </h3>
