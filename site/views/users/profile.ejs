@@ -95,11 +95,11 @@
                                 <article class="product display-cart-profile">
                                     <div class="cart-items">
                                         <% if (cart[i].producto.imagenes.length>0){ %>
-                                            <a href="/products/detail/<%= cart[i].producto.id %> "><img
+                                            <a href="/products/detail/<%= cart[i].producto.id %> " class="a-profile"><img
                                                     src="/img/products/<%=cart[i].producto.imagenes[0].imagen%>" alt="imagen producto"
                                                     class="product-image"></a>
                                             <% } else {%>
-                                                <a href="/products/detail/<%= cart[i].producto.id %> "><img src="/img/products/default.jpg"
+                                                <a href="/products/detail/<%= cart[i].producto.id %>" class="a-profile"><img src="/img/products/default.jpg"
                                                         alt="imagen producto" class="product-image"></a>
                                                 <% } %>
                                            

@@ -5,8 +5,7 @@ function Card(props) {
         
         <article className="product-preview small">
                    
-                        <i className="fas fa-sign-out-alt icon"></i>
-               
+                   <i className="fas fa-chart-line icon"></i>
                     <div className="product-description">
                         <p>Cantidad total de {props.categoria}</p>
                     </div>

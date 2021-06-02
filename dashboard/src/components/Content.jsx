@@ -74,14 +74,15 @@ const [pedidosList, setPedidosList] = useState([]);
         <Switch>
             <Route path='/users'>
                 <div className='column'>
+                    <h3 className="center">LISTA DE USUARIOS</h3>
                 {
                     usersList.map( (user, i) => {
                     return <Contenido {...user} key={`${user.name} ${i}`}/>
                     })
                 }
                             </div>
-                        </Route>
-                        <Route path='/productos'>
+            </Route>
+            <Route path='/productos'>
                 <div className='column'>
                 {
                     productosList.map( (product, i) => {
@@ -89,8 +90,8 @@ const [pedidosList, setPedidosList] = useState([]);
                     })
                 }
                             </div>
-                        </Route>
-                        <Route path='/ventas'>
+            </Route>
+            <Route path='/ventas'>
                 <div className='column'>
                 {
                     ventasList.map( (venta, i) => {
@@ -98,16 +99,16 @@ const [pedidosList, setPedidosList] = useState([]);
                     })
                 }
                             </div>
-                        </Route>
-                        <Route path='/pedidos'>
+            </Route>
+            <Route path='/pedidos'>
                 <div className='column'>
                 {
                     pedidosList.map( (pedido, i) => {
                     return <Pedido {...pedido} key={`${pedido.id} ${i}`}/>
                     })
                 }
-                            </div>
-                        </Route>
+                </div>
+            </Route>
             <Route exact path='/'>
               <Card categoria="usuarios" cantidad={count}/>
                             <Card categoria="productos" cantidad={productosCount}/>
@@ -118,17 +119,20 @@ const [pedidosList, setPedidosList] = useState([]);
             </Route>
             <Route path='/user/:id'>
                 <UserDetail />
-                        </Route>
-                        <Route exact path='/venta/last'>
+            </Route>
+            <Route exact path='/venta/last'>
                 <VentaDetailLast />
             </Route>
-                        <Route exact path='/producto/last'>
+            <Route exact path='/producto/last'>
                 <ProductoDetailLast />
             </Route>
-                        <Route path='/product/:id'>
+            <Route exact path='/ultimousuario'>
+                <UserDetail />
+            </Route>
+            <Route path='/product/:id'>
                 <ProductoDetail />
-                        </Route>
-                        <Route path='/venta/:id'>
+            </Route>
+            <Route path='/venta/:id'>
                 <VentaDetail />
             </Route>
         </Switch>     

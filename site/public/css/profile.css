@@ -75,11 +75,15 @@
     border-bottom: 1px solid black;
   }
   .display-cart-profile img {
+    width: 100%;
+  }
+  .a-profile {
     width: 20%;
   }
   .cart-items {
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
   .btn-ir-carrito {
     margin: 20px auto 5px;

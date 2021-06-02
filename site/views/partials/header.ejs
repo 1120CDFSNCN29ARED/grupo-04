@@ -26,20 +26,20 @@
                 <i class="fas fa-sign-out-alt icon"></i>
             </a>
             <% if (locals.userLogged.admin) { %>
-                <div class="icon cart">
+                <div class="icon user">
                     <a href="/users/admin/<%=locals.userLogged.id%>">
                         <i class="fas fa-user-cog"></i>
                     </a>
                 </div>
                 <% } %>
                     <% if (locals.isLogged) { %>
-                        <div class="icon cart">
+                        <div class="icon user">
                             <a href="/products/cart">
                                 <i class="fas fa-cart-plus"></i>
                             </a>
                         </div>
                         <% } else { %>
-                            <div class="icon cart">
+                            <div class="icon user">
                                 <a href="/products/cart">
                                     <i class="fas fa-cart"></i>
                                 </a>
@@ -72,7 +72,7 @@
                         <i class="fas fa-sign-in-alt"></i>
                     </a>
                 </div>
-                <div class="icon cart">
+                <div class="icon user">
                     <a href="/products/cart">
                         <i class="fas fa-cart-plus"></i>
                     </a>

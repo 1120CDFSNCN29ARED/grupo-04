@@ -1,10 +1,11 @@
-import '../userList.css'
+import './css/userList.css'
 import {Link} from 'react-router-dom'
 function Contenido(props) {
     
     return (
     
         <div className="margin-top">
+            
         <section className="user-list">
             <div>
                <p className="user-list-text"><strong>Nombre:</strong> {props.name}</p>

@@ -9,9 +9,9 @@ const User = {
   },
   validLogin: async function (user) {
     let userToLogin = await User.findByEmail(user.email);
-    console.log("Este es USER TO LOGIN: " + userToLogin);
-    userToLogin = userToLogin.dataValues;
+    //console.log("Este es USER TO LOGIN: " + userToLogin);
     if (userToLogin) {
+      userToLogin = userToLogin.dataValues;
       if (bcrypt.compareSync(user.password, userToLogin.pass)) {
         delete userToLogin.password;
         return {
@@ -29,7 +29,7 @@ const User = {
       }
     } else {
       return {
-        message: "Revisa el email ingresado",
+        message: "Credenciales incorrectas",
         validator: 1,
         loginResult: false,
       };
