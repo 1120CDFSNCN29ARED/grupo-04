@@ -6,7 +6,9 @@ function UserDetail() {
 
     const [userDetail, setUserDetail] = useState({});
     const ido = useParams()
-    console.log(ido)
+    //console.log(ido)
+    
+    
     // async function fetchData(){
     //         const data = await fetch(`http://localhost:4000/api/users/${ido.id}`);
     //         const details = await data.json();
@@ -21,12 +23,12 @@ function UserDetail() {
         async function fetchData (props){
             const data = await fetch(`http://localhost:4000/api/users/${ido.id}`);
             const details = await data.json();
-            console.log(details)
+            //console.log(details)
             setUserDetail(details)
         }
         fetchData();
     },[])
-    console.log(userDetail)
+    //console.log(userDetail)
 
     // if(userDetail){
 
