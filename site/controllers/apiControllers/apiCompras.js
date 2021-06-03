@@ -3,40 +3,49 @@ const { Op } = require("sequelize");
 
 const apiCompras = {
     findAll: async (req, res) => {
-        const allCompras = await db.Pedido.findAll({
+        const allComprasRaw = await db.Compra.findAll({
             logging: false,
-            attributes: ["compra_id", "cantidad", "precio_compra"],
-            where: { compra_id: { [Op.ne]: null } },
-            group: ["compra_id"],
+            attributes: ["fecha"],
             include: [
                 {
-                    association: "producto",
+                    association: "pedidos",
                     include: [
-                        { association: "marca", attributes: ["nombre"] },
                         {
-                            association: "imagenes",
-                            attributes: ["imagen"],
-                            limit: 1,
+                            association: "producto",
+                            include: [
+                                {
+                                    association: "marca",
+                                    attributes: ["nombre"],
+                                },
+                                {
+                                    association: "imagenes",
+                                    attributes: ["imagen"],
+                                    limit: 1,
+                                },
+                            ],
+                            attributes: ["id", "nombre"],
                         },
                     ],
-                    attributes: ["id", "nombre"],
+                    attributes: ["cantidad", "precio_compra"],
                 },
                 {
                     association: "user",
                     attributes: ["id", "name", "last_name", "email"],
                 },
-                {
-                    association: "compra",
-                    attributes: ["fecha"],
-                },
             ],
         });
-        let compras = {
+        const allCompras = allComprasRaw.map((compra) => {
+            compra.total = compra.pedidos.reduce((tot, item) => {
+                return tot + item.precio_compra * item.cantidad;
+            }, 0);
+            return compra;
+        });
+        //console.log(allCompras[0].total);
+        let ventas = {
             count: allCompras.length,
             data: allCompras,
         };
-        //console.log(allCompras.length);
-        res.json(compras);
+        return res.json(ventas);
     },
     findOne: async (req, res) => {
         let compraFound = await db.Pedido.findOne({
@@ -69,7 +78,7 @@ const apiCompras = {
                 },
             ],
         });
-        res.json(compraFound);
+        return res.json(compraFound);
     },
     // findByUser: async (req, res) {
 

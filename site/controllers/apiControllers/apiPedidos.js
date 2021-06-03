@@ -32,7 +32,7 @@ const apiPedidos = {
             data: allPedidos,
         };
         //console.log(allCompras.length);
-        res.json(pedidos);
+        return res.json(pedidos);
     },
     findOne: async (req, res) => {
         let compraFound = await db.Pedido.findOne({
@@ -65,7 +65,7 @@ const apiPedidos = {
                 },
             ],
         });
-        res.json(compraFound);
+        return res.json(compraFound);
     },
     // findByUser: async (req, res) {
 

@@ -42,13 +42,14 @@ function Content() {
     },[])
     const [ventasList, setVentasList] = useState([]);
     const [ventasCount, setVentasCount] = useState();
-    const [ventasSum, setVentasSum] = useState();
+    const [ventasSum, setVentasSum] = useState(0);
     useEffect ( () => {
         async function fetchDataVentas (){
         const dataVentas = await fetch('http://localhost:4000/api/compras')
         const ventas = await dataVentas.json();
         setVentasList(ventas.data)
             setVentasCount(ventas.count)
+            setVentasSum(ventas.data.reduce((item, tot) => { return tot + item.total }, 0))
     }
             fetchDataVentas();       
     }, [])
@@ -113,7 +114,7 @@ const [pedidosList, setPedidosList] = useState([]);
               <Card categoria="usuarios" cantidad={count}/>
                             <Card categoria="productos" cantidad={productosCount}/>
                             <Card categoria="ventas" cantidad={ventasCount}/>
-                            <Card categoria="$ en ventas" cantidad={pedidosCount}/>
+                            <Card categoria="$ en ventas" cantidad={ventasSum}/>
                             <Card categoria="productos en carritos" cantidad={pedidosCount}/>
                             <Card categoria="$ en carritos" cantidad={pedidosCount}/>
             </Route>

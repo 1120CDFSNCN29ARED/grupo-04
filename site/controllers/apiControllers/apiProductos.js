@@ -24,7 +24,7 @@ const apiProductos = {
             count: allProducts.length,
             data: allProducts,
         };
-        res.json(products);
+        return res.json(products);
     },
     findOne: async (req, res) => {
         let productFound = await db.Producto.findOne({
@@ -45,7 +45,7 @@ const apiProductos = {
                 { association: "imagenes", attributes: ["imagen"] },
             ],
         });
-        res.json(productFound);
+        return res.json(productFound);
     },
     findAllByCat: async (req, res) => {
         const productsByCat = await db.Producto.findAll({
@@ -68,7 +68,7 @@ const apiProductos = {
             count: productsByCat.length,
             data: productsByCat,
         };
-        res.json(products);
+        return res.json(products);
     },
     findCategorias: async (req, res) => {
         let categoriasData = await db.Tipo_producto.findAll({
@@ -79,7 +79,7 @@ const apiProductos = {
             count: categoriasData.length,
             data: categoriasData,
         };
-        res.json(categorias);
+        return res.json(categorias);
     },
 };
 
