@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import { Route, Switch } from 'react-router-dom'
 import Card from './Card';
 import Contenido from './Contenido'
@@ -12,22 +12,23 @@ import VentaDetail from './VentaDetail'
 import VentaDetailLast from './VentaDetailLast'
 import Pedido from './Pedido'
 
-
 function Content() {
 
     const [usersList, setUsersList] = useState([]);
     const [count, setCount] = useState();
-    // const [userLink, setUserLink] = useState();
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(5)
+    console.log(page)
     useEffect ( () => {
         async function fetchData (){
-        const data = await fetch('http://localhost:4000/api/users')
+        const data = await fetch(`http://localhost:4000/api/users/${page}`)
         const users = await data.json();
         setUsersList(users.users)
         setCount(users.count)
-        // setUserLink()
+        //setUserLink()
     }
-            fetchData();       
-    },[])
+    fetchData();       
+    },[page])
 
     const [productosList, setProductosList] = useState([]);
     const [productosCount, setProductosCount] = useState();
@@ -76,6 +77,8 @@ const [pedidosList, setPedidosList] = useState([]);
             <Route path='/users'>
                 <div className='column'>
                     <h3 className="center">LISTA DE USUARIOS</h3>
+                    <p>Pagina {page} de {totalPages}</p>
+                    <p> <span onClick={page>0?()=>{setPage(page-1)}: setPage(1)}>Anterior</span> <span onClick={page<6?()=>{setPage(page+1)}: setPage(5)}>Siguiente</span></p>
                 {
                     usersList.map( (user, i) => {
                     return <Contenido {...user} key={`${user.name} ${i}`}/>
@@ -111,15 +114,15 @@ const [pedidosList, setPedidosList] = useState([]);
                 </div>
             </Route>
             <Route exact path='/'>
-              <Card categoria="usuarios" cantidad={count}/>
-                            <Card categoria="productos" cantidad={productosCount}/>
-                            <Card categoria="ventas" cantidad={ventasCount}/>
-                            <Card categoria="$ en ventas" cantidad={ventasSum}/>
-                            <Card categoria="productos en carritos" cantidad={pedidosCount}/>
-                            <Card categoria="$ en carritos" cantidad={pedidosCount}/>
+                <Card categoria="usuarios" cantidad={count}/>
+                <Card categoria="productos" cantidad={productosCount}/>
+                <Card categoria="ventas" cantidad={ventasCount}/>
+                <Card categoria="$ en ventas" cantidad={ventasSum}/>
+                <Card categoria="productos en carritos" cantidad={pedidosCount}/>
+                <Card categoria="$ en carritos" cantidad={pedidosCount}/>
             </Route>
             <Route path='/user/:id'>
-                <UserDetail />
+                <UserDetail type='user'/>
             </Route>
             <Route exact path='/venta/last'>
                 <VentaDetailLast />
@@ -128,7 +131,7 @@ const [pedidosList, setPedidosList] = useState([]);
                 <ProductoDetailLast />
             </Route>
             <Route exact path='/ultimousuario'>
-                <UserDetail />
+                <UserDetail type='lastUser'/>
             </Route>
             <Route path='/product/:id'>
                 <ProductoDetail />
