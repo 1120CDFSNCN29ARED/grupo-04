@@ -21,7 +21,7 @@ function Content() {
     console.log(page)
     useEffect ( () => {
         async function fetchData (){
-        const data = await fetch(`http://localhost:4000/api/users/${page}`)
+        const data = await fetch(`http://localhost:4000/api/users/total/${page}`)
         const users = await data.json();
         setUsersList(users.users)
         setCount(users.count)
