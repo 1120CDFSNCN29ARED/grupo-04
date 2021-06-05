@@ -3,6 +3,7 @@ const { Op } = require("sequelize");
 
 const apiCompras = {
     findAll: async (req, res) => {
+        const count = await db.Compra.count();
         const allComprasRaw = await db.Compra.findAll({
             logging: false,
             attributes: ["fecha"],
@@ -34,16 +35,16 @@ const apiCompras = {
                 },
             ],
         });
-        const allCompras = allComprasRaw.map((compra) => {
-            compra.total = compra.pedidos.reduce((tot, item) => {
-                return tot + item.precio_compra * item.cantidad;
-            }, 0);
-            return compra;
-        });
-        //console.log(allCompras[0].total);
+        // const allCompras = allComprasRaw.map((compra) => {
+        //     compra.total = compra.pedidos.reduce((tot, item) => {
+        //         return tot + item.precio_compra * item.cantidad;
+        //     }, 0);
+        //     return compra;
+        // })
+        //console.log(count);
         let ventas = {
-            count: allCompras.length,
-            data: allCompras,
+            count: count,
+            data: allComprasRaw,
         };
         return res.json(ventas);
     },
@@ -79,6 +80,41 @@ const apiCompras = {
             ],
         });
         return res.json(compraFound);
+    },
+    findLast: async (req, res) => {
+        const last = await db.Compra.findOne({
+            logging: false,
+            order: [["id", "DESC"]],
+            attributes: ["fecha"],
+            include: [
+                {
+                    association: "pedidos",
+                    include: [
+                        {
+                            association: "producto",
+                            include: [
+                                {
+                                    association: "marca",
+                                    attributes: ["nombre"],
+                                },
+                                {
+                                    association: "imagenes",
+                                    attributes: ["imagen"],
+                                    limit: 1,
+                                },
+                            ],
+                            attributes: ["id", "nombre"],
+                        },
+                    ],
+                    attributes: ["cantidad", "precio_compra"],
+                },
+                {
+                    association: "user",
+                    attributes: ["id", "name", "last_name", "email"],
+                },
+            ],
+        });
+        return res.json(last);
     },
     // findByUser: async (req, res) {
 

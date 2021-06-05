@@ -11,13 +11,14 @@ import Venta from './Venta'
 import VentaDetail from './VentaDetail'  
 import VentaDetailLast from './VentaDetailLast'
 import Pedido from './Pedido'
+import './css/tables.css'
 
 
 function Content() {
 
     const [usersList, setUsersList] = useState([]);
-    const [count, setCount] = useState();
     // const [userLink, setUserLink] = useState();
+    const [count, setCount] = useState();
     useEffect ( () => {
         async function fetchData (){
         const data = await fetch('http://localhost:4000/api/users')
@@ -45,13 +46,22 @@ function Content() {
     const [ventasSum, setVentasSum] = useState(0);
     useEffect ( () => {
         async function fetchDataVentas (){
-        const dataVentas = await fetch('http://localhost:4000/api/compras')
-        const ventas = await dataVentas.json();
-        setVentasList(ventas.data)
+            const dataVentas = await fetch('http://localhost:4000/api/compras')
+            const ventas = await dataVentas.json();
+            setVentasList(ventas.data)
             setVentasCount(ventas.count)
-            setVentasSum(ventas.data.reduce((item, tot) => { return tot + item.total }, 0))
-    }
-            fetchDataVentas();       
+            let ventasRaw = ventas.data;
+            let ventasArray = ventasRaw.map((compra) => {
+            compra.total = compra.pedidos.reduce((tot, item) => {
+                return tot + item.precio_compra * item.cantidad;
+                }, 0);
+            
+                return compra;
+            });
+
+            setVentasSum( ventasArray.reduce((tot, item) => {return tot + item.total}, 0))
+        }
+        fetchDataVentas();       
     }, [])
 const [pedidosList, setPedidosList] = useState([]);
     const [pedidosCount, setPedidosCount] = useState();
@@ -62,6 +72,7 @@ const [pedidosList, setPedidosList] = useState([]);
         const pedidos = await dataPed.json();
         setPedidosList(pedidos.data)
             setPedidosCount(pedidos.count)
+            setPedidosSum(pedidos.total)
             
     }
             fetchDataPed();       
@@ -84,16 +95,25 @@ const [pedidosList, setPedidosList] = useState([]);
                             </div>
             </Route>
             <Route path='/productos'>
-                <div className='column'>
+                            <table className="table">
+                                <tr className="table-secondary">
+                                    <th className="productImg">Imagen</th>
+                                    <th>Nombre</th>
+                                    <th>Marca</th>
+                                    <th>Categoría</th>
+                                    <th>Cantidad en stock</th>
+                                    <th>Precio</th>
+                                </tr>
+                                
                 {
                     productosList.map( (product, i) => {
                     return <Producto {...product} key={`${product.id} ${i}`}/>
                     })
-                }
-                            </div>
+                                    }
+                </table>
             </Route>
             <Route path='/ventas'>
-                <div className='column'>
+                            <div className='column'>
                 {
                     ventasList.map( (venta, i) => {
                     return <Venta {...venta} key={`${venta.compra_id} ${i}`}/>
@@ -112,16 +132,20 @@ const [pedidosList, setPedidosList] = useState([]);
             </Route>
             <Route exact path='/'>
               <Card categoria="usuarios" cantidad={count}/>
-                            <Card categoria="productos" cantidad={productosCount}/>
                             <Card categoria="ventas" cantidad={ventasCount}/>
-                            <Card categoria="$ en ventas" cantidad={ventasSum}/>
                             <Card categoria="productos en carritos" cantidad={pedidosCount}/>
-                            <Card categoria="$ en carritos" cantidad={pedidosCount}/>
+                            <Card categoria="productos" cantidad={productosCount}/>
+                            <Card categoria="$ en ventas" cantidad={Number(ventasSum).toLocaleString('es-AR',
+                                    {minimumFractionDigits: 2, maximumFractionDigits: 2, style: 'currency' ,
+                                    currency: 'ARS' })}/>
+                            <Card categoria="$ en carritos" cantidad={Number(pedidosSum).toLocaleString('es-AR',
+                                    {minimumFractionDigits: 2, maximumFractionDigits: 2, style: 'currency' ,
+                                    currency: 'ARS' })}/>
             </Route>
             <Route path='/user/:id'>
                 <UserDetail />
             </Route>
-            <Route exact path='/venta/last'>
+            <Route exact path='/ultimaventa'>
                 <VentaDetailLast />
             </Route>
             <Route exact path='/producto/last'>

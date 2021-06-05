@@ -61,7 +61,7 @@ const apiProductos = {
             where: { tipo_producto_id: req.params.cat },
             include: [
                 { association: "marca", attributes: ["nombre"] },
-                { association: "imagenes", attributes: ["imagen"] },
+                { association: "imagenes", attributes: ["imagen"], limit: 1 },
             ],
         });
         let products = {
@@ -71,15 +71,33 @@ const apiProductos = {
         return res.json(products);
     },
     findCategorias: async (req, res) => {
-        let categoriasData = await db.Tipo_producto.findAll({
+        let categorias = await db.Tipo_producto.findAll({
             logging: false,
             attributes: ["id", "nombre"],
         });
-        let categorias = {
-            count: categoriasData.length,
-            data: categoriasData,
-        };
         return res.json(categorias);
+    },
+    findLast: async (req, res) => {
+        let last = await db.Producto.findOne({
+            logging: false,
+            attributes: [
+                "id",
+                "nombre",
+                "descuento_oferta",
+                "precio",
+                "cantidad_real",
+                "cantidad_en_pedido",
+                "createdAt",
+                "updatedAt",
+            ],
+            include: [
+                { association: "tipo_producto", attributes: ["nombre"] },
+                { association: "marca", attributes: ["nombre"] },
+                { association: "imagenes", attributes: ["imagen"], limit: 1 },
+            ],
+            order: [["id", "DESC"]],
+        });
+        return res.json(last);
     },
 };
 

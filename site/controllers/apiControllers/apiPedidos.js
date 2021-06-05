@@ -19,7 +19,7 @@ const apiPedidos = {
                             limit: 1,
                         },
                     ],
-                    attributes: ["id", "nombre"],
+                    attributes: ["id", "nombre", "precio"],
                 },
                 {
                     association: "user",
@@ -27,11 +27,14 @@ const apiPedidos = {
                 },
             ],
         });
+        totalPedidos = allPedidos.reduce((tot, item) => {
+            return tot + item.cantidad * item.producto.precio;
+        }, 0);
         let pedidos = {
             count: allPedidos.length,
+            total: totalPedidos,
             data: allPedidos,
         };
-        //console.log(allCompras.length);
         return res.json(pedidos);
     },
     findOne: async (req, res) => {

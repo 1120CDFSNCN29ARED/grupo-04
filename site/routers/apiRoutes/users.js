@@ -12,8 +12,10 @@ router.get("/productos", apiProductos.findAll);
 //router.get("/productos/img/:imagen", apiProductos.image);
 router.get("/productos/cat", apiProductos.findCategorias);
 router.get("/productos/cat/:cat", apiProductos.findAllByCat);
+router.get("/productos/last", apiProductos.findLast);
 router.get("/productos/:id", apiProductos.findOne);
 router.get("/compras", apiCompras.findAll);
+router.get("/compras/last", apiCompras.findLast);
 router.get("/compras/:id", apiCompras.findOne);
 router.get("/pedidos", apiPedidos.findAll);
 

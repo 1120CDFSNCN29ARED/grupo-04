@@ -1,0 +1,62 @@
+.table {
+    border-collapse: collapse;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.7rem;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.headLista {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+.productImg {
+    width: 15%;
+}
+th,
+td {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-bottom: 0.1px solid black;
+}
+input {
+    width: 70%;
+    text-align: right;
+}
+.table-secondary {
+    background-color: #dbdbdb;
+    margin-bottom: 4px;
+}
+.table-light {
+    background-color: #f8f8f8;
+}
+.table img {
+    padding: 5px;
+    width: 60%;
+    text-align: center;
+}
+.buttons {
+    width: 15%;
+}
+.btn-primary {
+    padding: 3px;
+    border-radius: 3px;
+    margin: 2px;
+    background-color: var(--celeste);
+    color: var(--azul);
+    border: none;
+}
+.btn-danger {
+    padding: 3px;
+    border-radius: 3px;
+    border: none;
+    margin: 2px;
+    background-color: red;
+    color: var(--azul);
+}
+tr:nth-child(even) {
+    background-color: #f1f1f1;
+}

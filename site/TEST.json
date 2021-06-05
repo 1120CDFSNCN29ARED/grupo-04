@@ -1,0 +1,183 @@
+{
+    "count": 32,
+    "data": [
+        {
+            "fecha": "2021-05-30",
+            "pedidos": [
+                {
+                    "cantidad": 10,
+                    "precio_compra": 9071,
+                    "producto": {
+                        "id": 2,
+                        "nombre": "HD 320GB TOSHIBA 5400 SATA NOTEBOOK",
+                        "marca": {
+                            "nombre": "Asus"
+                        },
+                        "imagenes": [
+                            {
+                                "imagen": "img-cafetera-moulinex.jpg"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "cantidad": 10,
+                    "precio_compra": 12060,
+                    "producto": {
+                        "id": 3,
+                        "nombre": "HD 320GB W.DIGITAL 5400 SATA3 NOTEBOOK",
+                        "marca": {
+                            "nombre": "MSI"
+                        },
+                        "imagenes": [
+                            {
+                                "imagen": "img-samsung-galaxy-s10.jpg"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "user": {
+                "id": 51,
+                "name": "Martin",
+                "last_name": "Golszmidt",
+                "email": "martingol@gmail.com"
+            }
+        },
+        {
+            "fecha": "2021-05-30",
+            "pedidos": [
+                {
+                    "cantidad": 4,
+                    "precio_compra": 9071,
+                    "producto": {
+                        "id": 2,
+                        "nombre": "HD 320GB TOSHIBA 5400 SATA NOTEBOOK",
+                        "marca": {
+                            "nombre": "Asus"
+                        },
+                        "imagenes": [
+                            {
+                                "imagen": "img-cafetera-moulinex.jpg"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "user": {
+                "id": 51,
+                "name": "Martin",
+                "last_name": "Golszmidt",
+                "email": "martingol@gmail.com"
+            }
+        },
+        {
+            "fecha": "2021-05-30",
+            "pedidos": [
+                {
+                    "cantidad": 5,
+                    "precio_compra": 12060,
+                    "producto": {
+                        "id": 3,
+                        "nombre": "HD 320GB W.DIGITAL 5400 SATA3 NOTEBOOK",
+                        "marca": {
+                            "nombre": "MSI"
+                        },
+                        "imagenes": [
+                            {
+                                "imagen": "img-samsung-galaxy-s10.jpg"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "user": {
+                "id": 51,
+                "name": "Martin",
+                "last_name": "Golszmidt",
+                "email": "martingol@gmail.com"
+            }
+        },
+        {
+            "fecha": "2021-05-30",
+            "pedidos": [
+                {
+                    "cantidad": 5,
+                    "precio_compra": 12060,
+                    "producto": {
+                        "id": 3,
+                        "nombre": "HD 320GB W.DIGITAL 5400 SATA3 NOTEBOOK",
+                        "marca": {
+                            "nombre": "MSI"
+                        },
+                        "imagenes": [
+                            {
+                                "imagen": "img-samsung-galaxy-s10.jpg"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "user": {
+                "id": 51,
+                "name": "Martin",
+                "last_name": "Golszmidt",
+                "email": "martingol@gmail.com"
+            }
+        },
+        {
+            "fecha": "2021-05-30",
+            "pedidos": [
+                {
+                    "cantidad": 9,
+                    "precio_compra": 12060,
+                    "producto": {
+                        "id": 3,
+                        "nombre": "HD 320GB W.DIGITAL 5400 SATA3 NOTEBOOK",
+                        "marca": {
+                            "nombre": "MSI"
+                        },
+                        "imagenes": [
+                            {
+                                "imagen": "img-samsung-galaxy-s10.jpg"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "user": {
+                "id": 51,
+                "name": "Martin",
+                "last_name": "Golszmidt",
+                "email": "martingol@gmail.com"
+            }
+        },
+        {
+            "fecha": "2021-05-30",
+            "pedidos": [
+                {
+                    "cantidad": 1,
+                    "precio_compra": 9071,
+                    "producto": {
+                        "id": 2,
+                        "nombre": "HD 320GB TOSHIBA 5400 SATA NOTEBOOK",
+                        "marca": {
+                            "nombre": "Asus"
+                        },
+                        "imagenes": [
+                            {
+                                "imagen": "img-cafetera-moulinex.jpg"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "user": {
+                "id": 51,
+                "name": "Martin",
+                "last_name": "Golszmidt",
+                "email": "martingol@gmail.com"
+            }
+        }
+    ]
+}
