@@ -19,11 +19,11 @@ require("dotenv").config();
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 app.use(
-    session({
-        secret: "Nuestro secreto",
-        resave: false,
-        saveUninitialized: true,
-    })
+  session({
+    secret: "Nuestro secreto",
+    resave: false,
+    saveUninitialized: true,
+  })
 );
 app.use(cookieParser());
 app.use(isLogged);
@@ -39,4 +39,4 @@ app.use("/", mainRouter);
 app.use("/users", usersRouter);
 app.use("/products", productsRouter);
 app.use("/domicilios", domRouter);
-app.use("/api", apiUserRouter);
+app.use("/api/users", apiUserRouter);

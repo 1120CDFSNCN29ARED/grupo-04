@@ -22,9 +22,11 @@
                     <i class="fas fa-user-edit"></i>
                 </a>
             </div>
+            <div class="icon user">
             <a href="/users/logout">
                 <i class="fas fa-sign-out-alt icon"></i>
             </a>
+            </div>
             <% if (locals.userLogged.admin) { %>
                 <div class="icon user">
                     <a href="/users/admin/<%=locals.userLogged.id%>">

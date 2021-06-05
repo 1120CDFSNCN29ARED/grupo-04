@@ -5,9 +5,11 @@ const apiProductos = require("../../controllers/apiControllers/apiProductos");
 const apiCompras = require("../../controllers/apiControllers/apiCompras");
 const apiPedidos = require("../../controllers/apiControllers/apiPedidos");
 
-router.get("/users", apiUsers.findAll);
-router.get("/users/:id", apiUsers.findOne);
-router.get("/users/img/:imagen", apiUsers.image);
+router.get("/last", apiUsers.lastUser);
+router.get("/total/:page", apiUsers.findAll);
+router.get("/:id", apiUsers.findOne);
+router.get("/img/:imagen", apiUsers.image);
+
 router.get("/productos", apiProductos.findAll);
 //router.get("/productos/img/:imagen", apiProductos.image);
 router.get("/productos/cat", apiProductos.findCategorias);

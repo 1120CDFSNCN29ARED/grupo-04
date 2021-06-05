@@ -294,8 +294,8 @@ controller = {
     await Domicilio.delete(req.params.id);
     res.redirect("/users/profile/" + domicilio.user_id);
   },
-  delete: (req, res) => {
-    User.delete(req.params.id);
+  delete: async (req, res) => {
+    await User.delete(req.params.id);
     res.redirect("/users/listado");
   },
   listado: async (req, res) => {

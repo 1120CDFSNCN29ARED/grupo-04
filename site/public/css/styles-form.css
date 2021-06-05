@@ -62,7 +62,7 @@
   border: solid 1px black;
 }
 .icon-login {
-  width: 15%;
+  max-width: 200px;
 }
 .icon-login img {
   width: 100%;
