@@ -35,6 +35,14 @@
   font-family: sans-serif;
   margin: 5px 0;
 }
+.flow-btns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding: 0 1rem;
+  font-weight: bold;
+  font-size: 16px;
+}
 
 @media (min-width: 1200px) {
   .user-list {

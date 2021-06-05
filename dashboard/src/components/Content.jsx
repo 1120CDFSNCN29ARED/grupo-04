@@ -1,7 +1,7 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Route, Switch } from 'react-router-dom'
 import Card from './Card';
-import Contenido from './Contenido'
+import UserList from './UserList'
 import SideBar from './SideBar'
 import UserDetail from './UserDetail';
 import Producto from './Producto'
@@ -14,23 +14,34 @@ import Pedido from './Pedido'
 import './css/tables.css'
 
 function Content() {
-
     const [usersList, setUsersList] = useState([]);
     const [count, setCount] = useState();
     const [page, setPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(5)
-    console.log(page)
+    const [totalPages, setTotalPages] = useState(1)
+    console.log(totalPages)
     useEffect ( () => {
         async function fetchData (){
         const data = await fetch(`http://localhost:4000/api/users/total/${page}`)
         const users = await data.json();
-        setUsersList(users.users)
-        setCount(users.count)
-        //setUserLink()
+        console.log(users)
+        setUsersList(users.users);
+        setCount(users.count);
+        setTotalPages(users.totalPages);
     }
     fetchData();       
     },[page])
-
+    console.log(totalPages)
+    const pageUp = ()=> {
+        if(page<5){
+            setPage(page+1)
+        }
+    }
+    const pageDown = ()=> {
+        if(page>1){
+            setPage(page-1)
+        }
+    }
+console.log(totalPages)
     const [productosList, setProductosList] = useState([]);
     const [productosCount, setProductosCount] = useState();
     useEffect ( () => {
@@ -59,7 +70,6 @@ function Content() {
             
                 return compra;
             });
-
             setVentasSum( ventasArray.reduce((tot, item) => {return tot + item.total}, 0))
         }
         fetchDataVentas();       
@@ -73,8 +83,7 @@ const [pedidosList, setPedidosList] = useState([]);
         const pedidos = await dataPed.json();
         setPedidosList(pedidos.data)
             setPedidosCount(pedidos.count)
-            setPedidosSum(pedidos.total)
-            
+            setPedidosSum(pedidos.total)      
     }
             fetchDataPed();       
     },[])
@@ -86,16 +95,19 @@ const [pedidosList, setPedidosList] = useState([]);
                    <div className="product-pic column"> 
         <Switch>
             <Route path='/users'>
-                <div className='column'>
-                    <h3 className="center">LISTA DE USUARIOS</h3>
-                    <p>Pagina {page} de {totalPages}</p>
-                    <p> <span onClick={page>0?()=>{setPage(page-1)}: setPage(1)}>Anterior</span> <span onClick={page<6?()=>{setPage(page+1)}: setPage(5)}>Siguiente</span></p>
-                {
+                <div className='column size'>
+                    <h3 className="lastUserTitle">LISTA DE USUARIOS</h3>
+                    <p className="user-list-text right pr18">Pagina <b>{page}</b> de <b>{totalPages}</b></p>    
+                    {
                     usersList.map( (user, i) => {
-                    return <Contenido {...user} key={`${user.name} ${i}`}/>
+                    return <UserList {...user} key={`${user.name} ${i}`}/>
                     })
-                }
-                            </div>
+                    }
+                    <div className="flow-btns"> 
+                        <span onClick={pageDown}>Anterior</span> 
+                        <span onClick={pageUp}>Siguiente</span>
+                    </div>
+                </div>
             </Route>
             <Route path='/productos'>
                             <table className="table">
@@ -106,8 +118,7 @@ const [pedidosList, setPedidosList] = useState([]);
                                     <th>Categoría</th>
                                     <th>Cantidad en stock</th>
                                     <th>Precio</th>
-                                </tr>
-                                
+                                </tr>            
                 {
                     productosList.map( (product, i) => {
                     return <Producto {...product} key={`${product.id} ${i}`}/>

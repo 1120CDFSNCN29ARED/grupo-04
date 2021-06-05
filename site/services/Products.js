@@ -118,11 +118,16 @@ const Product = {
     await db.Producto.update(
       {
         ...producto,
-        imagenes: imagenesNew,
+        //imagenes: imagenesNew,
       },
-      { where: { id: producto.id } },
-      { include: [{ association: ["imagenes"] }] }
+      {
+        where: { id: producto.id },
+      }
     );
+    await db.Imagenes.create({
+      imagen: imagenesNew,
+      producto_id: producto.id,
+    });
   },
   editPrice: async function (producto, precio) {
     await db.Producto.update({ precio: precio }, { where: { id: producto } });

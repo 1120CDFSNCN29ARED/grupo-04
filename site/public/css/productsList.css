@@ -1,208 +1,210 @@
 .titleBar {
-    display: flex;
-    padding: 5px;
-    margin: 5px;
-    justify-content: space-evenly;
-    align-items: left;
-    text-align: left;
-    border: 1px solid black;
+  display: flex;
+  padding: 5px;
+  margin: 5px;
+  justify-content: space-evenly;
+  align-items: left;
+  text-align: left;
+  border: 1px solid black;
 }
 .titleBarImage {
-    width: 10%;
+  width: 10%;
 }
 .titleBarName,
 .titleBarDescription,
 .titleBarPrice {
-    width: 20%;
-    text-align: center;
+  width: 20%;
+  text-align: center;
 }
 
 .titleBarAction {
-    width: 30%;
+  width: 30%;
 }
 
 .titleBarHighlighted {
-    width: 10%;
+  width: 10%;
 }
 
 article {
-    display: flex;
-    padding: 2px;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%;
-    margin: 5px;
-    border: 1px solid #000;
-    border-radius: 2px;
+  display: flex;
+  padding: 2px;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  margin: 5px;
+  border: 1px solid #000;
+  border-radius: 2px;
 }
 article img {
-    width: 100%;
-    max-height: 80px;
-    max-width: 80px;
+  width: 100%;
+  max-height: 80px;
+  max-width: 80px;
 }
 article p {
-    border: 1px solid #000;
-    border-radius: 5px;
-    width: 20%;
-    text-align: center;
-    padding: 10px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  width: 20%;
+  text-align: center;
+  padding: 10px;
 }
 .nombre {
-    overflow: hidden;
+  overflow: hidden;
 }
 article .editButton {
-    color: var(--azul);
-    text-decoration: none;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: var(--celeste);
-    transition: all 450ms;
+  color: var(--azul);
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: var(--celeste);
+  transition: all 450ms;
 }
 article .editButton:hover {
-    background-color: var(--azul);
-    color: var(--celeste);
+  background-color: var(--azul);
+  color: var(--celeste);
 }
 .deleteSubmitButton {
-    background-color: var(--celeste);
-    color: var(--azul);
-    border-radius: 5px;
-    border: 0px none;
-    padding: 10px;
-    font-family: "Electrolize", sans-serif;
-    font-size: 1rem;
-    transition: all 450ms;
+  background-color: var(--celeste);
+  color: var(--azul);
+  border-radius: 5px;
+  border: 0px none;
+  padding: 10px;
+  font-family: "Electrolize", sans-serif;
+  font-size: 1rem;
+  transition: all 450ms;
 }
 .deleteSubmitButton:hover {
-    background-color: #b81111;
-    color: var(--celeste);
-    cursor: pointer;
+  background-color: #b81111;
+  color: var(--celeste);
+  cursor: pointer;
 }
 .price form {
-    display: none;
+  display: none;
 }
 article .price p {
-    border: none;
-    border-radius: 5px;
-    width: 20%;
-    text-align: center;
-    padding: 10px;
+  border: none;
+  border-radius: 5px;
+  width: 20%;
+  text-align: center;
+  padding: 10px;
 }
 article .price:hover p {
-    display: none;
+  display: none;
 }
 article .price form input {
-    text-align: center;
-    padding: 2px;
+  text-align: center;
+  padding: 2px;
 }
 article .price form label {
-    text-align: center;
-    font-size: 0.8rem;
+  text-align: center;
+  font-size: 0.8rem;
 }
 article .price:hover form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .priceButton {
-    background-color: var(--celeste);
-    color: var(--azul);
-    border-radius: 2px;
-    border: 0px none;
-    padding: 1px;
-    font-family: "Electrolize", sans-serif;
-    font-size: 0.6rem;
-    width: 70%;
-    transition: all 450ms;
+  background-color: var(--celeste);
+  color: var(--azul);
+  border-radius: 2px;
+  border: 0px none;
+  padding: 1px;
+  font-family: "Electrolize", sans-serif;
+  font-size: 0.6rem;
+  width: 70%;
+  transition: all 450ms;
 }
 .priceButton:hover {
-    background-color: var(--azul);
-    color: var(--celeste);
-    cursor: pointer;
+  background-color: var(--azul);
+  color: var(--celeste);
+  cursor: pointer;
 }
 .highlightedForm .highlightedButton {
-    display: none;
+  display: none;
 }
 .highlightedForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: all 450ms;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 450ms;
 }
 .highlightedForm:hover .highlightedButton {
-    display: initial;
+  display: initial;
 }
 .highlightedButton {
-    background-color: var(--celeste);
-    color: var(--azul);
-    border-radius: 2px;
-    border: 0px none;
-    padding: 0, 8px;
-    font-family: "Electrolize", sans-serif;
-    font-size: 0.7rem;
-    margin: 2px;
-    transition: all 450ms;
+  background-color: var(--celeste);
+  color: var(--azul);
+  border-radius: 2px;
+  border: 0px none;
+  padding: 0, 8px;
+  font-family: "Electrolize", sans-serif;
+  font-size: 0.7rem;
+  margin: 2px;
+  transition: all 450ms;
 }
 .highlightedButton:hover {
-    background-color: var(--azul);
-    color: var(--celeste);
-    cursor: pointer;
+  background-color: var(--azul);
+  color: var(--celeste);
+  cursor: pointer;
 }
 .table {
-    border-collapse: collapse;
-    padding: 10px;
-    text-align: center;
-    font-size: 0.7rem;
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
+  border-collapse: collapse;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.7rem;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 .headLista {
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 25px;
-    margin-bottom: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 25px;
+  margin-bottom: 10px;
 }
 th,
 td {
-    padding-left: 5px;
-    padding-right: 5px;
-    border-bottom: 0.1px solid black;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom: 0.1px solid black;
+}
+.right {
+  text-align: right;
 }
 input {
-    width: 70%;
-    text-align: right;
+  width: 70%;
 }
 .table-secondary {
-    background-color: #dbdbdb;
-    margin-bottom: 4px;
+  background-color: #dbdbdb;
+  margin-bottom: 4px;
 }
 .table-light {
-    background-color: #f8f8f8;
+  background-color: #f8f8f8;
 }
 .table img {
-    padding: 5px;
-    width: 60%;
-    text-align: center;
+  padding: 5px;
+  width: 60%;
+  text-align: center;
 }
 .buttons {
-    width: 15%;
+  width: 15%;
 }
 .btn-primary {
-    padding: 3px;
-    border-radius: 3px;
-    margin: 2px;
-    background-color: var(--celeste);
-    color: var(--azul);
-    border: none;
+  padding: 3px;
+  border-radius: 3px;
+  margin: 2px;
+  background-color: var(--celeste);
+  color: var(--azul);
+  border: none;
 }
 .btn-danger {
-    padding: 3px;
-    border-radius: 3px;
-    border: none;
-    margin: 2px;
-    background-color: red;
-    color: var(--azul);
+  padding: 3px;
+  border-radius: 3px;
+  border: none;
+  margin: 2px;
+  background-color: red;
+  color: var(--azul);
 }
 tr:nth-child(even) {
-    background-color: #f1f1f1;
+  background-color: #f1f1f1;
 }

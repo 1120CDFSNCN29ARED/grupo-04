@@ -4,11 +4,9 @@ import {useParams} from 'react-router-dom'
 
 function UserDetail({type}) {
 
-    const [userDetail, setUserDetail] = useState({});
+    const [userDetail, setUserDetail] = useState({domicilio:[]});
     const [url, setUrl] = useState('')
-    
     const ido = useParams()
-    console.log(type)
 
     useEffect(()=>{
     if(type === 'lastUser'){
@@ -17,8 +15,6 @@ function UserDetail({type}) {
         setUrl (`http://localhost:4000/api/users/${ido.id}`)
     }
    },[type])
-   
-    console.log(url)
     useEffect (()=>{  
         async function fetchData (props){
             const data = await fetch(url);
@@ -35,12 +31,13 @@ function UserDetail({type}) {
     return (
         <div className="product-pic column">
         <section className="container"> 
-
                     {userDetail.createdAt ? 
-                        <h3 style={{marginBottom: 20+"px"}}>Ultimo Usuario creado el {userDetail.createdAt}</h3>
+                    <>
+                        <h3 className="lastUserTitle">Ultimo Usuario creado el</h3> 
+                        <h3 className="lastUserTitle">{userDetail.createdAt}</h3>
+                    </>
                         :
                     null}
-        
                         <div className="icon-login">
                             <img src={userDetail.image} alt=""/>
                         </div>
@@ -66,44 +63,32 @@ function UserDetail({type}) {
                         </span>
                     </p>
                     <p className="text">
-                        <strong> Metodos de pago: </strong>
-                        { true ? 
+                        <strong> Medios de pago: </strong>
+                       
                             <span className="text-datos">
-                                medio de pago
+                                {userDetail.medio_pago}
                             </span>
-                            :
-                                <span className="text-datos"> No tienes medio de pago </span>
-                             } 
                     </p>
                      <p className="text">
-                        
-                        { userDetail.domicilio ? 
-                            
-                                userDetail.domicilio.map(domicilio => {
-                                   return (
-                                       <>
-                                    
+                        { userDetail.domicilio.length > 0 ? 
+                            userDetail.domicilio.map(domicilio => {
+                                return (
+                                <>
                                     <p className="text-datos">
                                         <strong> Domicilio: </strong>
-                                   {domicilio.calle}, {domicilio.cp}, {domicilio.localidad}, 
-                                   {domicilio.provincias.nombre}, {domicilio.paises.nombre}
+                                        {domicilio.calle}, {domicilio.cp}, {domicilio.localidad}, 
+                                        {domicilio.provincias.nombre}, {domicilio.paises.nombre}
                                    </p>
-                                   
-                                   </>)
-                            }
-                                )
-                            
-                            :
-                                <span className="text-datos"> No tienes domicilios </span>
-                             } 
+                                </>)
+                                }
+                            )
+                        :
+                            <span className="text-datos"> <strong> Domicilio: </strong>No tienes domicilios </span>
+                        } 
                     </p>
-                    
-                       
-           
             </section>
         </div>
     )
-    // }
 }
 
 export default UserDetail

@@ -24,6 +24,7 @@ const apiUsers = {
     const usersApiResult = {
       count: allUsers.count,
       users: usersApi,
+      totalPages: pages,
     };
     res.json(usersApiResult);
   },

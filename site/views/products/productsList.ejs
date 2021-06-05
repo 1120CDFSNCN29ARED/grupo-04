@@ -65,7 +65,7 @@
                         <%= (Number(productsL[i].precio)).toLocaleString('es-AR', {minimumFractionDigits: 2,
                             maximumFractionDigits: 2, style: 'currency' , currency: 'ARS' }) %> %>
                             <form action="/products/edit/price/<%=productsL[i].id%>?_method=put" method="post">
-                                <input type="number" min="0" max="1000000" step="any" name="price" id="price"
+                                <input type="number" class="right" min="0" max="1000000" step="any" name="price" id="price"
                                     value="<%= productsL[i].precio %>">
                                 <button type="submit" class="priceButton">cambiar</button>
                             </form>
