@@ -35,13 +35,6 @@ const apiCompras = {
                 },
             ],
         });
-        // const allCompras = allComprasRaw.map((compra) => {
-        //     compra.total = compra.pedidos.reduce((tot, item) => {
-        //         return tot + item.precio_compra * item.cantidad;
-        //     }, 0);
-        //     return compra;
-        // })
-        //console.log(count);
         let ventas = {
             count: count,
             data: allComprasRaw,

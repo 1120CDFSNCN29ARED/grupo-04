@@ -18,19 +18,19 @@ function Content() {
     const [count, setCount] = useState();
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1)
-    console.log(totalPages)
+    // console.log(totalPages)
     useEffect ( () => {
         async function fetchData (){
         const data = await fetch(`http://localhost:4000/api/users/total/${page}`)
         const users = await data.json();
-        console.log(users)
+        // console.log(users)
         setUsersList(users.users);
         setCount(users.count);
         setTotalPages(users.totalPages);
     }
     fetchData();       
     },[page])
-    console.log(totalPages)
+    // console.log(totalPages)
     const pageUp = ()=> {
         if(page<5){
             setPage(page+1)
@@ -41,7 +41,7 @@ function Content() {
             setPage(page-1)
         }
     }
-console.log(totalPages)
+// console.log(totalPages)
     const [productosList, setProductosList] = useState([]);
     const [productosCount, setProductosCount] = useState();
     useEffect ( () => {

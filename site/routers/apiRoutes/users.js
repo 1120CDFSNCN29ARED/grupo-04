@@ -11,7 +11,6 @@ router.get("/:id", apiUsers.findOne);
 router.get("/img/:imagen", apiUsers.image);
 
 router.get("/productos", apiProductos.findAll);
-//router.get("/productos/img/:imagen", apiProductos.image);
 router.get("/productos/cat", apiProductos.findCategorias);
 router.get("/productos/cat/:cat", apiProductos.findAllByCat);
 router.get("/productos/last", apiProductos.findLast);

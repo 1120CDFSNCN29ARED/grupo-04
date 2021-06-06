@@ -9,12 +9,9 @@ function VentaDetailLast() {
         const data = await fetch('http://localhost:4000/api/compras/last')
         const lastData = await data.json();
             setLast(lastData)
-            console.log(lastData.user);
     }
         fetchData();
-        //console.log(last.user);
     },[])
-    // console.log(last);
     return (
         <div>
             <h2>Ultima venta realizada</h2>
