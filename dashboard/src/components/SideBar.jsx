@@ -11,7 +11,7 @@ function SideBar() {
 
     useEffect ( () => {
         async function fetchData (){
-        const data = await fetch('http://localhost:4000/api/productos/cat')
+        const data = await fetch('http://www.pccomponents.com.ar/api/productos/cat')
         const categoriasData = await data.json();
             setCategorias(categoriasData)
         }

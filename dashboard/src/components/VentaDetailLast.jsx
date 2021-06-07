@@ -7,7 +7,7 @@ function VentaDetailLast() {
     const [total, setTotal] = useState(0)
     useEffect ( () => {
         async function fetchData (){
-        const data = await fetch('http://localhost:4000/api/compras/last')
+        const data = await fetch('http://www.pccomponents.com.ar/api/compras/last')
         const lastData = await data.json();
             setLast(lastData)
     }

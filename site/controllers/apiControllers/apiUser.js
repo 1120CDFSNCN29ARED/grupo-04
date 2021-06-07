@@ -17,7 +17,7 @@ const apiUsers = {
                 name: user.name,
                 last_name: user.last_name,
                 email: user.email,
-                detail: `http://localhost:4000/api/users/${user.id}`,
+                detail: `http://www.pccomponents.com.ar/api/users/${user.id}`,
             };
         });
         const usersApiResult = {
@@ -51,7 +51,7 @@ const apiUsers = {
                 },
             ],
         });
-        userFound.image = `http://localhost:4000/api/users/img/${userFound.image}`;
+        userFound.image = `http://www.pccomponents.com.ar/api/users/img/${userFound.image}`;
         res.json(userFound);
     },
     image: (req, res) => {
@@ -87,7 +87,7 @@ const apiUsers = {
                 },
             ],
         });
-        lastUser[0].image = `http://localhost:4000/api/users/img/${lastUser[0].image}`;
+        lastUser[0].image = `http://www.pccomponents.com.ar/api/users/img/${lastUser[0].image}`;
         res.json(lastUser);
     },
 };

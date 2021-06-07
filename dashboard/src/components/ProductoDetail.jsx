@@ -8,7 +8,7 @@ function ProductoDetail() {
     const [producto, setProducto] = useState({});
     useEffect ( () => {
         async function fetchData (){
-        const data = await fetch(`http://localhost:4000/api/productos/${id}`)
+        const data = await fetch(`http://www.pccomponents.com.ar/api/productos/${id}`)
             const productDetail = await data.json();
             setProducto(productDetail)
     }
@@ -17,7 +17,7 @@ function ProductoDetail() {
     return (
         <div>
             <h2>{producto.nombre}</h2>
-            <img style= {{width: 15+"%"}} src={producto.imagenes && producto.imagenes.length > 0 ? `http://localhost:4000/img/products/${producto.imagenes[0].imagen}` : "http://localhost:4000/img/products/default.jpg"} alt="Imagen de producto" />
+            <img style= {{width: 15+"%"}} src={producto.imagenes && producto.imagenes.length > 0 ? `http://www.pccomponents.com.ar/img/products/${producto.imagenes[0].imagen}` : "http://www.pccomponents.com.ar/img/products/default.jpg"} alt="Imagen de producto" />
             <p>Categoria: {producto.tipo_producto && producto.tipo_producto.nombre}</p>
             <p>Marca: {producto.marca && producto.marca.nombre}</p>
             <p>Stock: {producto.cantidad_real}</p>

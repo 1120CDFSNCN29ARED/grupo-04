@@ -10,9 +10,9 @@ function UserDetail({type}) {
 
     useEffect(()=>{
     if(type === 'lastUser'){
-        setUrl ('http://localhost:4000/api/users/last')
+        setUrl ('http://www.pccomponents.com.ar/api/users/last')
     } else if(type === 'user'){
-        setUrl (`http://localhost:4000/api/users/${ido.id}`)
+        setUrl (`http://www.pccomponents.com.ar/api/users/${ido.id}`)
     }
    },[type])
     useEffect (()=>{  

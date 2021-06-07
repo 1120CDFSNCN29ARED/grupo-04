@@ -21,7 +21,7 @@ function Content() {
     // console.log(totalPages)
     useEffect ( () => {
         async function fetchData (){
-        const data = await fetch(`http://localhost:4000/api/users/total/${page}`)
+        const data = await fetch(`http://www.pccomponents.com.ar/api/users/total/${page}`)
         const users = await data.json();
         // console.log(users)
         setUsersList(users.users);
@@ -44,7 +44,7 @@ function Content() {
     const [productosCount, setProductosCount] = useState();
     useEffect ( () => {
         async function fetchDataProd (){
-        const dataProd = await fetch('http://localhost:4000/api/productos')
+        const dataProd = await fetch('http://www.pccomponents.com.ar/api/productos')
         const productos = await dataProd.json();
         setProductosList(productos.data)
         setProductosCount(productos.count)
@@ -56,7 +56,7 @@ function Content() {
     const [ventasSum, setVentasSum] = useState(0);
     useEffect ( () => {
         async function fetchDataVentas (){
-            const dataVentas = await fetch('http://localhost:4000/api/compras')
+            const dataVentas = await fetch('http://www.pccomponents.com.ar/api/compras')
             const ventas = await dataVentas.json();
             setVentasList(ventas.data)
             setVentasCount(ventas.count)
@@ -77,7 +77,7 @@ const [pedidosList, setPedidosList] = useState([]);
     const [pedidosSum, setPedidosSum] = useState();
     useEffect ( () => {
         async function fetchDataPed (){
-        const dataPed = await fetch('http://localhost:4000/api/pedidos')
+        const dataPed = await fetch('http://www.pccomponents.com.ar/api/pedidos')
         const pedidos = await dataPed.json();
         setPedidosList(pedidos.data)
             setPedidosCount(pedidos.count)
