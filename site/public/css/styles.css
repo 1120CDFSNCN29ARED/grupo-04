@@ -23,6 +23,42 @@ header {
   background-color: var(--celeste);
   z-index: 90;
 }
+.campo-busqueda {
+  position: relative;
+  border-radius: 4px;
+  border: none;
+  background-color: whitesmoke;
+  outline: none;
+  padding: 5px 40px 5px 10px;
+}
+.campo-busqueda {
+  font-size: 1rem;
+}
+#lupa {
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+.campo-busqueda:hover,
+.campo-busqueda:focus {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+.barra-busqueda {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+#lupa {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  right: 0;
+  color: var(--celeste);
+  margin: auto 0;
+  background-color: transparent;
+}
+.disapear {
+  border: none;
+}
 .user-login {
   position: fixed;
   top: 16px;
@@ -56,6 +92,7 @@ main {
 }
 .buscar.display {
   display: flex;
+  justify-content: center;
 }
 .product-preview.form-search {
   width: 95%;
@@ -138,6 +175,9 @@ main {
   flex-grow: 1;
   flex-shrink: 1;
 }
+.build-desc {
+  width: 65%;
+}
 .product-description p {
   text-align: center;
   height: 55px;
@@ -182,7 +222,6 @@ main {
   margin-left: 0.8rem;
 }
 .text-build-description {
-  width: 25ch;
   text-align: left;
 }
 .llamar {

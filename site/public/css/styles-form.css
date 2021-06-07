@@ -24,6 +24,7 @@
 .confirm-pass {
   width: 70%;
   position: relative;
+  min-height: 57.3px;
 }
 .campo {
   margin: 10px 0;
