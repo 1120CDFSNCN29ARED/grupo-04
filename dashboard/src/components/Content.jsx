@@ -18,12 +18,10 @@ function Content() {
     const [count, setCount] = useState();
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1)
-    // console.log(totalPages)
     useEffect ( () => {
         async function fetchData (){
         const data = await fetch(`http://www.pccomponents.com.ar/api/users/total/${page}`)
         const users = await data.json();
-        // console.log(users)
         setUsersList(users.users);
         setCount(users.count);
         setTotalPages(users.totalPages);
