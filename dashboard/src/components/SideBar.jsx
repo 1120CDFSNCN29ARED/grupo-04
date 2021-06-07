@@ -31,8 +31,8 @@ function SideBar() {
             </div>
             <Buttons name='Ventas' path='/ventas'/>
             <Buttons name='Último Usuario' path='/ultimousuario'/>
-            <Buttons name='Ultimo Producto' path='/ultimoproducto'/>
-            <Buttons name='Ultima Venta' path='/ultimaventa'/>
+            <Buttons name='Último Producto' path='/ultimoproducto'/>
+            <Buttons name='Última Venta' path='/ultimaventa'/>
         </div>
     )
 }

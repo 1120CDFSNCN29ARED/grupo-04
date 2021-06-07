@@ -1,5 +1,6 @@
 .compra-datos {
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
 }
 .compra-datos img {

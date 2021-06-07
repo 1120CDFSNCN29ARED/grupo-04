@@ -6,7 +6,6 @@ const apiUsers = {
     findAll: async (req, res) => {
         const total = await db.User.count();
         const pages = Math.ceil(total / 10);
-        // console.log(pages);
         const allUsers = await db.User.findAndCountAll({
             limit: 10,
             offset: 10 * (req.params.page - 1),
@@ -89,7 +88,6 @@ const apiUsers = {
             ],
         });
         lastUser[0].image = `http://localhost:4000/api/users/img/${lastUser[0].image}`;
-        // console.log(lastUser);
         res.json(lastUser);
     },
 };

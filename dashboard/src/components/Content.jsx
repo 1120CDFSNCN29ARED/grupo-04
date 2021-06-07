@@ -30,7 +30,6 @@ function Content() {
     }
     fetchData();       
     },[page])
-    // console.log(totalPages)
     const pageUp = ()=> {
         if(page<5){
             setPage(page+1)
@@ -41,7 +40,6 @@ function Content() {
             setPage(page-1)
         }
     }
-// console.log(totalPages)
     const [productosList, setProductosList] = useState([]);
     const [productosCount, setProductosCount] = useState();
     useEffect ( () => {
@@ -162,7 +160,7 @@ const [pedidosList, setPedidosList] = useState([]);
             <Route exact path='/ultimaventa'>
                 <VentaDetailLast />
             </Route>
-            <Route exact path='/producto/last'>
+            <Route exact path='/ultimoproducto'>
                 <ProductoDetailLast />
             </Route>
             <Route exact path='/ultimousuario'>

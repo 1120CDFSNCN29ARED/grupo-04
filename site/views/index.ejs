@@ -16,8 +16,9 @@
             <section class="products-display">
                 <% for (let i=0; i < 4; i++) {%>
                     <article class="product-preview">
-                        <div class="product-pic">
-                            <img src="/img/products/<%= productsH[i].imagenes[0].imagen%> " alt="imagen de producto">
+                        <div class="product-pic"><a href="/products/detail/<%=productsH[i].id%> ">
+                                <img src="/img/products/<%= productsH[i].imagenes[0].imagen%> "
+                                    alt="imagen de producto"></a>
                         </div>
                         <div class="product-description">
                             <p>

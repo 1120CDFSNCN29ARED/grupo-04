@@ -4,10 +4,11 @@ function Pedido(props) {
     return (
         <div>
             <span><img style= {{width: 15+"%"}} className="imgPedido" src={props.producto.imagenes.length > 0 ? `http://localhost:4000/img/products/${props.producto.imagenes[0].imagen}` : "http://localhost:4000/img/products/default.jpg"} alt="imagen de producto" /></span>
-            <p className="nombrePedido">{props.producto.nombre}</p>
-            <p className="marcaPedido">{props.producto.marca.nombre}</p>
-            <p className="cantidadPedido">{props.cantidad}</p>
-            <p className="precioPedido">{props.precio_compra}</p>
+            <p className="nombrePedido">Nombre: {props.producto.nombre}</p>
+            <p className="marcaPedido">Marca: {props.producto.marca.nombre}</p>
+            <p className="cantidadPedido">Cantidad: {props.cantidad}</p>
+            <p className="precioPedido">Precio: {props.precio_compra.toLocaleString('es-AR', {minimumFractionDigits: 2, maximumFractionDigits: 2,
+                                style: 'currency' , currency: 'ARS' })}</p>
         </div>
     )
 }

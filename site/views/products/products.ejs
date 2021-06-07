@@ -38,8 +38,19 @@
                                     currency: 'ARS' }) : "CONSULTAR" %>
                             </p>
                         </div>
-                        <div class="info-btn">
-                            <a href="/products/detail/<%=products[i].id%> ">COMPRAR</a>
+                        <div>
+                            <form action="/products/cart/<%=products[i].id%>?_method=put" method="post">
+                                <button type="submit" class="info-btn" <%=!products[i].precio ? "disabled" :
+                                    ((products[i].cantidad_real - products[i].cantidad_en_pedido) < 1) ? "disabled" : ""
+                                    %>>COMPRAR</button>
+                                <% if ((products[i].cantidad_real - products[i].cantidad_en_pedido) < 1) { %>
+                                    <p class="warning"> Sin Stock</p>
+                                    <% } else {%>
+                                        <select class="product-quantity" name="cantidad" id="productAmount" hidden>
+                                            <option value="1" selected hidden></option>
+                                        </select>
+                                        <% } %>
+                            </form>
                         </div>
                     </article>
                     <% } %>
