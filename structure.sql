@@ -172,10 +172,10 @@ usb_3	int(5),
 vga	int(2),
 hdmi	int(2),
 dvi	int(2),
-tamaño varchar(10),
+tamano varchar(10),
 mhz double,
 bits int(5),
-tamaño_fisico varchar(100),
+tamano_fisico varchar(100),
 adicionales varchar(500),
 createdAt date,
 updatedAt date,
@@ -275,15 +275,15 @@ VALUES (null,'DDR4'),
 
 INSERT INTO tipo_productos
 VALUES (null,'CPU'),
-       (null,'MEMORIA'),
-       (null,'MOTHERBOARD'),
-       (null,'ALMACENAMIENTO'),
-       (null,'GABINETE'),
-       (null,'MONITOR'),
-       (null,'PLACA DE VIDEO');
+       (null,'Memoria'),
+       (null,'Motherboard'),
+       (null,'Almacenamiento'),
+       (null,'Gabinete'),
+       (null,'Monitor'),
+       (null,'Placa de video');
 
 INSERT INTO uni_medidas
-VALUES (null,'unidad'),
-       (null,'metros');
+VALUES (null,'Unidad'),
+       (null,'Metros');
 
 --SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
