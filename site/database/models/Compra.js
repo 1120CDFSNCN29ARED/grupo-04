@@ -8,6 +8,7 @@ module.exports = function (sequelize, dataTypes) {
         {
             timestamps: true,
             paranoid: true,
+            tableName: "compras",
         }
     );
     Compra.associate = function (models) {

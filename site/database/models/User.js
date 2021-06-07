@@ -20,6 +20,7 @@ module.exports = (sequelize, dataTypes) => {
     let config = {
         timestamps: true,
         paranoid: true,
+        tableName: "users",
     };
     const User = sequelize.define(alias, cols, config);
     User.associate = function (models) {

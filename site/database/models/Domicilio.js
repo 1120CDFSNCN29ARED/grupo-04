@@ -13,6 +13,7 @@ module.exports = function (sequelize, dataTypes) {
         {
             timestamps: true,
             paranoid: true,
+            tableName: "domicilios",
         }
     );
     Domicilio.associate = function (models) {

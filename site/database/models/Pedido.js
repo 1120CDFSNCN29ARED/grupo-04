@@ -11,6 +11,7 @@ module.exports = function (sequelize, dataTypes) {
         {
             timestamps: true,
             paranoid: true,
+            tableName: "pedidos",
         }
     );
     Pedido.associate = function (models) {

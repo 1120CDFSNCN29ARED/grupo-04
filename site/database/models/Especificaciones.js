@@ -62,6 +62,7 @@ module.exports = function (sequelize, dataTypes) {
         {
             timestamps: true,
             paranoid: true,
+            tableName: "especificaciones",
         }
     );
     Especificaciones.associate = function (models) {
