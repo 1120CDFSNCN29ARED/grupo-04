@@ -8,9 +8,11 @@ function Venta(props) {
     //console.log(totalPedido);
     return (
         
-            <div>
-            <p>{props.fecha}</p>
-            <p><Link to={`/user/${props.user.id}`}> {`${props.user.name} ${props.user.last_name}`} </Link></p>
+            <div className="venta-unit">
+                <div className="titulos-venta">
+                <p>{props.fecha}</p>
+                <p><Link to={`/user/${props.user.id}`}> {`${props.user.name} ${props.user.last_name}`} </Link></p>
+                </div>
             <table className="table">
                 <tr classname="table-secondary">
                     <th>Producto</th>
@@ -21,7 +23,7 @@ function Venta(props) {
                     return <PedidoVenta {...pedido} key={`${pedido.id} ${i}`} />
                 })}
                 <tr classname="table-secondary">
-                    <th colSpan="2">TOTAL</th>
+                    <th colSpan="2" className="total-cel">TOTAL</th>
                     <td>{Number(totalPedido).toLocaleString('es-AR',
                                     {minimumFractionDigits: 2, maximumFractionDigits: 2, style: 'currency' ,
                                     currency: 'ARS' })}</td>

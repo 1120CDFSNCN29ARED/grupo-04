@@ -19,6 +19,20 @@
 .text {
   margin: 0.5rem 0;
 }
+.titulos-venta {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem auto;
+  padding: 0 1rem;
+}
+.venta-unit {
+  padding: 0.5rem;
+
+  padding-bottom: 2rem;
+}
+.venta-unit:not(:last-of-type) {
+  border-bottom: 3px solid black;
+}
 .sidebar {
   width: 100%;
   display: flex;
@@ -133,6 +147,7 @@ main {
 .column {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 .icons {
   width: 40%;

@@ -1,62 +1,66 @@
 .table {
-    border-collapse: collapse;
-    padding: 10px;
-    text-align: center;
-    font-size: 0.7rem;
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
+  border-collapse: collapse;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.7rem;
+  margin-top: 10px;
+  width: 100%;
 }
 .headLista {
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 25px;
-    margin-bottom: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 25px;
+  margin-bottom: 10px;
 }
 .productImg {
-    width: 15%;
+  width: 15%;
 }
 th,
 td {
-    padding-left: 10px;
-    padding-right: 10px;
-    border-bottom: 0.1px solid black;
+  padding: 0.5rem;
+  border-bottom: 0.1px solid black;
+  font-size: 0.8rem;
 }
 input {
-    width: 70%;
-    text-align: right;
+  width: 70%;
+  text-align: right;
 }
 .table-secondary {
-    background-color: #dbdbdb;
-    margin-bottom: 4px;
+  background-color: #dbdbdb;
+  margin-bottom: 4px;
+  margin: 0.5rem 0;
+  min-height: 1rem;
 }
 .table-light {
-    background-color: #f8f8f8;
+  background-color: #f8f8f8;
 }
 .table img {
-    padding: 5px;
-    width: 60%;
-    text-align: center;
+  padding: 5px;
+  width: 60%;
+  text-align: center;
 }
 .buttons {
-    width: 15%;
+  width: 15%;
 }
 .btn-primary {
-    padding: 3px;
-    border-radius: 3px;
-    margin: 2px;
-    background-color: var(--celeste);
-    color: var(--azul);
-    border: none;
+  padding: 3px;
+  border-radius: 3px;
+  margin: 2px;
+  background-color: var(--celeste);
+  color: var(--azul);
+  border: none;
 }
 .btn-danger {
-    padding: 3px;
-    border-radius: 3px;
-    border: none;
-    margin: 2px;
-    background-color: red;
-    color: var(--azul);
+  padding: 3px;
+  border-radius: 3px;
+  border: none;
+  margin: 2px;
+  background-color: red;
+  color: var(--azul);
 }
 tr:nth-child(even) {
-    background-color: #f1f1f1;
+  background-color: #f1f1f1;
+}
+.total-cel {
+  text-align: right;
 }
